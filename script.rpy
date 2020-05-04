@@ -9,6 +9,22 @@ define s = Character(_("Side Character"), color="#fffc30")
 define b = Character(_("Bad Guy"), color="#ff3033")
 define h = Character(_("Helpful Person"), color="#3033ff")
 
+transform singlebounce:
+    pause .15
+    yoffset 0
+    easein .175 yoffset -20
+    easeout .175 yoffset 0
+    yoffset 0
+
+# stop bouncing by showing character again without bounce
+transform multibounce:
+    pause .15
+    yoffset 0
+    easein .175 yoffset -20
+    easeout .175 yoffset 0
+    yoffset 0
+    repeat
+
 # define colors for use
 init:
     image black = Solid((0, 0, 0, 255))
@@ -40,9 +56,9 @@ label start:
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
-    
+
     show lokidefault
-    show sidecharadefault at right
+    show sidecharadefault at multibounce, right
 
     # These display lines of dialogue.
 
@@ -78,7 +94,7 @@ label positive:
     scene greenaurora
     with dissolve
 
-    show lokidefault
+    show lokidefault at singlebounce, center
 
     m "I can't wait to see what today has in store for me!"
 
