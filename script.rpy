@@ -54,6 +54,33 @@ label start:
 
     e "Once you add a story, pictures, and music, you can release it to the world!"
 
-    # This ends the game.
+    menu:
 
+        "Now, am I feeling positive or negative today..."
+        "Positive":
+            jump positive
+        "Negative":
+            jump negative
+label positive:
+
+    scene greenaurora
+    with dissolve
+
+    m "I can't wait to see what today has in store for me!"
+
+    "A fool's thinking, but this would be the kind of thinking that would change the world."
+
+    "{b}Good Ending{/b}."
+    # This ends the game.
+    return
+
+label negative:
+
+    scene black
+    with dissolve
+
+    m "I don't feel so good."
+
+    "{b}Bad Ending{/b}."
+    # This ends the game.
     return
