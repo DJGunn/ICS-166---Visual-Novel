@@ -26,45 +26,59 @@ label start:
 
     scene black with dissolve
 
-    show caffeine
-
-    #scene your_scene_title
+    show lokidefault   # this should be lokidefault when character is made
 
     m "Ah yes, happy birthday to me, woo..."
 
     "Loki is an orphan that has been poor their entire life. Their parents were killed for not paying the protection fee and soon the same would happen to them."
 
     m "Now that I'm officially an adult I'm going to have to fight in GG duels to make a living."
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
 
-    scene black with dissolve
-    scene greenaurora
+    #scene black with dissolve
+    scene greenaurora with dissolve
 
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
-
-    show eileen happy
+    
+    show lokidefault
+    show sidecharadefault at right
 
     # These display lines of dialogue.
 
-    e "You've created a new Ren'Py game."
+    s "KNOCK KNOCK!"
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+    m "Ugh, who's there?"
+
+    s "IT'S ME!"
+
+    m "What kind of joke is that?!"
+
+    "***Side character opens the door and enters Loki's room.***"
+
+    show lokidefault at left
+    with move
+
+    s "How are you doing on this fine day?!"
 
     menu:
 
         "Now, am I feeling positive or negative today..."
+
         "Positive":
+
             jump positive
+
         "Negative":
+
             jump negative
+
 label positive:
 
     scene greenaurora
     with dissolve
+
+    show lokidefault
 
     m "I can't wait to see what today has in store for me!"
 
@@ -78,6 +92,8 @@ label negative:
 
     scene black
     with dissolve
+
+    show lokidefault
 
     m "I don't feel so good."
 
