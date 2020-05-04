@@ -25,6 +25,12 @@ transform multibounce:
     yoffset 0
     repeat
 
+# moves character downwards
+transform depress:
+    pause .15
+    yoffset 0
+    easein .175 yoffset 20
+
 # define colors for use
 init:
     image black = Solid((0, 0, 0, 255))
@@ -109,7 +115,7 @@ label negative:
     scene black
     with dissolve
 
-    show lokidefault
+    show lokidefault at depress, center
 
     m "I don't feel so good."
 
