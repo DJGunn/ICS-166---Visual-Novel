@@ -42,10 +42,12 @@ init:
 
 label start:
 
+    # how to declare chapter
     scene black with dissolve
 
     show text "Chapter 1\nWait, I'm Rich?!" with Pause(5)
 
+    # actual scene start
     scene black with dissolve
 
     show lokidefault   # this should be lokidefault when character is made
@@ -97,6 +99,9 @@ label start:
 
 label positive:
 
+    # Initialize a variable.
+    $ gg_power = 5
+
     scene greenaurora
     with dissolve
 
@@ -105,6 +110,17 @@ label positive:
     m "I can't wait to see what today has in store for me!"
 
     "A fool's thinking, but this would be the kind of thinking that would change the world."
+
+    menu:
+
+        "GG Power Up Test"
+
+        "Plus 1":
+            $ gg_power+=1
+        "Plus 2":
+            $ gg_power+=2
+        "Minus 3":
+            $ gg_power-=3
 
     "{b}Good Ending{/b}."
     # This ends the game.
