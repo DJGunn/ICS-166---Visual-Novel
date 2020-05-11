@@ -4,8 +4,8 @@
 # name of the character.
 
 define e = Character(_("Eileen"), color="#cc88cc")
-define m = Character(_("Main Character"), color="#2ae6ff")
-define s = Character(_("Side Character"), color="#fffc30")
+define l = Character(_("Loki"), color="#2ae6ff")
+define g = Character(_("Garm"), color="#fffc30")
 define b = Character(_("Bad Guy"), color="#ff3033")
 define h = Character(_("Helpful Person"), color="#3033ff")
 
@@ -88,7 +88,7 @@ label start:
     # how to declare chapter
     scene black with dissolve
 
-    show text "Chapter 1\nWait, I'm Rich?!" with Pause(5)
+    show text "Chapter 2\nA True Gentleman?!" with Pause(5)
 
     # actual scene start
     scene black with dissolve
@@ -100,41 +100,41 @@ label start:
     show lokidefault   # this would use lokidefault.png/lokidefault.jpg when character is added to the images directory
 
     # you can have multi-line text
-    m """
-    Ah yes, happy birthday to me, woo...
+    l """
+    {i}Ah yes, happy birthday to me, woo...{/i}
 
-    I really don't understand why people care so much about birthdays, for me it's basically a day to eat cake.
+    {i}I really don't understand why people care so much about birthdays, for me it's basically a day to eat cake.{/i}
 
-    I don't like cake.
+    {i}I don't like cake, but company is always welcome.{/i}
     """
     # scenes
     scene greenaurora with dissolve
     show lokidefault
-    show sidecharadefault at multibounce, right
+    show garmdefault at multibounce, right
 
     # These display lines of dialogue.
 
-    s "KNOCK KNOCK!"
+    g "KNOCK KNOCK!"
 
-    m "Ugh, who's there?"
+    l "Ugh, who's there?"
 
-    s "IT'S ME!"
+    g "IT'S ME!"
 
-    m "What kind of joke is that?!"
+    l "What kind of joke is that?!"
 
     # the tag {b} needs an ending tag {b} to show where the tag ends
     # b is for bold text
-    "{b}Side character opens the door and enters Loki's room.{/b}"
+    "{b}Garm opens the door and enters Loki's room.{/b}"
 
     show lokidefault at left
     with move
 
-    s "How are you doing on this fine day?!"
+    g "How are you doing on this fine day?!"
 
     # this is an example of what a route would look like, usually if you want to put a bad end in your chapter
     menu:
 
-        "Now, am I feeling positive or negative today..."
+        "Now, how am I feeling today..."
 
         "Positive":
 
@@ -153,25 +153,27 @@ label positive:
     scene greenaurora
     with dissolve
 
-    show lokidefault at singlebounce, center
+    show lokidefault at center
 
     # you can do multi-line dialogue with tags used sometimes
-    m """
+    l """
     {i}I guess I have no real reason to feel sad since I'm used to being poor, and also I'd be such a downer if I said I -wasn't- in a good mood today.{/i}
 
     {i}Sure, why not at least play along to being happy today?{/i}
-
-    I can't wait to see what today has in store for me!
     """
+    show lokihappy at singlebounce, center
+    l "I can't wait to see what today has in store for me!"
 
-    show sidecharadefault at singlebounce, right
-    s "Haha okay! Sorry I couldn't find a gift for you, so I'll just give you the credits I would have spent on a gift! What's your NeoMo?"
+    show garmhappy at singlebounce, right
+    g "Haha okay! Sorry I couldn't find a gift for you, so I'll just give you the credits I would have spent on a gift! What's your NeoMo?"
 
-    m """
-    {i}Aw they're so nice to me. They really didn't have to, but I can't turn them down when they're so willing to give me something for my birthday can I?{/i}
+    l "{i}Aw they're so nice to me. They really didn't have to, but I can't turn them down when they're so willing to give me something for my birthday can I?{/i}"
 
-    It's uh...
+    l "It's uh..."
 
+    show lokidefault at center
+
+    l """
     {i}Man why did I name my NeoMo account this...{/i}
 
     TheRealLokiGG.
@@ -179,25 +181,27 @@ label positive:
 
     # showing characters after they've already been shown will have the most recent effect happen
     # this removes the previous instance of that character
-    show sidecharadefault at multibounce, right
-    s "HAHAHA, THAT'S SO FUNNY!"
-    show lokidefault at depress, center
-    m "Please don't speak of it again, haaaa..."
+    show garmhappy at multibounce, right
+    g "HAHAHA, THAT'S SO FUNNY!"
+    show lokisad at depress, center
+    l "Please don't speak of it again, haaaa..."
 
-    s "In any case, here you go!"
+    g "In any case, here you go!"
 
     $ inventory.earn(20)
     $ current_money = inventory.money
     # to show a variable's value in dialogue, put brackets around it
 
-    show lokidefault at singlebounce, left
-    m "Alright, I got it! Thanks so much! Now I have %(current_money)d!"
+    show lokihappy at singlebounce, center
+    l "Alright, I got it! Thanks so much! Now I have %(current_money)d!"
 
-    show sidecharadefault at singlebounce, right
-    s "You're welcome!"
+    show garmhappy at singlebounce, right
+    g "You're welcome!"
 
-    m "Well um... time to share it with you in the form of food!"
+    l "Well um... time to share it with you in the form of food!"
 
+    show lokidefault at left
+    show garmdefault at right
     # credit example
     jump preshop1
     jump shop1
@@ -212,7 +216,7 @@ label shop1:
     menu store1:
 
         "What do I want..."
-        
+
         # multiple things can happen after every menu choice
         "Chocolate %(chococost)d":
             if inventory.buy(choco):
@@ -234,9 +238,9 @@ label shop1:
 
 label resume1:
 
-    m "Ah yes this is going to be yummy!"
+    l "Ah yes this is going to be yummy!"
 
-    s "IT'S GOING TO BE GREAT!"
+    g "IT'S GOING TO BE GREAT!"
 
     scene black with dissolve
 
@@ -280,7 +284,7 @@ label shop2:
 
         "Golden Top Hat (%(tophatcost)d credits)":
             if inventory.buy(tophat):
-                m "This top hat defines a GG!"
+                l "This top hat defines a GG!"
                 $ gg_power+=5
                 $ current_money = inventory.money
                 "You have %(current_money)d credits remaining, thank you for using the GG Store!"
@@ -288,7 +292,7 @@ label shop2:
 
         "Golden Suit (%(suitcost)d credits)":
             if inventory.buy(suit):
-                m "A suit to enhance my GG!"
+                l "A suit to enhance my GG!"
                 $ gg_power+=10
                 $ current_money = inventory.money
                 "You have %(current_money)d credits remaining, thank you for using the GG Store!"
@@ -302,7 +306,7 @@ label shop2:
                 jump resume2
 
 label fallthrough:
-    m "Not enough credits..."
+    l "Not enough credits..."
     jump shop2
 
 label resume2:
@@ -320,7 +324,7 @@ label negative:
 
     show lokidefault at depress, center
 
-    m "I don't feel so good."
+    l "I don't feel so good."
 
     "{b}Bad Ending{/b}."
     # This ends the game.
