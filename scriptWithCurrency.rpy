@@ -6,7 +6,7 @@
 define e = Character(_("Eileen"), color="#cc88cc")
 define l = Character(_("Loki"), color="#2ae6ff")
 define g = Character(_("Garm"), color="#fffc30")
-define b = Character(_("Bad Guy"), color="#ff3033")
+define lg = Character(_("Loki and Garm"), color="#ff3033")
 define h = Character(_("Helpful Person"), color="#3033ff")
 
 transform singlebounce:
@@ -110,7 +110,7 @@ label start:
     # scenes
     scene greenaurora with dissolve
     show lokidefault
-    show garmdefault at multibounce, right
+    show garmhappy at multibounce, right
 
     # These display lines of dialogue.
 
@@ -161,6 +161,7 @@ label positive:
 
     {i}Sure, why not at least play along to being happy today?{/i}
     """
+    hide lokidefault
     show lokihappy at singlebounce, center
     l "I can't wait to see what today has in store for me!"
 
@@ -170,7 +171,7 @@ label positive:
     l "{i}Aw they're so nice to me. They really didn't have to, but I can't turn them down when they're so willing to give me something for my birthday can I?{/i}"
 
     l "It's uh..."
-
+    hide lokihappy
     show lokidefault at center
 
     l """
@@ -183,6 +184,7 @@ label positive:
     # this removes the previous instance of that character
     show garmhappy at multibounce, right
     g "HAHAHA, THAT'S SO FUNNY!"
+    hide lokidefault
     show lokisad at depress, center
     l "Please don't speak of it again, haaaa..."
 
@@ -192,6 +194,7 @@ label positive:
     $ current_money = inventory.money
     # to show a variable's value in dialogue, put brackets around it
 
+    hide lokisad
     show lokihappy at singlebounce, center
     l "Alright, I got it! Thanks so much! Now I have %(current_money)d!"
 
@@ -199,7 +202,8 @@ label positive:
     g "You're welcome!"
 
     l "Well um... time to share it with you in the form of food!"
-
+    hide lokihappy
+    hide garmhappy
     show lokidefault at left
     show garmdefault at right
     # credit example
@@ -237,6 +241,13 @@ label shop1:
                 jump resume1
 
 label resume1:
+    l "..."
+
+    g "..."
+
+    "{b}Looks at each other{/b}"
+
+    lg "WHAAAAAAAAT?!" with vpunch
 
     l "Ah yes this is going to be yummy!"
 
