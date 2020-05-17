@@ -70,6 +70,8 @@ init python:
 
 # The game starts here.
 
+default gq_menuset = set()
+
 label start:
 
     # python runs at the moment the game starts
@@ -251,6 +253,8 @@ label resume1:
 
     lg "WHAAAAAAAAT?!" with vpunch
 
+    lg "WHERE THE HECK DID THOSE CREDITS COME FROM?!"
+
     scene black with dissolve
 
     """
@@ -311,6 +315,7 @@ label resume1:
 
     l "I just randomly had this thought this morning, but what was that thing way back when Fenrir-"
 
+    hide garmhappy
     show garmdefault at left
 
     l """
@@ -327,32 +332,113 @@ label resume1:
     That thing you're talking about is a Gentle Guy, but everyone calls them GGs.
 
     Well, people who know about them, that is.
-
-    The Lords of the Land, the LOLs, have the strongest GGs.
-
-    They get to rule the land because they're rich and strong
     """
+
+    l "Wait, you said that people know about them, who are these people?"
+
+    g """
+    The people include those of us with GGs, those who know others with GGs, and the LOLs.
+
+    These are pretty self-explanatory, but the LOLs have the strongest GGs.
+    """
+
+    l "Oh, that makes sense. A year ago I was actually feeling pretty hopeless, you know being poor and not being able to do anything about it."
+
+    hide garmdefault
+    show garmhappy at left
+
+    g "Haha, there's actually no real reason to feel totally hopeless!"
 
     l "{i}Thank goodness I'm not crazy, but now I have even more questions.{/i}"
 
+    show lokidefault at right
+    hide garmhappy
+    show garmdefault at left
     $ gqcount = 0
-    menu garmquestions:
+    $ gqbonus = 0
 
+label garmquestions:
+    menu:
+        set gq_menuset
         "What should I ask about..."
+
+        "Wait, you said that people know about them, who are these people?":
+            $ gqcount+=1
+
+            g """
+            The people include those of us with GGs, those who know others with GGs, and the LOLs.
+
+            These are pretty self-explanatory, but the LOLs have the strongest GGs.
+            """
+
+            l "Wait, you said \"us\", do you mean to say that we both have GGs?"
+
+            hide garmdefault
+            show garmhappy at singlebounce, left
+
+            g "Yep, that's exactly what that means!"
+
+            l """
+            Oh okay!
+
+            ...
+
+            ACTUALLY, WHY DIDN'T YOU TELL ME THIS BEFORE?!
+            """
+
+            g "You never asked!"
+
+            menu:
+
+                l "Oh um, well I guess that's true..."
+
+                "Wait, but how do I have one?":
+
+                    $ gqbonus = 1
+                    hide garmhappy
+                    show garmdefault at depress, left
+                    g "Actually your parents and my parents were a part of the previous uprising against to LOLs, but they're either exiled from this area or dead now..."
+
+                    l "Oh, can you teach me how to manifest a GG later? I'm probably going to have to sit and think for things a bit after I'm either done asking you questions or you get tired of answering them, haha."
+
+                    hide garmdefault
+                    show garmhappy at left
+
+                    g "Sure thing!"
+
+                    show garmdefault at left
+
+                    jump garmquestions
+
+                "{i}Ask nothing{/i}":
+
+                    jump garmquestions
 
         "Why did Fenrir have to be taken away for manifesting their GG?":
             $ gqcount+=1
+
+            g "They probably didn't want some kind of force strong enough to cause an uprising against the LOLs so Tyr made the decision to lock her up."
+
+            l "But she was only acting in self-defense!"
+
+            g "Yeah, but the LOLs care more about maintaining their power than human rights."
+
+            l "That's not good at all..."
+
             jump garmquestions
-        "Why don't I have a GG?":
+        "Wait, you said LOLs have the strongest GGs, so how do GGs get stronger?":
             $ gqcount+=1
-            jump garmquestions
-        "Can I manifest my own GG? If I can, how do you do that?":
-            $ gqcount+=1
+
+            g "Usually if one is related to someone who has a GG and/or a strong will to obtain something."
+
+            l "Wait, so since you're Fenrir's sister, does that mean you have a GG?"
             jump garmquestions
         "I think I'm done asking questions.":
             jump resume2
 
 label resume2:
+    if gqcount==3:
+        $ gg_power+=5
     scene black with dissolve
 
     "You can change scenes as much as you want in your chapter."
