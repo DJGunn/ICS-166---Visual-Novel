@@ -3,9 +3,9 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define e = Character(_("Eileen"), color="#cc88cc")
-define l = Character(_("Loki"), color="#2ae6ff")
-define g = Character(_("Garm"), color="#fffc30")
+define e = Character(_("Eileen"), color="#cc88cc", image="eileen")
+define l = Character(_("Loki"), color="#2ae6ff", image="loki")
+define g = Character(_("Garm"), color="#fffc30", image="garm")
 define lg = Character(_("Loki and Garm"), color="#ff3033")
 define h = Character(_("Helpful Person"), color="#3033ff")
 
@@ -96,10 +96,10 @@ label start:
     scene black with dissolve
 
     # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "lokidefault.png" or "lokidefault.jpg"
+    # replace it by adding a file named "loki neutral.png" or "loki neutral.jpg"
     # to the images directory.
 
-    show lokidefault   # this would use lokidefault.png/lokidefault.jpg when character is added to the images directory
+    show loki neutral   # this would use loki neutral.png/loki neutral.jpg when character is added to the images directory
 
     # you can have multi-line text
     l """
@@ -111,8 +111,8 @@ label start:
     """
     # scenes
     scene greenaurora with dissolve
-    show lokidefault
-    show garmhappy at multibounce, right
+    show loki neutral
+    show garm happy at multibounce, right
 
     # These display lines of dialogue.
 
@@ -128,7 +128,7 @@ label start:
     # b is for bold text
     "{b}Garm opens the door and enters Loki's room.{/b}"
 
-    show lokidefault at left
+    show loki neutral at left
     with move
 
     g "How are you doing on this fine day?!"
@@ -155,7 +155,7 @@ label positive:
     scene greenaurora
     with dissolve
 
-    show lokidefault at center
+    show loki neutral at center
 
     # you can do multi-line dialogue with tags used sometimes
     l """
@@ -163,31 +163,29 @@ label positive:
 
     {i}Sure, why not at least play along to being happy today?{/i}
     """
-    hide lokidefault
-    show lokihappy at singlebounce, center
+    hide loki neutral
+    show loki happy at singlebounce, center
     l "I can't wait to see what today has in store for me!"
 
-    show garmhappy at singlebounce, right
+    show garm happy at singlebounce, right
     g "Haha okay! Sorry I couldn't find a gift for you, so I'll just give you the credits I would have spent on a gift! What's your NeoMo?"
 
     l "{i}Aw they're so nice to me. They really didn't have to, but I can't turn them down when they're so willing to give me something for my birthday can I?{/i}"
 
     l "It's uh..."
-    hide lokihappy
-    show lokidefault at center
+    #hide loki happy
+    #show loki neutral at center
 
-    l """
-    {i}Man why did I name my NeoMo account this...{/i}
+    l @ neutral "{i}Man why did I name my NeoMo account this...{/i}"
 
-    TheRealLokiGG.
-    """
+    l @ neutral "TheRealLokiGG."
 
     # showing characters after they've already been shown will have the most recent effect happen
     # this removes the previous instance of that character
-    show garmhappy at multibounce, right
+    show garm happy at multibounce, right
     g "HAHAHA, THAT'S SO FUNNY!"
-    hide lokidefault
-    show lokisad at depress, center
+    hide loki neutral
+    show loki sad at depress, center
     l "Please don't speak of it again, haaaa..."
 
     g "In any case, here you go!"
@@ -197,18 +195,19 @@ label positive:
     $ current_credits = inventory.credits
     # to show a variable's value in dialogue, put brackets around it
 
-    hide lokisad
-    show lokihappy at singlebounce, center
+    hide loki sad
+    show loki happy at singlebounce, center
     l "Alright, I got it! Thanks so much! Now I have %(current_credits)d!"
 
-    show garmhappy at singlebounce, right
+    show garm happy at singlebounce, right
     g "You're welcome!"
 
     l "Well um... time to share it with you in the form of food!"
-    hide lokihappy
-    hide garmhappy
-    show lokidefault at left
-    show garmdefault at right
+    hide loki happy
+    hide garm happy
+    show loki neutral at left
+    show garm neutral at right
+    with move
     # credit example
     jump preshop1
     jump shop1
@@ -268,7 +267,7 @@ label resume1:
     """
     show text "1 year later" with Pause(5)
 
-    show lokidefault at depress, center
+    show loki neutral at depress, center
 
     "Loki woke up at 8AM per usual, but what was on his mind was unusual."
 
@@ -283,19 +282,20 @@ label resume1:
 
     "Onwards with the story!"
 
-    show garmhappy at right
+    show garm happy at right
 
     g "You're awake right?"
 
     l "Yea-"
 
-    show garmhappy at multibounce, left
-
+    show garm happy at multibounce, left
+    with move
+    
     "{b}Garm bounces into Loki's room and immediately rushes to open the blinds.{/b}"
 
     scene white with dissolve
-    show lokidefault at depress, center
-    show garmhappy at multibounce, left
+    show loki neutral at depress, center
+    show garm happy at multibounce, left
 
     l "MY EYES!" with hpunch
 
@@ -304,19 +304,19 @@ label resume1:
     "{b}Loki gets out of bed.{/b}"
 
     scene lokiroom with dissolve
-    show lokidefault at center
-    show garmhappy at multibounce, left
+    show loki neutral at center
+    show garm happy at multibounce, left
 
     l "Agh... Um, Garm?"
 
-    show garmhappy at left
+    show garm happy at left
 
     g "Oh, what is it, Loki?"
 
     l "I just randomly had this thought this morning, but what was that thing way back when Fenrir-"
 
-    hide garmhappy
-    show garmdefault at left
+    hide garm happy
+    show garm neutral at left
 
     l """
     Um, got taken away?
@@ -344,23 +344,24 @@ label resume1:
 
     l "Oh, that makes sense. A year ago I was actually feeling pretty hopeless, you know being poor and not being able to do anything about it."
 
-    hide garmdefault
-    show garmhappy at left
+    hide garm neutral
+    show garm happy at left
 
     g "Haha, there's actually no real reason to feel totally hopeless!"
 
     l "{i}Thank goodness I'm not crazy, but now I have even more questions.{/i}"
 
-    show lokidefault at right
-    hide garmhappy
-    show garmdefault at left
+    show loki neutral at right
+    hide garm happy
+    show garm neutral at left
+    with move
     $ gqcount = 0
     $ gqbonus = 0
 
 label garmquestions:
     menu:
         set gq_menuset
-        "What should I ask about..."
+        l "What should I ask about..."
 
         "Wait, you said that people know about them, who are these people?":
             $ gqcount+=1
@@ -373,8 +374,8 @@ label garmquestions:
 
             l "Wait, you said \"us\", do you mean to say that we both have GGs?"
 
-            hide garmdefault
-            show garmhappy at singlebounce, left
+            hide garm neutral
+            show garm happy at singlebounce, left
 
             g "Yep, that's exactly what that means!"
 
@@ -395,18 +396,18 @@ label garmquestions:
                 "Wait, but how do I have one?":
 
                     $ gqbonus = 1
-                    hide garmhappy
-                    show garmdefault at depress, left
+                    hide garm happy
+                    show garm neutral at depress, left
                     g "Actually your parents and my parents were a part of the previous uprising against to LOLs, but they're either exiled from this area or dead now..."
 
                     l "Oh, can you teach me how to manifest a GG later? I'm probably going to have to sit and think for things a bit after I'm either done asking you questions or you get tired of answering them, haha."
 
-                    hide garmdefault
-                    show garmhappy at left
+                    hide garm neutral
+                    show garm happy at left
 
                     g "Sure thing!"
 
-                    show garmdefault at left
+                    show garm neutral at left
 
                     jump garmquestions
 
@@ -426,26 +427,93 @@ label garmquestions:
             l "That's not good at all..."
 
             jump garmquestions
+
         "Wait, you said LOLs have the strongest GGs, so how do GGs get stronger?":
             $ gqcount+=1
 
-            g "Usually if one is related to someone who has a GG and/or a strong will to obtain something."
+            #g "Usually if one is related to someone who has a GG and/or a strong will to obtain something."
 
-            l "Wait, so since you're Fenrir's sister, does that mean you have a GG?"
+            #l "Wait, so since you're Fenrir's sister, does that mean you have a GG?"
+
+            #https://www.finaltouchschool.com/business/10-qualities-of-a-modern-gentleman/
+            g """
+            GGs become stronger based on their owner. In principle, the more gentlemanly, ladylike for girls, you are, the stronger your GG will be.
+
+            This can include showing a geniuine interest in the people you're interacting with, helping someone in need, being a truthful and effective communicator, being virtuous, and the list goes on.
+
+            However, the LOLs don't show many of these qualities so they make their GGs stronger by from making their GG looking sharper since that's where they can have unlimited possibilities through sheer credits.
+            """
+
+            l "Um, so basically either be more of a gentleman or just use money?"
+
+            g "Or..."
+
+            hide garm neutral
+            show garm happy at singlebounce, left
+
+            g "BOTH!"
+
+            hide loki neutral
+            show loki happy at singlebounce, right
+            l "HAHA alright gotcha!"
+
+            hide garm happy
+            show garm neutral at left
+            hide loki happy
+            show loki neutral at right
+
             jump garmquestions
+
         "I think I'm done asking questions.":
             jump resume2
 
 label resume2:
-    if gqcount==3:
+    show garm neutral at left
+    show loki neutral at center
+
+    if gqcount==3 and gqbonus==1:
+        $ gg_power+=10
+        g "Alright! In the future, do remember that your decisions will influence the power of your GG, for better or for worse!"
+
+        g "Good job on showing interest in everything I was saying or leading up to in our conversation!"
+
+        l "Thanks for talking with me about all of those things, Garm!"
+
+        l "{i}Wait, is Garm an esper? Oh well, Garm is Garm and that's all that matters.{/i}"
+
+    elif gqcount==3:
         $ gg_power+=5
+        g "Alright! In the future, do remember that your decisions will influence the power of your GG, for better or for worse!"
+
+        l "Thanks for letting me know about things, Garm!"
+    elif gqcount < 3:
+        $ gg_power+=3
+        g """
+        Alright! In the future, do remember that your decisions will influence the power of your GG, for better or for worse!
+
+        I was super eager to tell you things, but you didn't ask me about everything you were wondering about, wink wink!
+        """
+        l "I don't know what you mean, but thanks for letting me know about things, Garm!"
+
+        l "{i}Wait, is Garm an esper? Oh well, Garm is Garm and that's all that matters.{/i}"
+
+    else:
+        $ gg_power-=10
+        show garm sad at depress, left
+        g "Oh, I thought you wanted to know things..."
+
+        l "Sorry, I think I'm okay."
+
+        g "Hmm... if you say so."
+
+        l "{i}It seems like I didn't do something right, or as right as I could have... I'll be more careful in the future, hopefully.{/i}"
     scene black with dissolve
 
     "You can change scenes as much as you want in your chapter."
     "The original gg_power is set to %(gg_power)d."
 
     scene white with dissolve
-    show lokidefault at center
+    show loki neutral at center
 
     # gg_power example
     menu:
@@ -519,7 +587,7 @@ label negative:
     scene black
     with dissolve
 
-    show lokidefault at depress, center
+    show loki neutral at depress, center
 
     l "I don't feel so good."
 
