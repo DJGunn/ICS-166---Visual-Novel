@@ -163,7 +163,6 @@ label positive:
 
     {i}Sure, why not at least play along to being happy today?{/i}
     """
-    hide loki neutral
     show loki happy at singlebounce, center
     l "I can't wait to see what today has in store for me!"
 
@@ -173,8 +172,6 @@ label positive:
     l "{i}Aw they're so nice to me. They really didn't have to, but I can't turn them down when they're so willing to give me something for my birthday can I?{/i}"
 
     l "It's uh..."
-    #hide loki happy
-    #show loki neutral at center
 
     l @ neutral "{i}Man why did I name my NeoMo account this...{/i}"
 
@@ -184,7 +181,7 @@ label positive:
     # this removes the previous instance of that character
     show garm happy at multibounce, right
     g "HAHAHA, THAT'S SO FUNNY!"
-    hide loki neutral
+
     show loki sad at depress, center
     l "Please don't speak of it again, haaaa..."
 
@@ -195,7 +192,7 @@ label positive:
     $ current_credits = inventory.credits
     # to show a variable's value in dialogue, put brackets around it
 
-    hide loki sad
+
     show loki happy at singlebounce, center
     l "Alright, I got it! Thanks so much! Now I have %(current_credits)d!"
 
@@ -203,8 +200,7 @@ label positive:
     g "You're welcome!"
 
     l "Well um... time to share it with you in the form of food!"
-    hide loki happy
-    hide garm happy
+
     show loki neutral at left
     show garm neutral at right
     with move
@@ -290,7 +286,7 @@ label resume1:
 
     show garm happy at multibounce, left
     with move
-    
+
     "{b}Garm bounces into Loki's room and immediately rushes to open the blinds.{/b}"
 
     scene white with dissolve
@@ -315,7 +311,6 @@ label resume1:
 
     l "I just randomly had this thought this morning, but what was that thing way back when Fenrir-"
 
-    hide garm happy
     show garm neutral at left
 
     l """
@@ -344,7 +339,6 @@ label resume1:
 
     l "Oh, that makes sense. A year ago I was actually feeling pretty hopeless, you know being poor and not being able to do anything about it."
 
-    hide garm neutral
     show garm happy at left
 
     g "Haha, there's actually no real reason to feel totally hopeless!"
@@ -352,7 +346,7 @@ label resume1:
     l "{i}Thank goodness I'm not crazy, but now I have even more questions.{/i}"
 
     show loki neutral at right
-    hide garm happy
+
     show garm neutral at left
     with move
     $ gqcount = 0
@@ -374,7 +368,6 @@ label garmquestions:
 
             l "Wait, you said \"us\", do you mean to say that we both have GGs?"
 
-            hide garm neutral
             show garm happy at singlebounce, left
 
             g "Yep, that's exactly what that means!"
@@ -396,13 +389,11 @@ label garmquestions:
                 "Wait, but how do I have one?":
 
                     $ gqbonus = 1
-                    hide garm happy
                     show garm neutral at depress, left
                     g "Actually your parents and my parents were a part of the previous uprising against to LOLs, but they're either exiled from this area or dead now..."
 
                     l "Oh, can you teach me how to manifest a GG later? I'm probably going to have to sit and think for things a bit after I'm either done asking you questions or you get tired of answering them, haha."
 
-                    hide garm neutral
                     show garm happy at left
 
                     g "Sure thing!"
@@ -448,18 +439,13 @@ label garmquestions:
 
             g "Or..."
 
-            hide garm neutral
             show garm happy at singlebounce, left
 
             g "BOTH!"
-
-            hide loki neutral
             show loki happy at singlebounce, right
             l "HAHA alright gotcha!"
 
-            hide garm happy
             show garm neutral at left
-            hide loki happy
             show loki neutral at right
 
             jump garmquestions
@@ -486,7 +472,7 @@ label resume2:
         g "Alright! In the future, do remember that your decisions will influence the power of your GG, for better or for worse!"
 
         l "Thanks for letting me know about things, Garm!"
-    elif gqcount < 3:
+    elif gqcount < 3 and gqcount!=0:
         $ gg_power+=3
         g """
         Alright! In the future, do remember that your decisions will influence the power of your GG, for better or for worse!
@@ -496,7 +482,6 @@ label resume2:
         l "I don't know what you mean, but thanks for letting me know about things, Garm!"
 
         l "{i}Wait, is Garm an esper? Oh well, Garm is Garm and that's all that matters.{/i}"
-
     else:
         $ gg_power-=10
         show garm sad at depress, left
