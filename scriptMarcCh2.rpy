@@ -8,6 +8,7 @@ define l = Character(_("Loki"), color="#2ae6ff", image="loki")
 define g = Character(_("Garm"), color="#fffc30", image="garm")
 define lg = Character(_("Loki and Garm"), color="#ff3033")
 define h = Character(_("Helpful Person"), color="#3033ff")
+define ge = Character(_("Grand Entrance"), color="33cc33")
 
 transform singlebounce:
     pause .15
@@ -492,10 +493,121 @@ label resume2:
         g "Hmm... if you say so."
 
         l "{i}It seems like I didn't do something right, or as right as I could have... I'll be more careful in the future, hopefully.{/i}"
-    scene black with dissolve
 
-    "You can change scenes as much as you want in your chapter."
-    "The original gg_power is set to %(gg_power)d."
+    g "Alright! On to breakfast!"
+
+    l "That sounds good, I'm starving."
+
+    scene black with dissolve
+    "Loki and Garm prepare some food and begin to eat."
+
+    scene diningroom with dissolve
+    show loki neutral at left
+    show garm neutral at right
+
+    l "After we eat, can you teach me how to use a GG?"
+
+    g "Ah right, sure!"
+
+    l "Wow you make that sound like it's easy to manifest a GG."
+
+    hide garm neutral
+    show garm happy at singlebounce, right
+
+    g "It's not that it's easy, it's that I'm amazing!"
+
+    g "Alright, time to go to the basement gym!"
+
+    l "Okay, gotcha."
+
+    scene indoorgym with dissolve
+    show loki neutral at center
+    show garm neutral at right
+
+    g "Okay so think of what an ideal gentleman is to you, like really visualize it."
+
+    l "Um okay got it."
+
+    g "Now try REALLY hard to believe that it'll just pop out and become real."
+
+    l "Mmmm... No actually can't do that part."
+
+    g "Oh right, remember that episode of GoGo's Strange Venture where the main guy yells out \"SMOOTH PALMS\"?"
+
+    l "Wait are you serious so I'm supposed to try to be all epic and come up with a name?"
+
+    g @ happy "That's exactly what I'm telling you to do!"
+
+    l """
+
+    {i}Hmm, well a gentleman does stand out looking all cool and stuff...{/i}
+
+    {i}Mmmm, he needs to have a pocket watch, monocle, and some cool looking suit...{/i}
+
+    {i}So basically he stands out and people's eyes go towards him as he enters an area...{/i}
+
+    {i}What do you even call that, a grand entrance?{/i}
+
+    {i}Well, here goes nothing!{/i}
+
+    IT'S TIME TO MAKE YOUR APPEARANCE, GRAAAAAND ENTRAAAAANCE!!!
+    """
+
+    show grandentrance at left with hpunch
+
+    l "Ah okay."
+
+    g "Yep, nice."
+
+    lg "HOLY CRAP IT ACTUALLY WORKED!" with vpunch
+
+    g """
+    ... Alright, so that's how to manifest your GG! Now, if you have watched Dokimon you can tell your GG to do things.
+
+    Also, the more enthusiastic you are about what you're saying when you control your GG, it will do the thing you want better.
+    """
+    menu:
+        l "{i}Oh, well in that case I guess I can just choose some gentlemanly trait and make it more dramatic right?{/i}"
+
+        "GRAND ENTRANCE, USE A DAZZLING GAZE AT GARM!":
+            $ gg_power +=10
+            g "Wha-"
+
+            g @ happy "Oooo well hello handsome!"
+
+            "Garm is now smitten with your GG, it was super effective!"
+
+            l "AAAA THAT'S WEIRD YOU CAN STOP NOW GRAND ENTRANCE!"
+
+            g "Ahm, wow yeah that's something I haven't seen before, good job!"
+
+        "Grand Entrance, use fly?":
+            $ gg_power -=5
+
+            g "Didn't I just tell you that were were supposed to be enthusiastic? Dang it Loki..."
+
+            g "Also if you didn't already notice, your GG is already flying..."
+
+            l "Oh, you're right..."
+
+            l "{i}I should really pay attention to what people are saying...{/i}"
+
+    g "Yep, there are plenty of ways to use and not use your GG, but it'll be up to you to figure that out!"
+
+    l "Um, so the LOL's don't really use the GGs by being all enthusiastic or gentlemanly right?"
+
+    g "Right yeah, they buy stuff. Actually, do you want to go buy things for your GG?"
+
+    menu:
+        l "{i}That doesn't sound like a bad idea.{/i}"
+
+        "Yes":
+            g "Alright! Though, why did you pause for a second?"
+        "Yes":
+            g "Alright! Though, why did you pause for a second?"
+
+    l "Um, no reason, lets go!"
+
 
     scene white with dissolve
     show loki neutral at center
