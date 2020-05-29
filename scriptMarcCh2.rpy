@@ -9,6 +9,7 @@ define g = Character(_("Garm"), color="#fffc30", image="garm")
 define lg = Character(_("Loki and Garm"), color="#ff3033")
 define h = Character(_("Helpful Person"), color="#3033ff")
 define ge = Character(_("Grand Entrance"), color="33cc33")
+define ggse = Character(_("GG Store Employee"), color="#f10ee1", image="ggse")
 
 transform singlebounce:
     pause .15
@@ -84,9 +85,9 @@ label start:
         sushi = Item("Sushi", 20)
         fries = Item("Fries", 10)
         # for shop2
-        tophat = Item("Golden Top Hat", 10)
-        suit = Item("Golden Suit", 20)
-        maxGGG = Item("Max Level GG Guide", 9001)
+        tophat = Item("Golden Top Hat", 250000)
+        suit = Item("Golden Suit", 750000)
+        maxGGG = Item("Diamond Morph Suit", 1000050)
 
     # how to declare chapter
     scene black with dissolve
@@ -95,11 +96,6 @@ label start:
 
     # actual scene start
     scene black with dissolve
-
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "loki neutral.png" or "loki neutral.jpg"
-    # to the images directory.
-
     show loki neutral   # this would use loki neutral.png/loki neutral.jpg when character is added to the images directory
 
     # you can have multi-line text
@@ -125,7 +121,6 @@ label start:
 
     l "What kind of joke is that?!"
 
-    # the tag {b} needs an ending tag {b} to show where the tag ends
     # b is for bold text
     "{b}Garm opens the door and enters Loki's room.{/b}"
 
@@ -205,7 +200,7 @@ label positive:
     show loki neutral at left
     show garm neutral at right
     with move
-    # credit example
+
     jump preshop1
     jump shop1
 
@@ -608,25 +603,33 @@ label resume2:
 
     l "Um, no reason, lets go!"
 
+    scene mall with dissolve
+    show loki neutral at left
+    show garm neutral at right
 
-    scene white with dissolve
-    show loki neutral at center
+    l "You made it sound like a really casual thing by the way, Garm."
 
-    # gg_power example
-    menu:
+    g "What do you mean?"
 
-        "GG Power Test"
+    l "A store for GG stuff? If most people can't even have a GG, wouldn't that mean that a store for GGs would not be a common thing?"
 
-        "Add 5":
-            $ gg_power+=5
-        "Add 3":
-            $ gg_power+=3
-        "Minus 5":
-            $ gg_power-=5
+    g "You're right, but it's actually a gaming shop as a front, but there's a section in the back for actual GG items!"
 
-    "Now the gg_power is %(gg_power)d."
-    "Menus don't even need to have an impact on a variable, it could be just text. This is good for getting to know characters, for example."
-    "Now for an example of how to buy things to increase GG power with credits (credits)."
+    l "Oh wow okay, what is it called?"
+
+    g "You'll know, Loki, you'll know."
+
+    scene ggstoresign with dissolve
+
+    g "Yep, here we are!"
+
+    l "ARE YOU KIDDING ME!" with vpunch
+
+    l "Okay lets just go in..."
+
+    g @ happy "HAHA! Yeah, lets!"
+
+    scene ggstore with dissolve
 
     # credits to buy GG upgrades example
 
@@ -642,7 +645,7 @@ label shop2:
 
     menu store2:
 
-        "Welcome to the GG store, what can I get for you? You have %(current_credits)d credits."
+        ggse "Welcome to the GG store, what can I get for you? You have %(current_credits)d credits."
 
         "Golden Top Hat (%(tophatcost)d credits)":
             if inventory.buy(tophat):
@@ -667,13 +670,24 @@ label shop2:
                 "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
                 jump resume3
 
+        "Actually, I think I'm done buying things.":
+            jump resume3
+
 label fallthrough:
     l "Not enough credits..."
     jump shop2
 
 label resume3:
 
-    "After all that the gg_power is now %(gg_power)d."
+    # this is how to show a variable's value
+    #"After all that the gg_power is now %(gg_power)d."
+    if "tophat" or "suit" in items:
+        g "Oho nice upgrade!"
+    else:
+        $ gg_power+=20
+        g "Ooo, you don't want to buy things because you want to find your own strength, unlike the LOLs? That's pretty admirable!"
+
+    # CONTINUE MARC
 
     "{b}Good Ending{/b}."
     # This ends the game.
@@ -687,6 +701,15 @@ label negative:
     show loki neutral at depress, center
 
     l "I don't feel so good."
+
+    g """
+    Loki..?
+    Loki?
+    LOOOOOOOKIIIIIII!!!
+    """
+
+    "Loki died of..."
+    "WAIT, HOW?!"
 
     "{b}Bad Ending{/b}."
     # This ends the game.
