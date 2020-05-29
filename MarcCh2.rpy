@@ -116,7 +116,7 @@ label start:
     show garm happy at multibounce, right
 
     # These display lines of dialogue.
-
+    play music "normalbgm.wav"
     g "KNOCK KNOCK!"
 
     l "Ugh, who's there?"
@@ -239,6 +239,7 @@ label shop1:
                 jump resume1
 
 label resume1:
+    stop music fadeout 1.0
     l "..."
 
     g "..."
@@ -277,6 +278,7 @@ label resume1:
 
     "Onwards with the story!"
 
+    play music "mellowbgm.wav"
     show garm happy at right
 
     g "You're awake right?"
@@ -291,7 +293,7 @@ label resume1:
     scene white with dissolve
     show loki neutral at depress, center
     show garm happy at multibounce, left
-
+    play music "normalbgm.wav"
     l "MY EYES!" with hpunch
 
     g "GOOOOOOD MORNING!"
@@ -304,6 +306,7 @@ label resume1:
 
     l "Agh... Um, Garm?"
 
+    stop music fadeout 1.0
     show garm happy at left
 
     g "Oh, what is it, Loki?"
@@ -350,7 +353,7 @@ label resume1:
     with move
     $ gqcount = 0
     $ gqbonus = 0
-
+    play music "mellowbgm.wav"
 label garmquestions:
     menu:
         set gq_menuset
@@ -491,14 +494,14 @@ label resume2:
     g "Alright! On to breakfast!"
 
     l "That sounds good, I'm starving."
-
+    stop music fadeout 1.0
     scene black with dissolve
     "Loki and Garm prepare some food and begin to eat."
 
     scene diningroom with dissolve
     show loki neutral at left
     show garm neutral at right
-
+    play music "normalbgm.wav"
     l "After we eat, can you teach me how to use a GG?"
 
     g "Ah right, sure!"
@@ -530,9 +533,7 @@ label resume2:
 
     l "Wait are you serious so I'm supposed to try to be all epic and come up with a name?"
 
-    hide garm neutral
-    show garm happy at right
-    g "That's exactly what I'm telling you to do!"
+    g @ happy "That's exactly what I'm telling you to do!"
 
     l """
 
@@ -548,7 +549,7 @@ label resume2:
 
     IT'S TIME TO MAKE YOUR APPEARANCE, GRAAAAAND ENTRAAAAANCE!!!
     """
-
+    stop music fadeout 1.0
     show grandentrance at left with hpunch
 
     l "Ah okay."
@@ -557,6 +558,7 @@ label resume2:
 
     lg "HOLY CRAP IT ACTUALLY WORKED!" with vpunch
 
+    play music "normalbgm.wav"
     g """
     ... Alright, so that's how to manifest your GG! Now, if you have watched Dokimon you can tell your GG to do things.
 
@@ -565,8 +567,9 @@ label resume2:
     menu:
         l "{i}Oh, well in that case I guess I can just choose some gentlemanly trait and make it more dramatic right?{/i}"
 
-        "GRAND ENTRANCE, USE A DAZZLING GAZE AT GARM!":
+        "GRAND ENTRANCE, USE DAZZLING GAZE AT GARM!":
             $ gg_power +=10
+            stop music fadeout 1.0
             g "Wha-"
             hide garm neutral
             show garm happy at singlebounce, right
@@ -582,7 +585,7 @@ label resume2:
 
         "Grand Entrance, use fly?":
             $ gg_power -=5
-
+            stop music fadeout 1.0
             g "Didn't I just tell you that were were supposed to be enthusiastic? Dang it Loki..."
 
             g "Also if you didn't already notice, your GG is already flying..."
@@ -591,11 +594,16 @@ label resume2:
 
             l "{i}I should really pay attention to what people are saying...{/i}"
 
+    play music "normalbgm.wav"
+
     g "Yep, there are plenty of ways to use and not use your GG, but it'll be up to you to figure that out!"
 
     l "Um, so the LOL's don't really use the GGs by being all enthusiastic or gentlemanly right?"
 
     g "Right yeah, they buy stuff. Actually, do you want to go buy things for your GG?"
+
+    hide garm neutral
+    show garm happy at right
 
     menu:
         l "{i}That doesn't sound like a bad idea.{/i}"
@@ -607,9 +615,16 @@ label resume2:
 
     l "Um, no reason, lets go!"
 
+    stop music fadeout 1.0
+    scene black with dissolve
+
+    "Loki and Garm take the NeoShuttle to the Neo Shopping District."
+
     scene mall with dissolve
     show loki neutral at left
     show garm happy at right
+
+    play music "mellowbgm.wav"
 
     l "You made it sound like a really casual thing by the way, Garm."
 
@@ -624,6 +639,7 @@ label resume2:
     g "You'll know, Loki, you'll know."
 
     scene ggstoresign with dissolve
+    play music "normalbgm.wav"
 
     g "Yep, here we are!"
 
@@ -696,6 +712,7 @@ label resume3:
     scene mall with dissolve
     show loki neutral at left
     show garm neutral at right
+    stop music fadeout 1.0
     g """
     Hmm...
     do you want to visit Fenrir?
@@ -753,6 +770,7 @@ label resume3:
     show loki happy at right
     show garm happy at center
     with move
+    play music "normalbgm.wav"
 
     f "Garm! Loki!"
 
@@ -766,9 +784,14 @@ label resume3:
 
     l "Oh you bet we do!"
 
-    scene black with dissolve
+    g "There's so much to talk about!"
 
-    l @ neutral "{i}Thank goodness she is able to still smile after all these years in prison...{/i}"
+    scene black with dissolve
+    stop music fadeout 1.0
+
+    l "{i}Thank goodness she is able to still smile after all these years in prison...{/i}"
+
+    l "{i}I can only hope things weren't too bad...{/i}"
 
     "{b}Good Path!{/b}"
     # This ends the game.
