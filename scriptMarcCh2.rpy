@@ -87,7 +87,7 @@ label start:
         # for shop2
         tophat = Item("Golden Top Hat", 250000)
         suit = Item("Golden Suit", 750000)
-        maxGGG = Item("Diamond Morph Suit", 1000050)
+        diamorph = Item("Diamond Morph Suit", 1000050)
 
     # how to declare chapter
     scene black with dissolve
@@ -567,13 +567,16 @@ label resume2:
         "GRAND ENTRANCE, USE A DAZZLING GAZE AT GARM!":
             $ gg_power +=10
             g "Wha-"
-
-            g @ happy "Oooo well hello handsome!"
+            hide garm neutral
+            show garm happy at singlebounce, right
+            g "Oooo well hello handsome!"
 
             "Garm is now smitten with your GG, it was super effective!"
 
             l "AAAA THAT'S WEIRD YOU CAN STOP NOW GRAND ENTRANCE!"
 
+            hide garm happy
+            show garm neutral at right
             g "Ahm, wow yeah that's something I haven't seen before, good job!"
 
         "Grand Entrance, use fly?":
@@ -639,7 +642,7 @@ label resume2:
 label preshop2:
     $ tophatcost = tophat.cost
     $ suitcost = suit.cost
-    $ maxGGGcost = maxGGG.cost
+    $ diamorphcost = diamorph.cost
 
 label shop2:
 
@@ -652,25 +655,26 @@ label shop2:
                 l "This top hat defines a GG!"
                 $ gg_power+=5
                 $ current_credits = inventory.credits
-                "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
-                jump resume3
+                ggse "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
+                jump store2
 
         "Golden Suit (%(suitcost)d credits)":
             if inventory.buy(suit):
                 l "A suit to enhance my GG!"
                 $ gg_power+=10
                 $ current_credits = inventory.credits
-                "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
-                jump resume3
+                ggse "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
+                jump store2
 
-        "GG Max Level Book (%(maxGGGcost)d credits)":
-            if inventory.buy(maxGGG):
+        "Diamond Morph Suit (%(diamorphcost)d credits)":
+            if inventory.buy(diamorph):
                 $ gg_power+=9001
                 $ current_credits = inventory.credits
-                "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
-                jump resume3
+                ggse "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
+                jump store2
 
         "Actually, I think I'm done buying things.":
+            ggse "Alright, thank you for coming to the GG Store!"
             jump resume3
 
 label fallthrough:
