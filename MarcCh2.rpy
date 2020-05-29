@@ -530,7 +530,9 @@ label resume2:
 
     l "Wait are you serious so I'm supposed to try to be all epic and come up with a name?"
 
-    g @ happy "That's exactly what I'm telling you to do!"
+    hide garm neutral
+    show garm happy at right
+    g "That's exactly what I'm telling you to do!"
 
     l """
 
@@ -607,7 +609,7 @@ label resume2:
 
     scene mall with dissolve
     show loki neutral at left
-    show garm neutral at right
+    show garm happy at right
 
     l "You made it sound like a really casual thing by the way, Garm."
 
@@ -629,7 +631,7 @@ label resume2:
 
     l "Okay lets just go in..."
 
-    g @ happy "HAHA! Yeah, lets!"
+    g "HAHA! Yeah, lets!"
 
     scene ggstore with dissolve
 
@@ -685,10 +687,10 @@ label resume3:
     # this is how to show a variable's value
     #"After all that the gg_power is now %(gg_power)d."
     if inventory.has_item(tophat) or inventory.has_item(suit):
-        g "Oho nice upgrade!"
+        g @ neutral "Nice upgrade!"
     else:
         $ gg_power+=20
-        g @ happy "Ooo, you don't want to buy things because you want to find your own strength, unlike the LOLs? That's pretty admirable!"
+        g "Ooo, you don't want to buy things because you want to find your own strength, unlike the LOLs? That's pretty admirable!"
 
     # CONTINUE MARC
     scene mall with dissolve
