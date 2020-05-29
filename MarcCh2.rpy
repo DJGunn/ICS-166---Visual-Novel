@@ -743,6 +743,7 @@ label resume3:
     show loki neutral at right
     show garm neutral at center
     show guard neutral at left
+    play music "ominousbgm.wav"
 
     g "Can we see Fenrir?"
 
@@ -799,6 +800,7 @@ label resume3:
 
 label negative:
 
+    stop music fadeout 1.0
     scene black
     with dissolve
 
@@ -813,7 +815,7 @@ label negative:
     """
 
     "Loki died of..."
-    "WAIT, HOW?!"
+    "WAIT, HOW?!" with vpunch
 
     "{b}Bad Ending{/b}."
     # This ends the game.
