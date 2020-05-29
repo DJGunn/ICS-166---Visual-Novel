@@ -10,7 +10,11 @@ define lg = Character(_("Loki and Garm"), color="#ff3033")
 define h = Character(_("Helpful Person"), color="#3033ff")
 define ge = Character(_("Grand Entrance"), color="33cc33")
 define ggse = Character(_("GG Store Employee"), color="#f10ee1", image="ggse")
-
+define pg = Character(_("Prison Guard"), color="#1711ee", image="guard")
+define uf = Character(_("???"), color="#01116e")
+define f = Character(_("Fenrir"), color="#01116e", image="fenrir")
+define ut = Character(_("???"), color="#f2f2f2")
+define t = Character(_("Tyr"), color="f2f2f2")
 transform singlebounce:
     pause .15
     yoffset 0
@@ -218,7 +222,6 @@ label shop1:
         # multiple things can happen after every menu choice
         "Chocolate %(chococost)d":
             if inventory.buy(choco):
-
                 $ current_credits = inventory.credits
                 "Your order will be delivered to your location in the next 30 minutes. You have %(current_credits)d credits remaining, thank you for using NeoFood!"
                 jump resume1
@@ -417,10 +420,6 @@ label garmquestions:
 
         "Wait, you said LOLs have the strongest GGs, so how do GGs get stronger?":
             $ gqcount+=1
-
-            #g "Usually if one is related to someone who has a GG and/or a strong will to obtain something."
-
-            #l "Wait, so since you're Fenrir's sister, does that mean you have a GG?"
 
             #https://www.finaltouchschool.com/business/10-qualities-of-a-modern-gentleman/
             g """
@@ -685,15 +684,91 @@ label resume3:
 
     # this is how to show a variable's value
     #"After all that the gg_power is now %(gg_power)d."
-    if "tophat" or "suit" in items:
+    if inventory.has_item(tophat) or inventory.has_item(suit):
         g "Oho nice upgrade!"
     else:
         $ gg_power+=20
-        g "Ooo, you don't want to buy things because you want to find your own strength, unlike the LOLs? That's pretty admirable!"
+        g @ happy "Ooo, you don't want to buy things because you want to find your own strength, unlike the LOLs? That's pretty admirable!"
 
     # CONTINUE MARC
+    scene mall with dissolve
+    show loki neutral at left
+    show garm neutral at right
+    g """
+    Hmm...
+    do you want to visit Fenrir?
+    """
 
-    "{b}Good Ending{/b}."
+    l "Wait, visit Fenrir? You know where she is and we can visit her?"
+
+    g @ sad "Yeah, I was doing some research and there is this one prison that holds \"extremely dangerous individuals.\""
+
+    g """I'm sure she has to be in there.
+    Usually you'd think that the prison wouldn't allow something like that since everyone in there is so dangerous, but I think they're very confident in their security.
+    """
+    l """
+    {i}It's been so long... I mean I trust Garm's judgement, but actually being able to visit her today...{/i}
+
+    {i}The same day I manifest my GG...{/i}
+
+    {i}This can't just be coincidence...{/i}
+
+    Okay yeah lets go, lead the way Garm.
+    """
+
+    scene black with dissolve
+    "They walked for a couple minutes and one could feel the seriousness in the air."
+    "They both were thinking of Fenrir, even during transit to the prison."
+
+    scene prison with dissolve
+    show loki neutral at right
+    show garm neutral at center
+    show guard neutral at left
+
+    g "Can we see Fenrir?"
+
+    pg "One second, what's their last name?"
+
+    g "Actually it's just Fenrir, so it should be at the top of your list."
+
+    pg "Oh wow, that's interesting... and you are?"
+
+    g "I'm Garm, her sister. The other one with me is Loki."
+
+    pg "Ah okay, follow me."
+
+    scene prisoncell with dissolve
+    show loki neutral at right
+    show garm neutral at center
+    show guard neutral at left
+
+    pg "Okay you have visitors, Fenrir. You guys have an hour."
+
+    f "Visitors?"
+
+    hide guard neutral
+    show fenrir happy at multibounce, left
+    show loki happy at right
+    show garm happy at center
+    with move
+
+    f "Garm! Loki!"
+
+    show garm happy at multibounce, center
+    g "It's so good to see you! Are you okay?! Did you miss us?!"
+
+    show loki happy at singlebounce, right
+    l "We've missed you so much!"
+
+    f "Yes, yes, and yes! I've got some questions for you and I bet you guys have some questions for me too, haha!"
+
+    l "Oh you bet we do!"
+
+    scene black with dissolve
+
+    l @ neutral "{i}Thank goodness she is able to still smile after all these years in prison...{/i}"
+
+    "{b}Good Path!{/b}"
     # This ends the game.
     return
 
