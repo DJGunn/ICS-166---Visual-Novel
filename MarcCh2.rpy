@@ -7,9 +7,14 @@ define e = Character(_("Eileen"), color="#cc88cc", image="eileen")
 define l = Character(_("Loki"), color="#2ae6ff", image="loki")
 define g = Character(_("Garm"), color="#fffc30", image="garm")
 define lg = Character(_("Loki and Garm"), color="#ff3033")
-define h = Character(_("Helpful Person"), color="#3033ff")
-define ge = Character(_("Grand Entrance"), color="33cc33")
-
+# define h = Character(_("Helpful Person"), color="#3033ff")
+define ge = Character(_("Grand Entrance"), color="33cc33", image="grandentrance")
+define ggse = Character(_("GG Store Employee"), color="#1711ee", image="guard")
+define pg = Character(_("Prison Guard"), color="#1711ee", image="guard")
+define uf = Character(_("???"), color="#01116e")
+define f = Character(_("Fenrir"), color="#01116e", image="fenrir")
+define ut = Character(_("???"), color="#f2f2f2")
+define t = Character(_("Tyr"), color="f2f2f2")
 transform singlebounce:
     pause .15
     yoffset 0
@@ -84,9 +89,9 @@ label start:
         sushi = Item("Sushi", 20)
         fries = Item("Fries", 10)
         # for shop2
-        tophat = Item("Golden Top Hat", 10)
-        suit = Item("Golden Suit", 20)
-        maxGGG = Item("Max Level GG Guide", 9001)
+        tophat = Item("Golden Top Hat", 250000)
+        suit = Item("Golden Suit", 750000)
+        diamorph = Item("Diamond Morph Suit", 1000050)
 
     # how to declare chapter
     scene black with dissolve
@@ -95,11 +100,6 @@ label start:
 
     # actual scene start
     scene black with dissolve
-
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "loki neutral.png" or "loki neutral.jpg"
-    # to the images directory.
-
     show loki neutral   # this would use loki neutral.png/loki neutral.jpg when character is added to the images directory
 
     # you can have multi-line text
@@ -111,21 +111,20 @@ label start:
     {i}I don't like cake, but company is always welcome.{/i}
     """
     # scenes
-    scene greenaurora with dissolve
+    scene oldlokiroom with dissolve
     show loki neutral
     show garm happy at multibounce, right
 
     # These display lines of dialogue.
-
+    play music "normalbgm.wav"
     g "KNOCK KNOCK!"
 
     l "Ugh, who's there?"
 
     g "IT'S ME!"
 
-    l "What kind of joke is that?!"
+    l @ surprised "What kind of joke is that?!"
 
-    # the tag {b} needs an ending tag {b} to show where the tag ends
     # b is for bold text
     "{b}Garm opens the door and enters Loki's room.{/b}"
 
@@ -153,7 +152,7 @@ label positive:
     # Initialize a variable.
     $ gg_power = 5
 
-    scene greenaurora
+    scene oldlokiroom
     with dissolve
 
     show loki neutral at center
@@ -183,7 +182,7 @@ label positive:
     show garm happy at multibounce, right
     g "HAHAHA, THAT'S SO FUNNY!"
 
-    show loki sad at depress, center
+    show loki mad at depress, center
     l "Please don't speak of it again, haaaa..."
 
     g "In any case, here you go!"
@@ -205,7 +204,7 @@ label positive:
     show loki neutral at left
     show garm neutral at right
     with move
-    # credit example
+
     jump preshop1
     jump shop1
 
@@ -223,7 +222,6 @@ label shop1:
         # multiple things can happen after every menu choice
         "Chocolate %(chococost)d":
             if inventory.buy(choco):
-
                 $ current_credits = inventory.credits
                 "Your order will be delivered to your location in the next 30 minutes. You have %(current_credits)d credits remaining, thank you for using NeoFood!"
                 jump resume1
@@ -241,9 +239,14 @@ label shop1:
                 jump resume1
 
 label resume1:
+    stop music fadeout 1.0
     l "..."
 
     g "..."
+    hide loki neutral
+    hide garm neutral
+    show loki surprised at left
+    show garm surprised at right
 
     "{b}Looks at each other{/b}"
 
@@ -279,6 +282,7 @@ label resume1:
 
     "Onwards with the story!"
 
+    play music "mellowbgm.wav"
     show garm happy at right
 
     g "You're awake right?"
@@ -291,9 +295,9 @@ label resume1:
     "{b}Garm bounces into Loki's room and immediately rushes to open the blinds.{/b}"
 
     scene white with dissolve
-    show loki neutral at depress, center
+    show loki mad at depress, center
     show garm happy at multibounce, left
-
+    play music "normalbgm.wav"
     l "MY EYES!" with hpunch
 
     g "GOOOOOOD MORNING!"
@@ -306,6 +310,7 @@ label resume1:
 
     l "Agh... Um, Garm?"
 
+    stop music fadeout 1.0
     show garm happy at left
 
     g "Oh, what is it, Loki?"
@@ -347,11 +352,11 @@ label resume1:
     l "{i}Thank goodness I'm not crazy, but now I have even more questions.{/i}"
 
     show loki neutral at right
-
     show garm neutral at left
     with move
     $ gqcount = 0
     $ gqbonus = 0
+    play music "mellowbgm.wav"
 
 label garmquestions:
     menu:
@@ -390,7 +395,7 @@ label garmquestions:
                 "Wait, but how do I have one?":
 
                     $ gqbonus = 1
-                    show garm neutral at depress, left
+                    show garm neutral at left
                     g "Actually your parents and my parents were a part of the previous uprising against to LOLs, but they're either exiled from this area or dead now..."
 
                     l "Oh, can you teach me how to manifest a GG later? I'm probably going to have to sit and think for things a bit after I'm either done asking you questions or you get tired of answering them, haha."
@@ -412,20 +417,20 @@ label garmquestions:
 
             g "They probably didn't want some kind of force strong enough to cause an uprising against the LOLs so Tyr made the decision to lock her up."
 
+            hide loki neutral
+            show loki mad at depress, right
             l "But she was only acting in self-defense!"
 
             g "Yeah, but the LOLs care more about maintaining their power than human rights."
 
             l "That's not good at all..."
+            hide loki mad
+            show loki neutral at right
 
             jump garmquestions
 
         "Wait, you said LOLs have the strongest GGs, so how do GGs get stronger?":
             $ gqcount+=1
-
-            #g "Usually if one is related to someone who has a GG and/or a strong will to obtain something."
-
-            #l "Wait, so since you're Fenrir's sister, does that mean you have a GG?"
 
             #https://www.finaltouchschool.com/business/10-qualities-of-a-modern-gentleman/
             g """
@@ -464,7 +469,7 @@ label resume2:
 
         g "Good job on showing interest in everything I was saying or leading up to in our conversation!"
 
-        l "Thanks for talking with me about all of those things, Garm!"
+        l @ happy "Thanks for talking with me about all of those things, Garm!"
 
         l "{i}Wait, is Garm an esper? Oh well, Garm is Garm and that's all that matters.{/i}"
 
@@ -497,28 +502,30 @@ label resume2:
     g "Alright! On to breakfast!"
 
     l "That sounds good, I'm starving."
-
+    stop music fadeout 1.0
     scene black with dissolve
     "Loki and Garm prepare some food and begin to eat."
 
     scene diningroom with dissolve
     show loki neutral at left
     show garm neutral at right
-
+    play music "normalbgm.wav"
     l "After we eat, can you teach me how to use a GG?"
 
     g "Ah right, sure!"
 
-    l "Wow you make that sound like it's easy to manifest a GG."
+    l @ surprised"Wow, you make that sound like it's easy to manifest a GG."
 
     hide garm neutral
     show garm happy at singlebounce, right
 
     g "It's not that it's easy, it's that I'm amazing!"
 
+    "They eat for a bit and finish cleaning up and whatnot."
+
     g "Alright, time to go to the basement gym!"
 
-    l "Okay, gotcha."
+    l @ happy "Okay, gotcha."
 
     scene indoorgym with dissolve
     show loki neutral at center
@@ -530,11 +537,11 @@ label resume2:
 
     g "Now try REALLY hard to believe that it'll just pop out and become real."
 
-    l "Mmmm... No actually can't do that part."
+    l @ mad "Mmmm... No actually can't do that part."
 
     g "Oh right, remember that episode of GoGo's Strange Venture where the main guy yells out \"SMOOTH PALMS\"?"
 
-    l "Wait are you serious so I'm supposed to try to be all epic and come up with a name?"
+    l @ surprised "Wait are you serious so I'm supposed to try to be all epic and come up with a name?"
 
     g @ happy "That's exactly what I'm telling you to do!"
 
@@ -542,7 +549,7 @@ label resume2:
 
     {i}Hmm, well a gentleman does stand out looking all cool and stuff...{/i}
 
-    {i}Mmmm, he needs to have a pocket watch, monocle, and some cool looking suit...{/i}
+    {i}Mmmm, he needs to have a cool looking suit, good face, looks somewhat mysterious...{/i}
 
     {i}So basically he stands out and people's eyes go towards him as he enters an area...{/i}
 
@@ -552,15 +559,28 @@ label resume2:
 
     IT'S TIME TO MAKE YOUR APPEARANCE, GRAAAAAND ENTRAAAAANCE!!!
     """
-
+    stop music fadeout 1.0
     show grandentrance at left with hpunch
 
     l "Ah okay."
 
     g "Yep, nice."
 
+    lg "..."
+
+    hide loki neutral
+    hide garm neutral
+    show loki surprised at center
+    show garm surprised at right
+
     lg "HOLY CRAP IT ACTUALLY WORKED!" with vpunch
 
+    hide loki surprised
+    hide garm surprised
+    show loki neutral at center
+    show garm neutral at right
+
+    play music "normalbgm.wav"
     g """
     ... Alright, so that's how to manifest your GG! Now, if you have watched Dokimon you can tell your GG to do things.
 
@@ -569,34 +589,44 @@ label resume2:
     menu:
         l "{i}Oh, well in that case I guess I can just choose some gentlemanly trait and make it more dramatic right?{/i}"
 
-        "GRAND ENTRANCE, USE A DAZZLING GAZE AT GARM!":
+        "GRAND ENTRANCE, USE DAZZLING GAZE AT GARM!":
             $ gg_power +=10
-            g "Wha-"
-
-            g @ happy "Oooo well hello handsome!"
+            stop music fadeout 1.0
+            show grandentrance at singlebounce, left
+            g @ surprised "Wha-"
+            hide garm neutral
+            show garm happy at singlebounce, right
+            g "Oooo well hello handsome!"
 
             "Garm is now smitten with your GG, it was super effective!"
 
-            l "AAAA THAT'S WEIRD YOU CAN STOP NOW GRAND ENTRANCE!"
+            l @ surprised "AAAA THAT'S WEIRD YOU CAN STOP NOW GRAND ENTRANCE!"
 
+            hide garm happy
+            show garm neutral at right
             g "Ahm, wow yeah that's something I haven't seen before, good job!"
 
         "Grand Entrance, use fly?":
             $ gg_power -=5
+            stop music fadeout 1.0
+            g @ mad "Didn't I just tell you that were were supposed to be enthusiastic? Dang it Loki..."
 
-            g "Didn't I just tell you that were were supposed to be enthusiastic? Dang it Loki..."
-
-            g "Also if you didn't already notice, your GG is already flying..."
+            g @ mad "Also if you didn't already notice, your GG is already flying..."
 
             l "Oh, you're right..."
 
             l "{i}I should really pay attention to what people are saying...{/i}"
 
+    play music "normalbgm.wav"
+
     g "Yep, there are plenty of ways to use and not use your GG, but it'll be up to you to figure that out!"
 
     l "Um, so the LOL's don't really use the GGs by being all enthusiastic or gentlemanly right?"
 
-    g "Right yeah, they buy stuff. Actually, do you want to go buy things for your GG?"
+    g "Right yeah, they buy stuff. Actually, do you want to go the place where you can buy things for your GG?"
+
+    hide garm neutral
+    show garm happy at right
 
     menu:
         l "{i}That doesn't sound like a bad idea.{/i}"
@@ -606,27 +636,43 @@ label resume2:
         "Yes":
             g "Alright! Though, why did you pause for a second?"
 
-    l "Um, no reason, lets go!"
+    l @ surprised "Um, no reason, lets go!"
 
+    stop music fadeout 1.0
+    scene black with dissolve
 
-    scene white with dissolve
-    show loki neutral at center
+    "Loki and Garm take the NeoShuttle to the Neo Shopping District."
 
-    # gg_power example
-    menu:
+    scene mall with dissolve
+    show loki neutral at left
+    show garm happy at right
 
-        "GG Power Test"
+    play music "mellowbgm.wav"
 
-        "Add 5":
-            $ gg_power+=5
-        "Add 3":
-            $ gg_power+=3
-        "Minus 5":
-            $ gg_power-=5
+    l "You made it sound like a really casual thing by the way, Garm."
 
-    "Now the gg_power is %(gg_power)d."
-    "Menus don't even need to have an impact on a variable, it could be just text. This is good for getting to know characters, for example."
-    "Now for an example of how to buy things to increase GG power with credits (credits)."
+    g "What do you mean?"
+
+    l "A store for GG stuff? If most people can't even have a GG, wouldn't that mean that a store for GGs would not be a common thing?"
+
+    g "You're right, but it's actually a gaming shop as a front, but there's a section in the back for actual GG items!"
+
+    l "Oh wow okay, what is it called?"
+
+    g "You'll know, Loki, you'll know."
+
+    scene ggstoresign with dissolve
+    play music "normalbgm.wav"
+
+    g "Yep, here we are!"
+
+    l "ARE YOU KIDDING ME!" with vpunch
+
+    l "Okay lets just go in..."
+
+    g "HAHA! Yeah, lets!"
+
+    scene ggstore with dissolve
 
     # credits to buy GG upgrades example
 
@@ -636,36 +682,48 @@ label resume2:
 label preshop2:
     $ tophatcost = tophat.cost
     $ suitcost = suit.cost
-    $ maxGGGcost = maxGGG.cost
+    $ diamorphcost = diamorph.cost
 
 label shop2:
-
+    show guard happy at singlebounce, right
     menu store2:
 
-        "Welcome to the GG store, what can I get for you? You have %(current_credits)d credits."
+        ggse "Welcome to the GG store, what can I get for you? You have %(current_credits)d credits."
 
         "Golden Top Hat (%(tophatcost)d credits)":
             if inventory.buy(tophat):
+                show guard happy at singlebounce, right
                 l "This top hat defines a GG!"
                 $ gg_power+=5
                 $ current_credits = inventory.credits
-                "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
-                jump resume3
+                show guard happy at singlebounce, right
+                ggse "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
+                jump store2
 
         "Golden Suit (%(suitcost)d credits)":
             if inventory.buy(suit):
                 l "A suit to enhance my GG!"
                 $ gg_power+=10
                 $ current_credits = inventory.credits
-                "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
-                jump resume3
+                show guard happy at singlebounce, right
+                ggse "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
+                jump store2
 
-        "GG Max Level Book (%(maxGGGcost)d credits)":
-            if inventory.buy(maxGGG):
+        "Diamond Morph Suit (%(diamorphcost)d credits)":
+            if inventory.buy(diamorph):
+                show guard sad at right
+                ggse """
+                You're...
+                You're hacking..."""
                 $ gg_power+=9001
                 $ current_credits = inventory.credits
-                "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
-                jump resume3
+                ggse "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
+                jump store2
+
+        "Actually, I think I'm done buying things.":
+            show guard happy at singlebounce, right
+            ggse "Alright, thank you for coming to the GG Store!"
+            jump resume3
 
 label fallthrough:
     l "Not enough credits..."
@@ -673,20 +731,122 @@ label fallthrough:
 
 label resume3:
 
-    "After all that the gg_power is now %(gg_power)d."
+    if inventory.has_item(tophat) or inventory.has_item(suit):
+        g @ neutral "Nice upgrade!"
+    else:
+        $ gg_power+=20
+        g "Ooo, you don't want to buy things because you want to find your own strength, unlike the LOLs? That's pretty admirable!"
 
-    "{b}Good Ending{/b}."
+    # CONTINUE MARC
+    scene mall with dissolve
+    show loki neutral at left
+    show garm neutral at right
+    stop music fadeout 1.0
+    g """
+    Hmm...
+    do you want to visit Fenrir?
+    """
+
+    l @ surprised "Wait, visit Fenrir? You know where she is and we can visit her?"
+
+    g @ sad "Yeah, I was doing some research and there is this one prison that holds \"extremely dangerous individuals.\""
+
+    g """I'm sure she has to be in there.
+    Usually you'd think that the prison wouldn't allow something like that since everyone in there is so dangerous, but I think they're very confident in their security.
+    """
+    l @ mad"""
+    {i}It's been so long... I mean I trust Garm's judgement, but actually being able to visit her today...{/i}
+
+    {i}The same day I manifest my GG...{/i}
+
+    {i}This can't just be coincidence...{/i}
+    """
+
+    l "Okay yeah lets go, lead the way Garm."
+
+    scene black with dissolve
+    "They walked for a couple minutes and one could feel the tension in the air."
+    "They both were thinking of Fenrir, even during transit to the prison."
+
+    scene prison with dissolve
+    show loki neutral at right
+    show garm neutral at center
+    show guard neutral at left
+    play music "ominousbgm.wav"
+
+    g "Can we see Fenrir?"
+
+    pg "One second, what's their last name?"
+
+    g "Actually it's just Fenrir, so it should be at the top of your list."
+
+    pg "Oh wow, that's interesting... and you are?"
+
+    g "I'm Garm, her sister. The other one with me is Loki."
+
+    pg "Ah okay, follow me."
+
+    l @ surprised "{i}Wait, didn't I just run into this person?{/i}"
+
+    scene prisoncell with dissolve
+    show loki neutral at right
+    show garm neutral at center
+    show guard neutral at left
+
+    pg "Okay you have visitors, Fenrir. You guys have an hour."
+
+    f "Visitors?"
+
+    hide guard neutral
+    show fenrir happy at multibounce, left
+    show loki happy at right
+    show garm happy at center
+    with move
+    play music "normalbgm.wav"
+
+    f "Garm! Loki!"
+
+    show garm happy at multibounce, center
+    g "It's so good to see you! Are you okay?! Did you miss us?!"
+
+    show loki happy at singlebounce, right
+    l "We've missed you so much!"
+
+    f "Yes, yes, and yes! I've got some questions for you and I bet you guys have some questions for me too, haha!"
+
+    l "Oh you bet we do!"
+
+    g "There's so much to talk about!"
+
+    scene black with dissolve
+    stop music fadeout 1.0
+
+    l "{i}Thank goodness she is able to still smile after all these years in prison...{/i}"
+
+    l "{i}I can only hope things weren't too bad...{/i}"
+
+    "{b}Good Path!{/b}"
     # This ends the game.
     return
 
 label negative:
 
+    stop music fadeout 1.0
     scene black
     with dissolve
 
     show loki neutral at depress, center
 
     l "I don't feel so good."
+
+    g """
+    Loki..?
+    Loki?
+    LOOOOOOOKIIIIIII!!!
+    """
+
+    "Loki died of..."
+    "WAIT, HOW?!" with vpunch
 
     "{b}Bad Ending{/b}."
     # This ends the game.
