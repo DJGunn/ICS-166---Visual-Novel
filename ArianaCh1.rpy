@@ -37,7 +37,10 @@ transform depress:
     easein .175 yoffset 20
 
 #times before jumping
-screen countdown:
+screen countdown1:
+    timer timer_count action Jump(timer_label)
+
+screen countdown2:
     timer timer_count action Jump(timer_label)
 
 # define colors for use
@@ -50,6 +53,7 @@ init:
     image black = Solid((0, 0, 0, 255))
     image white = Solid((255, 255, 255, 255))
     image grey = Solid((128, 128, 128, 255))
+    image cold = Solid((240, 255, 255, 255))
 
 # python code for credits-related things
 init python:
@@ -142,6 +146,7 @@ label chapter1:
 
     # scenes
     scene lokichildhoodhome with fade
+    play music "mellowbgm.wav" fadeout 1.0 fadein 0.0
 
     # These display lines of dialogue.
     l "....zzz...."
@@ -163,20 +168,26 @@ label chapter1:
 
     uf "LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOKI!!!"
 
+    play sound "book smack.ogg"
     l "{i}SMACK! I awaken to a heavy book smashing me in the face!{/i}"
+
+    show loki surprised at left
 
     l "ugh... the hell?"
 
-    show loki neutral at left
-
     l "{i}Standing in the doorway is the book-hurling culprit- my best friend, Fenrir.{/i}"
 
-    show fenrir happy at multibounce, right
+    show fenrir neutral at multibounce, right
 
     l "{i}To start, I’m being woken up by my best friend throwing a plot device book at me?{/i}"
     l "{i}What is this? A poorly-written visual novel?{/i}"
 
+    show fenrir happy at right
+    show loki neutral at left
+
     f "Hah! It's time you got up anyways!"
+
+    show fenrir happy at singlebounce, right
 
     "{b}She laughs and gestures back to the book with a head nod, rustling her choppy dark hair.{/b}"
 
@@ -184,7 +195,9 @@ label chapter1:
 
     show loki sad at depress, left
     l "{i}I sigh in exasperation before mindlessly reaching for it.{/i}"
+    show fenrir sad at depress, right
     l "If it’s another book of anthropomorphic animal people- Well then it’s the end of our friendship."
+
 
     show fenrir happy at singlebounce, right
     f """
@@ -197,20 +210,24 @@ label chapter1:
     show fenrir happy at singlebounce, right
     f "C'mon, it's a book about GG's!"
 
-    show loki neutral at left
+    show loki surprised at left
+    show fenrir neutral at singlebounce, center with move
     l "{i}She bounds up onto the bed to peer over my shoulder.{/i}"
+    show loki neutral at left
     l "{i}The fact that she’s taller than me despite us being the same age is a bit irritating, but I turn my focus to the book instead.{/i}"
     l "{i}The cover shows a with thick dark hair proudly standing beside a massive godlike woman in black robes.{/i}"
     l "{i}The CLEARLY exaggerated proportions of both women cast doubt on the artist’s art skill AND their tastes.{/i}"
 
+    show fenrir happy at singlebounce, center
     f "Wow, that lady and her GG are awesome!"
+    show fenrir neutral at center
     l "{i}...and Fenrir's too.{/i}"
     l "{i}Rolling my eyes, I open the book to see the table of contents.{/i}"
 
 label book:
     menu:
 
-        "What should I read first...? %(gg_power)d"
+        "What should I read first...?"
 
         "GG Manifestations":
 
@@ -262,8 +279,9 @@ label book:
 
         "Books are for nerds. I'm not reading this." if manifestations_done == False and rebellions_done == False:
 
+            show loki sad at left
             l "{i}I close the book and toss it aside. I don't have time for this.{/i}"
-            show fenrir sad at depress, right
+            show fenrir sad at depress, center
             f "What're you doing? I thought we were gonna read it together.."
 
             menu:
@@ -272,7 +290,7 @@ label book:
 
                 "Ugh. Fine.":
 
-                    show fenrir happy at singlebounce, right
+                    show fenrir happy at singlebounce, center
                     l "{i}She instantly perks up and smiles.{/i}"
                     l "{i}I know she played me, but I'm powerless against her when she does that...{/i}"
                     l "{i}I sigh, pick up the book, and open the table of contents.{/i}"
@@ -281,6 +299,7 @@ label book:
                 "Nope. That won't work.":
 
                     l "{i}She pouts at me and picks the book up.{/i}"
+                    show fenrir mad at center
                     f "I'll just read it later myself. You'll regret it when I find out all the secrets of the GG and you don't!"
                     $gg_power -= 1
                     jump finishbook
@@ -288,14 +307,17 @@ label book:
         "Books aren't for nerds, but I am done reading this." if manifestations_done == True and rebellions_done == True:
 
             l "{i}Finished with my readings, I close the book and hand it back to Fenrir.{/i}"
+            show fenrir happy at center
             f "Thanks for reading it! Isn't it awesome?"
             $gg_power += 1
             jump finishbook
 
 label finishbook:
 
-    show fenrir sad at depress, right
+    show loki neutral at left
+    show fenrir sad at depress, right with move
     f "Oh man, I wish I could use a GG...the LOLs are so lucky."
+    show fenrir neutral at right
     f "All I've got is this knife I fished out of a river."
 
     l "{i}She flicks open the knife a little to close to my arm for comfort.{/i}"
@@ -329,6 +351,7 @@ label finishbook:
 
         "I love curry.":
 
+            show loki happy at left
             l "Well, I’m there then! I can’t say no to curry."
 
             f "Wow! Guess I should’ve led with curry."
@@ -337,6 +360,7 @@ label finishbook:
 
         "I don't like curry.":
 
+            show loki sad at left
             l "You know curry isn’t really my favorite..."
 
             f "Just come for Garm then! We can always make you some food for people who don’t have taste buds."
@@ -345,17 +369,24 @@ label finishbook:
 
 label rejoincurry:
 
+    show loki neutral at left
     show fenrir at singlebounce, right
     f "Let's hurry up then!"
 
+    show loki happy at singlebounce, center with move
     l "{i}We both quickly pile on a closet full of coats, scarves, and hats before making the trek through the snow to Fenrir’s house.{/i}"
 
     scene black with fade
+    stop music
     l "{i}The house is quiet and dark as we enter.{/i}"
     l "{i}Fenrir’s pathetic attempts at whispering cut through the silence.{/i}"
 
+    show fenrir neutral at right
+    play music "ominousbgm.wav" fadeout 1.0 fadein 1.0
     f "Why's it all dark? Is Tyr still here?"
 
+    hide fenrir neutral
+    scene stairs with fade
     l "{i}We tiptoe up the stairs, trying to avoid disturbing the tense atmosphere.{/i}"
     l "{i}At the top, we hear the barest hint of Garm’s voice.{/i}"
 
@@ -373,23 +404,24 @@ label rejoincurry:
 
     """
 
-    l """
+    show fenrir mad at center
+    play music "battlebgm.wav" fadeout 0.0 fadein 2.0
+    l "{i}I hear Fenrir gasp beside me and glimpse a flash of silver in her hand.{/i}"
 
-    {i}I hear Fenrir gasp beside me and glimpse a flash of silver in her hand.{/i}
+    l "{i}Her knife!{/i}" with vpunch
 
-    {i}Her knife!{/i}
+    show fenrir mad at singlebounce, right with move
 
-    {i}Before I can respond, she leaps towards the door and rips it open-{/i}
+    l "{i}Before I can respond, she leaps towards the door and rips it open-{/i}"
 
-    {i}-to witness the horrifying scene before us...{/i}
-
-    """
+    l "{i}-to witness the horrifying scene before us...{/i}"
 
     scene fenrirhouse with fade
+    show garm sad at depress, left
     l "{i}Garm is huddled in one corner of the room with Tyr towering over her.{/i}"
     l "{i}Her eyes are wide and pleading as Tyr stretches one glove-clad palm towards her bare thigh.{/i}"
 
-    show fenrir mad at singlebounce, center
+    show fenrir mad at singlebounce, right
     f "You!"
     f "Loki, block the door!"
 
@@ -397,7 +429,7 @@ label rejoincurry:
 
     $timer_count = 3
     $timer_label = 'stay'
-    show screen countdown
+    show screen countdown1
 
     menu:
 
@@ -422,7 +454,8 @@ label stay:
 label rejoinorder:
     l "{i}Despite me, Fenrir begins yelling as Tyr stands frozen.{/i}"
 
-    f "You tricked us!"
+    f "You tricked us!" with vpunch
+
     "{b}Fenrir strides towards Tyr, knife in hand, and angry words spill from her mouth...{/b}"
     "{b}...but the words are different...{/b}"
 
@@ -436,8 +469,11 @@ label rejoinorder:
     Tainted it with your selfish lust..
 
     """
+    "{b}The air surrounding her body seems to chill as she takes another step forward.{/b}" with hpunch
+    scene cold with dissolve
+    hide fenrir
+    hide garm
     """
-    {b}The air surrounding her body seems to chill as she takes another step forward.{/b}
 
     {b}Cold blue light fills the room as Fenrir raises her knife-wielding hand above her head.{/b}
 
@@ -448,31 +484,36 @@ label rejoinorder:
     {b}Like the eyes of the ghostly wolf rising from the light!{/b}
 
     """
-    show protectorofthepack at right with hpunch
+    play sound "howl.wav"
+    show protectorofthepack at center with hpunch
     "{b}The wolf's large body fills the room as it floats besides Fenrir, both shielding her and following her movements.{/b}"
 
+    show fenrir mad at right
     f "I WILL PROTECT MY PACK!" with vpunch
     f "Your sinful hand will never touch anyone again!"
 
-
     "{b}In a flash and with an echo of fangs, she swings her knife toward Tyr's hand-{/b}" with vpunch
 
+    stop music
+    play sound "knife meat.wav"
+    queue sound "bite.ogg"
     "{b}Leaving behind a bloody stump, as his hand falls to the ground with a sickening squelch...{/b}"
 
-    scene black with fade
+    scene black with dissolve
     l "{i}The blue light dissipates from the room along with the wolf within it, leaving us with only darkness and our shaky breaths.{/i}"
 
     t "Of course you would end up being trouble..."
 
+    scene white with dissolve
     """
     {b}Suddenly, harsh lights flash into the room as guards pour in.{/b}
 
     {b}They hone in on Fenrir and push her down to the ground, forcing her hands into cuffs.{/b}
 
     """
-    $timer_count = 3
+    $timer_count = 2
     $timer_label = 'donothing'
-    show screen countdown
+    show screen countdown2
     menu:
 
         "They're going to take my best friend..."
@@ -499,10 +540,11 @@ label donothing:
 
 label rejoinfight:
 
-    f "No! Ugh, just take care of Garm for me!"
+    f "No! Ugh, just take care of Garm for me!" with vpunch
     f "I’ll be back! Just you watch!"
 
     l "{i}As they pulled my best friend away, I couldn’t get the vision of that powerful wolf reflecting the strength of Fenrir’s courage out of my head.{/i}"
+    scene black with fade
     l "{i}That night, even as I comforted Garm, one thought remained...{/i}"
     l "{i}Could that ghostly wolf surrounding Fenrir in those last moments be the power of the GG...?{/i}"
 
