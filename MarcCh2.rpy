@@ -7,7 +7,7 @@ define e = Character(_("Eileen"), color="#cc88cc", image="eileen")
 define l = Character(_("Loki"), color="#2ae6ff", image="loki")
 define g = Character(_("Garm"), color="#fffc30", image="garm")
 define lg = Character(_("Loki and Garm"), color="#ff3033")
-define h = Character(_("Helpful Person"), color="#3033ff")
+# define h = Character(_("Helpful Person"), color="#3033ff")
 define ge = Character(_("Grand Entrance"), color="33cc33", image="grandentrance")
 define ggse = Character(_("GG Store Employee"), color="#1711ee")
 define pg = Character(_("Prison Guard"), color="#1711ee", image="guard")
@@ -182,7 +182,7 @@ label positive:
     show garm happy at multibounce, right
     g "HAHAHA, THAT'S SO FUNNY!"
 
-    show loki sad at depress, center
+    show loki mad at depress, center
     l "Please don't speak of it again, haaaa..."
 
     g "In any case, here you go!"
@@ -243,6 +243,10 @@ label resume1:
     l "..."
 
     g "..."
+    hide loki neutral
+    hide garm neutral
+    show loki surprised at left
+    show garm surprised at right
 
     "{b}Looks at each other{/b}"
 
@@ -291,7 +295,7 @@ label resume1:
     "{b}Garm bounces into Loki's room and immediately rushes to open the blinds.{/b}"
 
     scene white with dissolve
-    show loki neutral at depress, center
+    show loki surprised at depress, center
     show garm happy at multibounce, left
     play music "normalbgm.wav"
     l "MY EYES!" with hpunch
@@ -414,13 +418,13 @@ label garmquestions:
             g "They probably didn't want some kind of force strong enough to cause an uprising against the LOLs so Tyr made the decision to lock her up."
 
             hide loki neutral
-            show loki sad at depress, right
+            show loki mad at depress, right
             l "But she was only acting in self-defense!"
 
             g "Yeah, but the LOLs care more about maintaining their power than human rights."
 
             l "That's not good at all..."
-            hide loki sad
+            hide loki mad
             show loki neutral at right
 
             jump garmquestions
@@ -517,6 +521,8 @@ label resume2:
 
     g "It's not that it's easy, it's that I'm amazing!"
 
+    "They eat for a bit and finish cleaning up and whatnot."
+
     g "Alright, time to go to the basement gym!"
 
     l "Okay, gotcha."
@@ -531,11 +537,11 @@ label resume2:
 
     g "Now try REALLY hard to believe that it'll just pop out and become real."
 
-    l @ sad "Mmmm... No actually can't do that part."
+    l @ mad "Mmmm... No actually can't do that part."
 
     g "Oh right, remember that episode of GoGo's Strange Venture where the main guy yells out \"SMOOTH PALMS\"?"
 
-    l @ sad "Wait are you serious so I'm supposed to try to be all epic and come up with a name?"
+    l @ surprised "Wait are you serious so I'm supposed to try to be all epic and come up with a name?"
 
     g @ happy "That's exactly what I'm telling you to do!"
 
@@ -543,7 +549,7 @@ label resume2:
 
     {i}Hmm, well a gentleman does stand out looking all cool and stuff...{/i}
 
-    {i}Mmmm, he needs to have a pocket watch, monocle, and some cool looking suit...{/i}
+    {i}Mmmm, he needs to have a cool looking suit, good face, looks somewhat mysterious...{/i}
 
     {i}So basically he stands out and people's eyes go towards him as he enters an area...{/i}
 
@@ -560,7 +566,17 @@ label resume2:
 
     g "Yep, nice."
 
+    hide loki neutral
+    hide garm neutral
+    show loki surprised at center
+    show garm surprised at right
+
     lg "HOLY CRAP IT ACTUALLY WORKED!" with vpunch
+
+    hide loki surprised
+    hide garm surprised
+    show loki neutral at center
+    show garm neutral at right
 
     play music "normalbgm.wav"
     g """
@@ -575,14 +591,14 @@ label resume2:
             $ gg_power +=10
             stop music fadeout 1.0
             show grandentrance at singlebounce, left
-            g "Wha-"
+            g @ surprised "Wha-"
             hide garm neutral
             show garm happy at singlebounce, right
             g "Oooo well hello handsome!"
 
             "Garm is now smitten with your GG, it was super effective!"
 
-            l @ sad "AAAA THAT'S WEIRD YOU CAN STOP NOW GRAND ENTRANCE!"
+            l @ surprised "AAAA THAT'S WEIRD YOU CAN STOP NOW GRAND ENTRANCE!"
 
             hide garm happy
             show garm neutral at right
@@ -605,7 +621,7 @@ label resume2:
 
     l "Um, so the LOL's don't really use the GGs by being all enthusiastic or gentlemanly right?"
 
-    g "Right yeah, they buy stuff. Actually, do you want to go buy things for your GG?"
+    g "Right yeah, they buy stuff. Actually, do you want to go the place where you can buy things for your GG?"
 
     hide garm neutral
     show garm happy at right
@@ -618,7 +634,7 @@ label resume2:
         "Yes":
             g "Alright! Though, why did you pause for a second?"
 
-    l "Um, no reason, lets go!"
+    l @ surprised "Um, no reason, lets go!"
 
     stop music fadeout 1.0
     scene black with dissolve
@@ -694,7 +710,9 @@ label shop2:
         "Diamond Morph Suit (%(diamorphcost)d credits)":
             if inventory.buy(diamorph):
                 show guard sad at right
-                ggse "...You're hacking..."
+                ggse """
+                You're...
+                You're hacking..."""
                 $ gg_power+=9001
                 $ current_credits = inventory.credits
                 ggse "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
@@ -734,7 +752,7 @@ label resume3:
     g """I'm sure she has to be in there.
     Usually you'd think that the prison wouldn't allow something like that since everyone in there is so dangerous, but I think they're very confident in their security.
     """
-    l @ sad"""
+    l @ mad"""
     {i}It's been so long... I mean I trust Garm's judgement, but actually being able to visit her today...{/i}
 
     {i}The same day I manifest my GG...{/i}
@@ -766,7 +784,7 @@ label resume3:
 
     pg "Ah okay, follow me."
 
-    l "{i}Wait, didn't I just run into this person?{/i}"
+    l @ surprised "{i}Wait, didn't I just run into this person?{/i}"
 
     scene prisoncell with dissolve
     show loki neutral at right
