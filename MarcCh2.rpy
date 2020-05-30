@@ -8,8 +8,8 @@ define l = Character(_("Loki"), color="#2ae6ff", image="loki")
 define g = Character(_("Garm"), color="#fffc30", image="garm")
 define lg = Character(_("Loki and Garm"), color="#ff3033")
 define h = Character(_("Helpful Person"), color="#3033ff")
-define ge = Character(_("Grand Entrance"), color="33cc33")
-define ggse = Character(_("GG Store Employee"), color="#f10ee1", image="ggse")
+define ge = Character(_("Grand Entrance"), color="33cc33", image="grandentrance")
+define ggse = Character(_("GG Store Employee"), color="#1711ee")
 define pg = Character(_("Prison Guard"), color="#1711ee", image="guard")
 define uf = Character(_("???"), color="#01116e")
 define f = Character(_("Fenrir"), color="#01116e", image="fenrir")
@@ -391,7 +391,7 @@ label garmquestions:
                 "Wait, but how do I have one?":
 
                     $ gqbonus = 1
-                    show garm neutral at depress, left
+                    show garm neutral at left
                     g "Actually your parents and my parents were a part of the previous uprising against to LOLs, but they're either exiled from this area or dead now..."
 
                     l "Oh, can you teach me how to manifest a GG later? I'm probably going to have to sit and think for things a bit after I'm either done asking you questions or you get tired of answering them, haha."
@@ -461,7 +461,7 @@ label resume2:
 
         g "Good job on showing interest in everything I was saying or leading up to in our conversation!"
 
-        l "Thanks for talking with me about all of those things, Garm!"
+        l @ happy "Thanks for talking with me about all of those things, Garm!"
 
         l "{i}Wait, is Garm an esper? Oh well, Garm is Garm and that's all that matters.{/i}"
 
@@ -527,11 +527,11 @@ label resume2:
 
     g "Now try REALLY hard to believe that it'll just pop out and become real."
 
-    l "Mmmm... No actually can't do that part."
+    l @ sad "Mmmm... No actually can't do that part."
 
     g "Oh right, remember that episode of GoGo's Strange Venture where the main guy yells out \"SMOOTH PALMS\"?"
 
-    l "Wait are you serious so I'm supposed to try to be all epic and come up with a name?"
+    l @ sad "Wait are you serious so I'm supposed to try to be all epic and come up with a name?"
 
     g @ happy "That's exactly what I'm telling you to do!"
 
@@ -570,6 +570,7 @@ label resume2:
         "GRAND ENTRANCE, USE DAZZLING GAZE AT GARM!":
             $ gg_power +=10
             stop music fadeout 1.0
+            show grandentrance at singlebounce, left
             g "Wha-"
             hide garm neutral
             show garm happy at singlebounce, right
@@ -577,7 +578,7 @@ label resume2:
 
             "Garm is now smitten with your GG, it was super effective!"
 
-            l "AAAA THAT'S WEIRD YOU CAN STOP NOW GRAND ENTRANCE!"
+            l @ sad "AAAA THAT'S WEIRD YOU CAN STOP NOW GRAND ENTRANCE!"
 
             hide garm happy
             show garm neutral at right
@@ -662,16 +663,18 @@ label preshop2:
     $ diamorphcost = diamorph.cost
 
 label shop2:
-
+    show guard happy at singlebounce, right
     menu store2:
 
         ggse "Welcome to the GG store, what can I get for you? You have %(current_credits)d credits."
 
         "Golden Top Hat (%(tophatcost)d credits)":
             if inventory.buy(tophat):
+                show guard happy at singlebounce, right
                 l "This top hat defines a GG!"
                 $ gg_power+=5
                 $ current_credits = inventory.credits
+                show guard happy at singlebounce, right
                 ggse "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
                 jump store2
 
@@ -680,17 +683,21 @@ label shop2:
                 l "A suit to enhance my GG!"
                 $ gg_power+=10
                 $ current_credits = inventory.credits
+                show guard happy at singlebounce, right
                 ggse "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
                 jump store2
 
         "Diamond Morph Suit (%(diamorphcost)d credits)":
             if inventory.buy(diamorph):
+                show guard sad at right
+                ggse "...You're hacking..."
                 $ gg_power+=9001
                 $ current_credits = inventory.credits
                 ggse "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
                 jump store2
 
         "Actually, I think I'm done buying things.":
+            show guard happy at singlebounce, right
             ggse "Alright, thank you for coming to the GG Store!"
             jump resume3
 
@@ -725,15 +732,15 @@ label resume3:
     g """I'm sure she has to be in there.
     Usually you'd think that the prison wouldn't allow something like that since everyone in there is so dangerous, but I think they're very confident in their security.
     """
-    l """
+    l @ sad"""
     {i}It's been so long... I mean I trust Garm's judgement, but actually being able to visit her today...{/i}
 
     {i}The same day I manifest my GG...{/i}
 
     {i}This can't just be coincidence...{/i}
-
-    Okay yeah lets go, lead the way Garm.
     """
+
+    l "Okay yeah lets go, lead the way Garm."
 
     scene black with dissolve
     "They walked for a couple minutes and one could feel the seriousness in the air."
@@ -756,6 +763,8 @@ label resume3:
     g "I'm Garm, her sister. The other one with me is Loki."
 
     pg "Ah okay, follow me."
+
+    l "{i}Wait, didn't I just run into this person?{/i}"
 
     scene prisoncell with dissolve
     show loki neutral at right
