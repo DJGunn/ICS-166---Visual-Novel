@@ -9,7 +9,7 @@ define g = Character(_("Garm"), color="#fffc30", image="garm")
 define lg = Character(_("Loki and Garm"), color="#ff3033")
 # define h = Character(_("Helpful Person"), color="#3033ff")
 define ge = Character(_("Grand Entrance"), color="33cc33", image="grandentrance")
-define ggse = Character(_("GG Store Employee"), color="#1711ee")
+define ggse = Character(_("GG Store Employee"), color="#1711ee", image="guard")
 define pg = Character(_("Prison Guard"), color="#1711ee", image="guard")
 define uf = Character(_("???"), color="#01116e")
 define f = Character(_("Fenrir"), color="#01116e", image="fenrir")
@@ -607,9 +607,9 @@ label resume2:
         "Grand Entrance, use fly?":
             $ gg_power -=5
             stop music fadeout 1.0
-            g "Didn't I just tell you that were were supposed to be enthusiastic? Dang it Loki..."
+            g @ mad "Didn't I just tell you that were were supposed to be enthusiastic? Dang it Loki..."
 
-            g "Also if you didn't already notice, your GG is already flying..."
+            g @ mad "Also if you didn't already notice, your GG is already flying..."
 
             l "Oh, you're right..."
 
