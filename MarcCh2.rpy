@@ -295,7 +295,7 @@ label resume1:
     "{b}Garm bounces into Loki's room and immediately rushes to open the blinds.{/b}"
 
     scene white with dissolve
-    show loki surprised at depress, center
+    show loki mad at depress, center
     show garm happy at multibounce, left
     play music "normalbgm.wav"
     l "MY EYES!" with hpunch
