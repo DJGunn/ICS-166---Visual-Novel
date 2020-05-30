@@ -123,7 +123,7 @@ label start:
 
     g "IT'S ME!"
 
-    l "What kind of joke is that?!"
+    l @ surprised "What kind of joke is that?!"
 
     # b is for bold text
     "{b}Garm opens the door and enters Loki's room.{/b}"
@@ -514,7 +514,7 @@ label resume2:
 
     g "Ah right, sure!"
 
-    l "Wow you make that sound like it's easy to manifest a GG."
+    l @ surprised"Wow, you make that sound like it's easy to manifest a GG."
 
     hide garm neutral
     show garm happy at singlebounce, right
@@ -565,6 +565,8 @@ label resume2:
     l "Ah okay."
 
     g "Yep, nice."
+
+    lg "..."
 
     hide loki neutral
     hide garm neutral
@@ -745,7 +747,7 @@ label resume3:
     do you want to visit Fenrir?
     """
 
-    l "Wait, visit Fenrir? You know where she is and we can visit her?"
+    l @ surprised "Wait, visit Fenrir? You know where she is and we can visit her?"
 
     g @ sad "Yeah, I was doing some research and there is this one prison that holds \"extremely dangerous individuals.\""
 
