@@ -525,7 +525,7 @@ label resume2:
 
     g "Alright, time to go to the basement gym!"
 
-    l "Okay, gotcha."
+    l @ happy "Okay, gotcha."
 
     scene indoorgym with dissolve
     show loki neutral at center
