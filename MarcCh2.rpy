@@ -111,7 +111,7 @@ label start:
     {i}I don't like cake, but company is always welcome.{/i}
     """
     # scenes
-    scene greenaurora with dissolve
+    scene oldlokiroom with dissolve
     show loki neutral
     show garm happy at multibounce, right
 
@@ -152,7 +152,7 @@ label positive:
     # Initialize a variable.
     $ gg_power = 5
 
-    scene greenaurora
+    scene oldlokiroom
     with dissolve
 
     show loki neutral at center
@@ -348,12 +348,12 @@ label resume1:
     l "{i}Thank goodness I'm not crazy, but now I have even more questions.{/i}"
 
     show loki neutral at right
-
     show garm neutral at left
     with move
     $ gqcount = 0
     $ gqbonus = 0
     play music "mellowbgm.wav"
+
 label garmquestions:
     menu:
         set gq_menuset
@@ -413,11 +413,15 @@ label garmquestions:
 
             g "They probably didn't want some kind of force strong enough to cause an uprising against the LOLs so Tyr made the decision to lock her up."
 
+            hide loki neutral
+            show loki sad at depress, right
             l "But she was only acting in self-defense!"
 
             g "Yeah, but the LOLs care more about maintaining their power than human rights."
 
             l "That's not good at all..."
+            hide loki sad
+            show loki neutral at right
 
             jump garmquestions
 
@@ -707,8 +711,6 @@ label fallthrough:
 
 label resume3:
 
-    # this is how to show a variable's value
-    #"After all that the gg_power is now %(gg_power)d."
     if inventory.has_item(tophat) or inventory.has_item(suit):
         g @ neutral "Nice upgrade!"
     else:
@@ -743,7 +745,7 @@ label resume3:
     l "Okay yeah lets go, lead the way Garm."
 
     scene black with dissolve
-    "They walked for a couple minutes and one could feel the seriousness in the air."
+    "They walked for a couple minutes and one could feel the tension in the air."
     "They both were thinking of Fenrir, even during transit to the prison."
 
     scene prison with dissolve
