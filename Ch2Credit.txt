@@ -8,7 +8,7 @@ ggstore.jpg from - http://www.worlddesignconsortium.com/work.php?WORK=103947359 
 prisoncell.jpg from - https://www.dreamstime.com/futuristic-jail-corridor-d-render-image125078228, credit to Illustration 125078228 © Mik3812345 - Dreamstime.com
 prison.jpg from - https://imgur.com/GO0rwoL, credit to PundixSherif
 
-garm/guard sprites from - https://cloudnovel.net/Neeka, their requested link for reference is also here http://cocoon.daa.jp/material/
+garm/guard/fenrir sprites from - https://cloudnovel.net/Neeka/avatar/girl-avatar, their requested link for reference is also here http://cocoon.daa.jp/material/
 loki sprites from - AniseStar (Itch.io), https://cloudnovel.net/Neeka/avatar/eidan
 
 grandentrance sprite created by Wingzofdarkness and from - https://cloudnovel.net/Neeka/avatar/butler-and-samurai-wingzofdarkness
