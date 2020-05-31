@@ -8,7 +8,7 @@ define l = Character(_("Loki"), color="#2ae6ff", image="loki")
 define g = Character(_("Garm"), color="#fffc30", image="garm")
 define lg = Character(_("Loki and Garm"), color="#ff3033")
 # define h = Character(_("Helpful Person"), color="#3033ff")
-define ge = Character(_("Grand Entrance"), color="33cc33", image="grandentrance")
+define ge = Character(_("Grand Entrance"), color="#33cc33", image="grandentrance")
 define ggse = Character(_("GG Store Employee"), color="#1711ee", image="guard")
 define pg = Character(_("Prison Guard"), color="#1711ee", image="guard")
 define uf = Character(_("???"), color="#01116e")
@@ -97,7 +97,8 @@ label start:
     scene black with dissolve
 
     show text "Chapter 2\nA True Gentleman?!" with Pause(5)
-
+    """{b}5 years have passed since the arrest of Loki's best friend Fenrir. 
+    Loki has done everything in his power to become as wealthy as he can in order to save his friend from the LOLs evil clutches."""
     # actual scene start
     scene black with dissolve
     show loki neutral   # this would use loki neutral.png/loki neutral.jpg when character is added to the images directory
