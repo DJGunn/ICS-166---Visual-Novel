@@ -98,10 +98,9 @@ label start:
 
     show text "Chapter 2\nA True Gentleman?!" with Pause(5)
 
-    "{b}A couple years after that fateful night...{/b}"
-
     # actual scene start
     scene black with dissolve
+    "{b}A couple years after that fateful night...{/b}"
     show loki neutral   # this would use loki neutral.png/loki neutral.jpg when character is added to the images directory
 
     # you can have multi-line text
