@@ -97,10 +97,10 @@ label start:
     scene black with dissolve
 
     show text "Chapter 2\nA True Gentleman?!" with Pause(5)
-    """{b}5 years have passed since the arrest of Loki's best friend Fenrir. 
-    Loki has done everything in his power to become as wealthy as he can in order to save his friend from the LOLs evil clutches."""
     # actual scene start
     scene black with dissolve
+    """{b}5 years have passed since the arrest of Loki's best friend Fenrir. 
+    Loki has done everything in his power to become as wealthy as he can in order to save his friend from the LOLs evil clutches."""
     show loki neutral   # this would use loki neutral.png/loki neutral.jpg when character is added to the images directory
 
     # you can have multi-line text
