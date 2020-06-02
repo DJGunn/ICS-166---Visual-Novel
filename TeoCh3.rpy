@@ -123,21 +123,36 @@ label start:
     jn "You will soon learn that you have a power greater than anything the elite LOLs will ever posess.... "
     jn "{b}Plot armor{/b}"
 
-    show loki neutral at left
-    with move
+    show loki surprised
+    l "Plot Armor? What is that?"
 
-    g "How are you doing on this fine day?!"
+    show loki neutral
+    jn "Have you never watched an anime? Naruto? Bleach? What do they all have in common?"
+    jn "The main character can never die. Eventually they become incredibly OP and nobody stands a chance against them."
+    jn "This is your story Loki. You were made for this."
 
+    show loki mad
+    l "I didn't ask for this! I wanted to save my friend, but I can't take on the LOLs all by myself!"
+
+    
+    jn "You won't be alone!"
+    show jor happy at left
+    show jorggformal neutral at multibounce, center
+    show loki surprised at right
+    j "This is my GG! Gentle Giant. Do not fear Loki, we have stronger allies than you think."
+    j "Now you must choose a path. Will you fight for justice? Or will you run and hide, spitting on the backs of everyone who has put their life on the line to bring down the LOLs?"
+    j "Come Loki, accept your fate and become the hero you were always meant to be!"
+    show jorggformal neutral at center
     # this is an example of what a route would look like, usually if you want to put a bad end in your chapter
     menu:
 
-        "Now, how am I feeling today..."
+        "What should I do!?"
 
-        "Positive":
+        "Fight":
 
             jump positive
 
-        "Negative":
+        "Run and Hide":
 
             jump negative
 
@@ -145,13 +160,19 @@ label start:
 label positive:
 
     # Initialize a variable.
-    $ gg_power = 5
+    $ gg_power = 20
 
-    scene oldlokiroom
-    with dissolve
+    show loki mad at center
+    l "I will fight. If I truly have this plot armor you speak of, and the fate of everyone in the rebellion lies in the balance. I guess I have no other choice."
+    l "I can't just stand by as more and more people are exploited for the beneifit of the LOLs."
 
-    show loki neutral at center
+    show jor happy at left
+    j "You made the right choice Loki. Now, there is much you must know before we leave here. I only recently allowed myself to be captured so that I could meet Fenrir here in prison."
+    j "I couldn't reach you earlier as we all needed to be together in order for the next part of my plan to work. "
+    j "Before we break out of this place, I need to tell you all more about what the LOLs are planning."
+    j "Gentle Giant, you can go for now. I will call on you soon."
 
+    hide jorggformal neutral at center
     # you can do multi-line dialogue with tags used sometimes
     l """
     {i}I guess I have no real reason to feel sad since I'm used to being poor, and also I'd be such a downer if I said I -wasn't- in a good mood today.{/i}
