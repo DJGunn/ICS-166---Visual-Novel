@@ -15,6 +15,8 @@ define uf = Character(_("???"), color="#01116e")
 define f = Character(_("Fenrir"), color="#01116e", image="fenrir")
 define ut = Character(_("???"), color="#f2f2f2")
 define t = Character(_("Tyr"), color="f2f2f2")
+define b = Character(_("Baldur"), color="eeffff", image="baldur")
+define s = Character(_("Surt"), color="ffeeee", image="surt")
 
 transform singlebounce:
     pause .15
@@ -97,13 +99,14 @@ label start:
     # how to declare chapter
     scene black with dissolve
 
-    show text "Chapter 5\nnow...RUN!!" with Pause(5)
+    show text "Chapter 4\nnow...RUN!!" with Pause(5)
 
     # actual scene start
     scene prison-outside with dissolve
     show fenrir happy at singlebounce, center
     
     # you can have multi-line text
+    play music "netherplace.mp3"
     f """
     {i}Cool!!We escaped from prison. Let us take a break now.{/i}
 
@@ -132,15 +135,27 @@ label start:
         "Now, what is the next move?"
 
         "Agree with Fenrir, go straight":
+            
+            l "I agree with Fenrir. We don't have time to waste. Just go!"
+        
+            #$ gg_power+=10
 
             jump road
 
         "Agree with Garm, go the path":
+            
+            l "I agree with Gram. We can not fight right now."
+        
+            #$ gg_power+=5
 
             jump path
 
         "I don't know......":
+            
+            l "I really don't know. Maybe...."
         
+            #$ gg_power-=10
+            
             jump encountered
 
 
@@ -149,701 +164,422 @@ label road:
 
     scene prison-outside
     with dissolve
-
+    play music "boxcat.mp3"
+    
     show loki neutral at center
 
     l "Let us go. The guards are coming. I can hear that."
     
+    show fenrir happy at right
     
+    f "As I know, there is only one obstacle on this road, that is baldur." 
     
+    f @ neutral "He has been responsible for keeping here for 3 years, and has never made mistakes."
     
+    show garm sad at left
+    g "Why we choose this...!"
     
+    f @ happy "Haha.... Because I believe you and Loki!"
     
-    show loki happy at singlebounce, center
-    l "I can't wait to see what today has in store for me!"
-
-    show garm happy at singlebounce, right
-    g "Haha okay! Sorry I couldn't find a gift for you, so I'll just give you the credits I would have spent on a gift! What's your NeoMo?"
-
-    l "{i}Aw they're so nice to me. They really didn't have to, but I can't turn them down when they're so willing to give me something for my birthday can I?{/i}"
-
-    l "It's uh..."
-
-    l @ neutral "{i}Man why did I name my NeoMo account this...{/i}"
-
-    l @ neutral "TheRealLokiGG."
-
-    # showing characters after they've already been shown will have the most recent effect happen
-    # this removes the previous instance of that character
-    show garm happy at multibounce, right
-    g "HAHAHA, THAT'S SO FUNNY!"
-
-    show loki mad at depress, center
-    l "Please don't speak of it again, haaaa..."
-
-    g "In any case, here you go!"
-
-    # how to earn credits
-    $ inventory.earn(20)
-    $ current_credits = inventory.credits
-    # to show a variable's value in dialogue, put brackets around it
-
-
-    show loki happy at singlebounce, center
-    l "Alright, I got it! Thanks so much! Now I have %(current_credits)d!"
-
-    show garm happy at singlebounce, right
-    g "You're welcome!"
-
-    l "Well um... time to share it with you in the form of food!"
-
-    show loki neutral at left
-    show garm neutral at right
-    with move
-
-    jump preshop1
-    jump shop1
-
-label preshop1:
-    $ chococost = choco.cost
-    $ sushicost = sushi.cost
-    $ friescost = fries.cost
-    $ inventory.earn(1000000)
-label shop1:
-
-    menu store1:
-
-        "What do I want..."
-
-        # multiple things can happen after every menu choice
-        "Chocolate %(chococost)d":
-            if inventory.buy(choco):
-                $ current_credits = inventory.credits
-                "Your order will be delivered to your location in the next 30 minutes. You have %(current_credits)d credits remaining, thank you for using NeoFood!"
-                jump resume1
-
-        "Sushi %(sushicost)d":
-            if inventory.buy(sushi):
-                $ current_credits = inventory.credits
-                "Your order will be delivered to your location in the next 30 minutes. You have %(current_credits)d credits remaining, thank you for using NeoFood!"
-                jump resume1
-
-        "French Fries %(friescost)d":
-            if inventory.buy(fries):
-                $ current_credits = inventory.credits
-                "Your order will be delivered to your location in the next 30 minutes. You have %(current_credits)d credits remaining, thank you for using NeoFood!"
-                jump resume1
-
-label resume1:
-    stop music fadeout 1.0
-    l "..."
-
-    g "..."
+    f @ neutral "If we can not win this fight, that means we need to stay at prison. That is just a choice of fate."
+    
+    l @ happy "No worry. We got this!"
+    
+    g "You guys are crazy!!" 
+    
     hide loki neutral
-    hide garm neutral
-    show loki surprised at left
-    show garm surprised at right
-
-    "{b}Looks at each other{/b}"
-
-    lg "WHAAAAAAAAT?!" with vpunch
-
-    lg "WHERE THE HECK DID THOSE CREDITS COME FROM?!"
-
-    scene black with dissolve
-
-    """
-    They enjoyed their food and began to live the good life together.
-
-    They weren't a couple, but Garm was Loki's only real friend and they both lived alone so it was Loki's choice for them to live together.
-
-    Of course Garm refused at first, but Loki insisted since there would be no point in being rich with no one to share the riches with.
-
-    Speaking of Fenrir...
-    """
-    show text "1 year later" with Pause(5)
-
-    show loki neutral at depress, center
-
-    "Loki woke up at 8AM per usual, but what was on his mind was unusual."
-
-    l """
-
-    {i}Living rich is nice since I don't really have a care in the world, but...{/i}
-
-    {i}That thing that appeared by Fenrir way back when, what was that?{/i}
-    """
-
-    "Like, who thinks like that? Oh well, this makes my job easier."
-
-    "Onwards with the story!"
-
-    play music "mellowbgm.wav"
-    show garm happy at right
-
-    g "You're awake right?"
-
-    l "Yea-"
-
-    show garm happy at multibounce, left
-    with move
-
-    "{b}Garm bounces into Loki's room and immediately rushes to open the blinds.{/b}"
-
-    scene white with dissolve
-    show loki mad at depress, center
-    show garm happy at multibounce, left
-    play music "normalbgm.wav"
-    l "MY EYES!" with hpunch
-
-    g "GOOOOOOD MORNING!"
-
-    "{b}Loki gets out of bed.{/b}"
-
-    scene lokiroom with dissolve
-    show loki neutral at center
-    show garm happy at multibounce, left
-
-    l "Agh... Um, Garm?"
-
-    stop music fadeout 1.0
-    show garm happy at left
-
-    g "Oh, what is it, Loki?"
-
-    l "I just randomly had this thought this morning, but what was that thing way back when Fenrir-"
-
-    show garm neutral at left
-
-    l """
-    Um, got taken away?
-
-    There was something that appeared by her and I'm not sure if I'm just misremembering, but was that like a pet of hers or something?
-
-    I still don't understand why Fenrir got taken away for something like that...
-    """
-
-    g """
-    ...You're not crazy.
-
-    That thing you're talking about is a Gentle Guy, but everyone calls them GGs.
-
-    Well, people who know about them, that is.
-    """
-
-    l "Wait, you said that people know about them, who are these people?"
-
-    g """
-    The people include those of us with GGs, those who know others with GGs, and the LOLs.
-
-    These are pretty self-explanatory, but the LOLs have the strongest GGs.
-    """
-
-    l "Oh, that makes sense. A year ago I was actually feeling pretty hopeless, you know being poor and not being able to do anything about it."
-
-    show garm happy at left
-
-    g "Haha, there's actually no real reason to feel totally hopeless!"
-
-    l "{i}Thank goodness I'm not crazy, but now I have even more questions.{/i}"
-
+    hide garm sad
+    hide fenrir happy
+    
+    scene fight1 with dissolve
+    show baldur neutral at center, singlebounce
+    play music "boxcat.mp3"
+    
+    b "I know you are there Fenrir"
+    b "Do not try to hide! I don't want to waste time!"
+    
+    show baldur at left with move
+    show fenrir neutral at right
+    
+    f "OKOK! Here we are!"
+    
+    b "I am the most faithful servant of LOL, Guardian outside the prison -- Baldur."
+    b @ smile "Speak out your names! I never kill nonames!"
+    
+    hide fenrir neutral
     show loki neutral at right
-    show garm neutral at left
-    with move
-    $ gqcount = 0
-    $ gqbonus = 0
-    play music "mellowbgm.wav"
-
-label garmquestions:
+    
+    l "My name is Loki. I am sure I won't get kill here. And I don't want to fight with you."
+    l @ happy "What about just let us go?"
+    
+    b "Are you insulting me? Go to hell!! I pormise to the LOL, you will die today"
+    
+    l "It is not a good time to fight, let us finish this ASAP and get to a safe place."
+    # fight 
+    
     menu:
-        set gq_menuset
-        l "What should I ask about..."
 
-        "Wait, you said that people know about them, who are these people?":
-            $ gqcount+=1
-
-            g """
-            The people include those of us with GGs, those who know others with GGs, and the LOLs.
-
-            These are pretty self-explanatory, but the LOLs have the strongest GGs.
-            """
-
-            l "Wait, you said \"us\", do you mean to say that we both have GGs?"
-
-            show garm happy at singlebounce, left
-
-            g "Yep, that's exactly what that means!"
-
-            l """
-            Oh okay!
-
-            ...
-
-            ACTUALLY, WHY DIDN'T YOU TELL ME THIS BEFORE?!
-            """
-
-            g "You never asked!"
-
-            menu:
-
-                l "Oh um, well I guess that's true..."
-
-                "Wait, but how do I have one?":
-
-                    $ gqbonus = 1
-                    show garm neutral at left
-                    g "Actually your parents and my parents were a part of the previous uprising against to LOLs, but they're either exiled from this area or dead now..."
-
-                    l "Oh, can you teach me how to manifest a GG later? I'm probably going to have to sit and think for things a bit after I'm either done asking you questions or you get tired of answering them, haha."
-
-                    show garm happy at left
-
-                    g "Sure thing!"
-
-                    show garm neutral at left
-
-                    jump garmquestions
-
-                "{i}Ask nothing{/i}":
-
-                    jump garmquestions
-
-        "Why did Fenrir have to be taken away for manifesting their GG?":
-            $ gqcount+=1
-
-            g "They probably didn't want some kind of force strong enough to cause an uprising against the LOLs so Tyr made the decision to lock her up."
-
-            hide loki neutral
-            show loki mad at depress, right
-            l "But she was only acting in self-defense!"
-
-            g "Yeah, but the LOLs care more about maintaining their power than human rights."
-
-            l "That's not good at all..."
-            hide loki mad
-            show loki neutral at right
-
-            jump garmquestions
-
-        "Wait, you said LOLs have the strongest GGs, so how do GGs get stronger?":
-            $ gqcount+=1
-
-            #https://www.finaltouchschool.com/business/10-qualities-of-a-modern-gentleman/
-            g """
-            GGs become stronger based on their owner. In principle, the more gentlemanly, ladylike for girls, you are, the stronger your GG will be.
-
-            This can include showing a geniuine interest in the people you're interacting with, helping someone in need, being a truthful and effective communicator, being virtuous, and the list goes on.
-
-            However, the LOLs don't show many of these qualities so they make their GGs stronger by from making their GG looking sharper since that's where they can have unlimited possibilities through sheer credits.
-            """
-
-            l "Um, so basically either be more of a gentleman or just use money?"
-
-            g "Or..."
-
-            show garm happy at singlebounce, left
-
-            g "BOTH!"
-            show loki happy at singlebounce, right
-            l "HAHA alright gotcha!"
-
-            show garm neutral at left
-            show loki neutral at right
-
-            jump garmquestions
-
-        "I think I'm done asking questions.":
-            jump resume2
-
-label resume2:
-    show garm neutral at left
-    show loki neutral at center
-
-    if gqcount==3 and gqbonus==1:
-        $ gg_power+=10
-        g "Alright! In the future, do remember that your decisions will influence the power of your GG, for better or for worse!"
-
-        g "Good job on showing interest in everything I was saying or leading up to in our conversation!"
-
-        l @ happy "Thanks for talking with me about all of those things, Garm!"
-
-        l "{i}Wait, is Garm an esper? Oh well, Garm is Garm and that's all that matters.{/i}"
-
-    elif gqcount==3:
-        $ gg_power+=5
-        g "Alright! In the future, do remember that your decisions will influence the power of your GG, for better or for worse!"
-
-        l "Thanks for letting me know about things, Garm!"
-    elif gqcount < 3 and gqcount!=0:
-        $ gg_power+=3
-        g """
-        Alright! In the future, do remember that your decisions will influence the power of your GG, for better or for worse!
-
-        I was super eager to tell you things, but you didn't ask me about everything you were wondering about, wink wink!
-        """
-        l "I don't know what you mean, but thanks for letting me know about things, Garm!"
-
-        l "{i}Wait, is Garm an esper? Oh well, Garm is Garm and that's all that matters.{/i}"
-    else:
-        $ gg_power-=10
-        show garm sad at depress, left
-        g "Oh, I thought you wanted to know things..."
-
-        l "Sorry, I think I'm okay."
-
-        g "Hmm... if you say so."
-
-        l "{i}It seems like I didn't do something right, or as right as I could have... I'll be more careful in the future, hopefully.{/i}"
-
-    g "Alright! On to breakfast!"
-
-    l "That sounds good, I'm starving."
-    stop music fadeout 1.0
-    scene black with dissolve
-    "Loki and Garm prepare some food and begin to eat."
-
-    scene diningroom with dissolve
-    show loki neutral at left
-    show garm neutral at right
-    play music "normalbgm.wav"
-    l "After we eat, can you teach me how to use a GG?"
-
-    g "Ah right, sure!"
-
-    l @ surprised"Wow, you make that sound like it's easy to manifest a GG."
-
-    hide garm neutral
-    show garm happy at singlebounce, right
-
-    g "It's not that it's easy, it's that I'm amazing!"
-
-    "They eat for a bit and finish cleaning up and whatnot."
-
-    g "Alright, time to go to the basement gym!"
-
-    l @ happy "Okay, gotcha."
-
-    scene indoorgym with dissolve
-    show loki neutral at center
-    show garm neutral at right
-
-    g "Okay so think of what an ideal gentleman is to you, like really visualize it."
-
-    l "Um okay got it."
-
-    g "Now try REALLY hard to believe that it'll just pop out and become real."
-
-    l @ mad "Mmmm... No actually can't do that part."
-
-    g "Oh right, remember that episode of GoGo's Strange Venture where the main guy yells out \"SMOOTH PALMS\"?"
-
-    l @ surprised "Wait are you serious so I'm supposed to try to be all epic and come up with a name?"
-
-    g @ happy "That's exactly what I'm telling you to do!"
-
-    l """
-
-    {i}Hmm, well a gentleman does stand out looking all cool and stuff...{/i}
-
-    {i}Mmmm, he needs to have a cool looking suit, good face, looks somewhat mysterious...{/i}
-
-    {i}So basically he stands out and people's eyes go towards him as he enters an area...{/i}
-
-    {i}What do you even call that, a grand entrance?{/i}
-
-    {i}Well, here goes nothing!{/i}
-
-    IT'S TIME TO MAKE YOUR APPEARANCE, GRAAAAAND ENTRAAAAANCE!!!
-    """
-    stop music fadeout 1.0
-    show grandentrance at left with hpunch
-
-    l "Ah okay."
-
-    g "Yep, nice."
-
-    lg "..."
-
-    hide loki neutral
-    hide garm neutral
-    show loki surprised at center
-    show garm surprised at right
-
-    lg "HOLY CRAP IT ACTUALLY WORKED!" with vpunch
-
-    hide loki surprised
-    hide garm surprised
-    show loki neutral at center
-    show garm neutral at right
-
-    play music "normalbgm.wav"
-    g """
-    ... Alright, so that's how to manifest your GG! Now, if you have watched Dokimon you can tell your GG to do things.
-
-    Also, the more enthusiastic you are about what you're saying when you control your GG, it will do the thing you want better.
-    """
-    menu:
-        l "{i}Oh, well in that case I guess I can just choose some gentlemanly trait and make it more dramatic right?{/i}"
-
-        "GRAND ENTRANCE, USE DAZZLING GAZE AT GARM!":
-            $ gg_power +=10
-            stop music fadeout 1.0
-            show grandentrance at singlebounce, left
-            g @ surprised "Wha-"
+        "How you want to fight?"
+
+        "Fight with Fenrir":
+            
+            l "I need your help,Fenrir. We can end this soon."
+        
+            #$ gg_power+=10
+            
+            l "Attack the ice layer between us and him, cause cracks and run away."
+            
+            show fenrir happy at center
+            f "No problem. Come out, my GG! I will let you see my power."
+            
+            l "Show me your power, GG!"
+            
+            "Ice layer is broken. A huge crack between Baldur and the group of Loki."
+            
+            b @ angry "You insidious cunning villain. I will catch you and You will regret for this!"
+            
+            l @ happy "Bye-bye!!"
+
+            jump run
+
+        "Fight with Garm":
+            
+            l "I need your help,Garm. We can end this soon."
+        
+            #$ gg_power+=10
+            
+            l "Attack the ice layer between us and him, cause cracks and run away."
+            
+            show garm surprised at center
+            g "Oh me? OK! let us do this. GG! Help me!"
+            
+            l "Show me your power, GG!"
+            
+            "Ice layer is broken. A huge crack between Baldur and the group of Loki."
+            
+            b @ angry "You insidious cunning villain. I will catch you and You will regret for this!"
+            
+            l @ happy "Bye-bye!!"
+
+            jump run
+
+        "Fight by Loki himself":
+            
+            l "I can do it by myself."
+            
+            #$ gg_power-=10
+            
+            l "Show me your power, GG! Attack the ice layer between us and him."
+        
+            show fenrir happy at center
+            f "Smart! Loki wanna create a crack"
+            f @ sad "But it seems not work! Loki's power is not enough! Let us help him Garm."
+            f "Come out, my GG!"
+            
+            hide fenrir happy
+            show garm sad at center
+            g "Oh, you silly boy Loki!! GG! Help me!"
+            hide garm sad
+            
+            "Ice layer is broken. A huge crack between Baldur and the group of Loki."
+            
+            b @ angry "You insidious cunning villain. I will catch you and You will regret for this!"
+            
+            l @ happy "Bye-bye!!"
+            
+            show garm sad at center
+            g "Stop talking shit. You almost got us killed!"
+            
+            l @ happy "Hahaha, it happens. A true gentleman will forgive me."
+            
+            jump run
+            
+        "Fight by Fenrir and Garm":
+            
+            l "No time to waste. Let us do it together."
+            
+            l "Attack the ice layer between us and him, cause cracks and run away."
+            
+            #$ gg_power+=20
+            
+            show fenrir neutral at center
+            f "Wise choise!"
+            
+            hide fenrir neutral
+            show garm neutral at center
+            g "I agree with you!"
             hide garm neutral
-            show garm happy at singlebounce, right
-            g "Oooo well hello handsome!"
+            
+            l "Show me your power, GG!"
+            
+            "Ice layer is broken. A huge crack between Baldur and the group of Loki."
+            
+            b @ angry "You insidious cunning villain. I will catch you and You will regret for this!"
+            
+            l @ happy "Bye-bye!!"
+            
+            jump run
+    
 
-            "Garm is now smitten with your GG, it was super effective!"
+label path:
+    
+    scene path
+    with dissolve
+    play music "boxcat.mp3"
+    show loki neutral at center
 
-            l @ surprised "AAAA THAT'S WEIRD YOU CAN STOP NOW GRAND ENTRANCE!"
-
-            hide garm happy
-            show garm neutral at right
-            g "Ahm, wow yeah that's something I haven't seen before, good job!"
-
-        "Grand Entrance, use fly?":
-            $ gg_power -=5
-            stop music fadeout 1.0
-            g @ mad "Didn't I just tell you that were were supposed to be enthusiastic? Dang it Loki..."
-
-            g @ mad "Also if you didn't already notice, your GG is already flying..."
-
-            l "Oh, you're right..."
-
-            l "{i}I should really pay attention to what people are saying...{/i}"
-
-    play music "normalbgm.wav"
-
-    g "Yep, there are plenty of ways to use and not use your GG, but it'll be up to you to figure that out!"
-
-    l "Um, so the LOL's don't really use the GGs by being all enthusiastic or gentlemanly right?"
-
-    g "Right yeah, they buy stuff. Actually, do you want to go the place where you can buy things for your GG?"
-
-    hide garm neutral
-    show garm happy at right
-
-    menu:
-        l "{i}That doesn't sound like a bad idea.{/i}"
-
-        "Yes":
-            g "Alright! Though, why did you pause for a second?"
-        "Yes":
-            g "Alright! Though, why did you pause for a second?"
-
-    l @ surprised "Um, no reason, lets go!"
-
-    stop music fadeout 1.0
-    scene black with dissolve
-
-    "Loki and Garm take the NeoShuttle to the Neo Shopping District."
-
-    scene mall with dissolve
-    show loki neutral at left
-    show garm happy at right
-
-    play music "mellowbgm.wav"
-
-    l "You made it sound like a really casual thing by the way, Garm."
-
-    g "What do you mean?"
-
-    l "A store for GG stuff? If most people can't even have a GG, wouldn't that mean that a store for GGs would not be a common thing?"
-
-    g "You're right, but it's actually a gaming shop as a front, but there's a section in the back for actual GG items!"
-
-    l "Oh wow okay, what is it called?"
-
-    g "You'll know, Loki, you'll know."
-
-    scene ggstoresign with dissolve
-    play music "normalbgm.wav"
-
-    g "Yep, here we are!"
-
-    l "ARE YOU KIDDING ME!" with vpunch
-
-    l "Okay lets just go in..."
-
-    g "HAHA! Yeah, lets!"
-
-    scene ggstore with dissolve
-
-    # credits to buy GG upgrades example
-
-    jump preshop2
-    jump shop2
-
-label preshop2:
-    $ tophatcost = tophat.cost
-    $ suitcost = suit.cost
-    $ diamorphcost = diamorph.cost
-
-label shop2:
-    show guard happy at singlebounce, right
-    menu store2:
-
-        ggse "Welcome to the GG store, what can I get for you? You have %(current_credits)d credits."
-
-        "Golden Top Hat (%(tophatcost)d credits)":
-            if inventory.buy(tophat):
-                show guard happy at singlebounce, right
-                l "This top hat defines a GG!"
-                $ gg_power+=5
-                $ current_credits = inventory.credits
-                show guard happy at singlebounce, right
-                ggse "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
-                jump store2
-
-        "Golden Suit (%(suitcost)d credits)":
-            if inventory.buy(suit):
-                l "A suit to enhance my GG!"
-                $ gg_power+=10
-                $ current_credits = inventory.credits
-                show guard happy at singlebounce, right
-                ggse "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
-                jump store2
-
-        "Diamond Morph Suit (%(diamorphcost)d credits)":
-            if inventory.buy(diamorph):
-                show guard sad at right
-                ggse """
-                You're...
-                You're hacking..."""
-                $ gg_power+=9001
-                $ current_credits = inventory.credits
-                ggse "You have %(current_credits)d credits remaining, thank you for using the GG Store!"
-                jump store2
-
-        "Actually, I think I'm done buying things.":
-            show guard happy at singlebounce, right
-            ggse "Alright, thank you for coming to the GG Store!"
-            jump resume3
-
-label fallthrough:
-    l "Not enough credits..."
-    jump shop2
-
-label resume3:
-
-    if inventory.has_item(tophat) or inventory.has_item(suit):
-        g @ neutral "Nice upgrade!"
-    else:
-        $ gg_power+=20
-        g "Ooo, you don't want to buy things because you want to find your own strength, unlike the LOLs? That's pretty admirable!"
-
-    # CONTINUE MARC
-    scene mall with dissolve
-    show loki neutral at left
-    show garm neutral at right
-    stop music fadeout 1.0
-    g """
-    Hmm...
-    do you want to visit Fenrir?
-    """
-
-    l @ surprised "Wait, visit Fenrir? You know where she is and we can visit her?"
-
-    g @ sad "Yeah, I was doing some research and there is this one prison that holds \"extremely dangerous individuals.\""
-
-    g """I'm sure she has to be in there.
-    Usually you'd think that the prison wouldn't allow something like that since everyone in there is so dangerous, but I think they're very confident in their security.
-    """
-    l @ mad"""
-    {i}It's been so long... I mean I trust Garm's judgement, but actually being able to visit her today...{/i}
-
-    {i}The same day I manifest my GG...{/i}
-
-    {i}This can't just be coincidence...{/i}
-    """
-
-    l "Okay yeah lets go, lead the way Garm."
-
-    scene black with dissolve
-    "They walked for a couple minutes and one could feel the tension in the air."
-    "They both were thinking of Fenrir, even during transit to the prison."
-
-    scene prison with dissolve
-    show loki neutral at right
-    show garm neutral at center
-    show guard neutral at left
-    play music "ominousbgm.wav"
-
-    g "Can we see Fenrir?"
-
-    pg "One second, what's their last name?"
-
-    g "Actually it's just Fenrir, so it should be at the top of your list."
-
-    pg "Oh wow, that's interesting... and you are?"
-
-    g "I'm Garm, her sister. The other one with me is Loki."
-
-    pg "Ah okay, follow me."
-
-    l @ surprised "{i}Wait, didn't I just run into this person?{/i}"
-
-    scene prisoncell with dissolve
-    show loki neutral at right
-    show garm neutral at center
-    show guard neutral at left
-
-    pg "Okay you have visitors, Fenrir. You guys have an hour."
-
-    f "Visitors?"
-
-    hide guard neutral
-    show fenrir happy at multibounce, left
-    show loki happy at right
+    l "Let us go. The guards are coming. I can hear that."
+    
+    show loki neutral at right with move
+    show fenrir neutral at left
+    f @ happy "I am sure this path can buy us time."
+    f "I noticed that you can not control GG very well, did you practise on that?"
+    
+    l "What do you mean about that?"
+    
+    f @ neutral "I mean your GG actually is a very poworful one. But you only show 50 persent of that!"
+    
+    l "I did try my best. How come...?"
+    
+    f "Let me teach you how to contorl GG. I didn't waste time in these years."
+    f "The power of GG comes from yourself. And that depending on QUALITIES OF A GENTLEMAN."
+    f @ happy "Remember to keep gentleman all the time."
+    f "And you can exert its great power when you need to."
+    f "Just keep practising from now on."
+    
+    l "OK. I see."
+    
+    hide loki neutral
+    hide fenrir neutral
+    "After a while"
+    
     show garm happy at center
-    with move
-    play music "normalbgm.wav"
+    g "Oh, we finally came out!"
+    
+    show fenrir happy at left
+    f "Keep going. We are not safe yet."
+    
+    jump run
+    
+label encountered:
+    
+    play music "battle1.mp3"
 
-    f "Garm! Loki!"
-
-    show garm happy at multibounce, center
-    g "It's so good to see you! Are you okay?! Did you miss us?!"
-
-    show loki happy at singlebounce, right
-    l "We've missed you so much!"
-
-    f "Yes, yes, and yes! I've got some questions for you and I bet you guys have some questions for me too, haha!"
-
-    l "Oh you bet we do!"
-
-    g "There's so much to talk about!"
-
-    scene black with dissolve
-    stop music fadeout 1.0
-
-    l "{i}Thank goodness she is able to still smile after all these years in prison...{/i}"
-
-    l "{i}I can only hope things weren't too bad...{/i}"
-
-    "{b}Good Path!{/b}"
-    # This ends the game.
+    f "Holy, they catch up."
+       
+    "You lose! Loki and his friend got caught!"
+       
     return
 
-label negative:
+label run:
+    
+    scene glacier with dissolve
+    
+    show loki neutral at center 
+    play music "battle1.mp3"
+    l "Oh, no. The guards are there. We need to run now!"
+    
+    show loki neutral at left with move
+    show baldur angry at right
+    
+    b "Stop running! I swear to the great LOL, I gonna kill you all!"
+    l @ happy "No way!!"
+    
+    hide baldur angry
+    show loki neutral at center with move
+    
+    l "They are annoying! Need to do something to get rid of them."
+    
+    show garm sad at left
+    
+    g "Oh, no! There is a guy there! We are surrounded!"
+    l @ mad "We walked through him at the fastest speed and escaped here as soon as possible."
+    
+    hide garm sad
+    l "Don't block us!!!!"
+    
+    show loki neutral at left with move
+    show surt suprised at right
+    
+    s "Stop! I am not theirs. Get into the ice cave and I will help you."
+    
+    menu:
 
-    stop music fadeout 1.0
-    scene black
-    with dissolve
-
-    show loki neutral at depress, center
-
-    l "I don't feel so good."
-
-    g """
-    Loki..?
-    Loki?
-    LOOOOOOOKIIIIIII!!!
-    """
-
-    "Loki died of..."
-    "WAIT, HOW?!" with vpunch
-
-    "{b}Bad Ending{/b}."
+        "Should Loki believe this guy?"
+        
+        "Yes, he looks nice!":
+            
+            l "It looks we can believe this guy. There are lots of exits in the ice cave. We can try."
+            #$ gg_power-=10
+            
+        "No, he is suspicious.":
+        
+            l "I can not believe you!"
+            
+            s "There is no other way. Just hide. I will due with them."
+        
+            l "Don't let me down. You can not survive if that happens."
+            #$ gg_power+=10
+            
+            
+        "Loki and his group get into the ice cave."
+        
+    hide loki neutral
+    show surt neutral at left with move
+    show baldur angry at right
+    
+    b "Surt. An exile! Tell me where are they if you see that 3 strangers."
+    
+    s "If you are talking about one boy and two girls, they are going that way."
+    
+    b "All right. Step back. You useless waste."
+    
+    hide baldur angry 
+    
+    "Baldur went to another side"
+    
+    play music "netherplace.mp3"
+    
+    show loki neutral at right
+    
+    l "Thanks man. You are a nice guy."
+    
+    s @ smite "It is not safe yet. Let me lead you to my place."
+    
+    jump icecave
+    
+label icecave:
+    
+    scene icecave with dissolve
+    
+    show loki neutral at left 
+    show surt neutral at right
+    
+    s "Here is my place. You are safe now."
+    
+    l "Thanks again. Why you help us, my friend."
+    
+    s "My name is Surt. I help you because I hate LOLs."
+    s "Me and my sister Samira used to be the servant of Baldur"
+    s @ angry "One day I was gardening in the garden and Samira was serving a guest of Baldur." 
+    s @ angry "But my sister made a mistake, she poured the tea on the guests."
+    s @ angry "After Baldur knows it, he killed my sister. And burned me because I plead for her."
+    s "Finally I was exiled here. The Icelandic wilderness."
+    s "I have no power to avenge. But I will do whatever they are no willing to see."
+    s "That is my story. A useless waste's story."
+    
+    l "Surt, my friend. Believe me. You are not a useless person."
+    l @ mad "In these years, LOLs are very cruel to the people."
+    l @ mad "There are so many people who are dissatisfied with them outside, we decided to rebel against them."
+    l @ happy "Join us. The only way to save yourself is on yourself."
+    
+    s "Can I? Are you willing to accept me who has nothing?"
+    s "But I have no power to contend with LOL, I will only drag you down."
+    
+    l @ happy "No problem. We can teach you how to manifest a GG."
+    
+    $counter = 0
+    l "The power of GG comes from yourself. And that depending on QUALITIES OF A GENTLEMAN."
+    l "Here is how to be a gentleman."
+    
+    menu:
+        
+        "A gentleman chooses to be positive. What you will do if your friend make a mistake?"
+        
+        "Ignore it.":
+            s "The answer sounds rare."
+        "Encourage your friend to learn something from this mistake.":
+            $counter+=1
+        "Laugh at him.":
+            s "The answer sounds rare."
+        
+    menu:
+        
+        "A gentleman maintains a teachable posture and actively seeks new challenges. What you will do if you see something you never know?"
+        
+        "Escape from it.":
+            s "The answer sounds rare."
+        "Learn till you know it.":
+            $counter+=1
+        "Pretend not to see it.":
+            s "The answer sounds rare."
+    menu:
+        
+        "A gentleman is well-spoken and a focused listener. He demonstrates conversational competence and leaves others feeling inspired, engaged, and understood."
+        "What you will do if someone want to talk to you?"
+        
+        "Escape from the guy.":
+            s "The answer sounds rare."
+        "Tell someone else to talk to him.":
+            s "The answer sounds rare."
+        "Listen carefully and show respect.":
+            $counter+=1
+    
+    menu:
+        
+        "A gentleman does the right thing even when no one is watching."
+        "What you will do if you walk on a street no one is there?"
+        
+        "Do whatever you want.":
+            s "The answer sounds rare."
+        "Just be yourself.":
+            s "The answer sounds rare."
+        "Only do the right thing even no one knows.":
+            $counter+=1
+            
+            
+    if counter == 4:
+        #$ gg_power+=20
+        s "I can feel GG. I think I can do it."
+    else:
+        #$ gg_power+=20
+        s "I feel nothing about the GG. It is too hard for me."
+    
+    l @ happy "We still have time. Keep practicing."
+    
+    hide loki neutral
+    hide surt neutral
+    
+    jump twodayslater
+        
+        
+label twodayslater:
+    
+    "Two days later, outside the ice cave"
+    
+    scene wild with dissolve
+    
+    show baldur angry at center, multibounce
+    play music "battle1.mp3"
+    b "Surt! You useless waste! You lied to me!"
+    b "I will to kill you with those who escaped!"
+    
+    show baldur angry at left with move
+    show loki happy at right
+    
+    l "Look at this no brain. Stupid and blame others."
+    l "I am here. Kill me if you can!"
+    
+    show baldur angry at center with move
+    show servent at left
+    
+    b "Go kill these escapers. I will kill Surt first!"
+    l @ mad "Run! Surt!"
+    
+    hide servent
+    hide loki happy
+    
+    show baldur angry at left with move
+    show surt suprised at right
+    
+    b "Now it is only us! You gonna die today, Surt!"
+    s @ angry "I will not run anymore! It is time to revenge! My GG! It is show time!"
+    
+    scene surtfight with dissolve
+    
+    s "This was given back to you for my sister!!"
+    
+    "Surt killed Baldur."
+    
     # This ends the game.
     return
