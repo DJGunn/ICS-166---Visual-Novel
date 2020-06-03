@@ -44,11 +44,11 @@ transform depress:
     easein .175 yoffset 20
 
 #times before jumping
-screen countdown1:
-    timer timer_count action Jump(timer_label)
+#screen countdown1:
+    #timer timer_count action Jump(timer_label)
 
-screen countdown2:
-    timer timer_count action Jump(timer_label)
+#screen countdown2:
+    #timer timer_count action Jump(timer_label)
 
 # define colors for use
 init:
@@ -429,20 +429,20 @@ label rejoincurry:
 
     $timer_count = 3
     $timer_label = 'stay'
-    show screen countdown1
+    #show screen countdown1
 
     menu:
 
         "What should I do...?"
 
         "Block the door":
-            hide screen countdown
+            #hide screen countdown
             l "{i}I quickly stand in front of the door, both to help Fenrir and to avoid her wrath.{/i}"
             $ gg_power += 2
             jump rejoinorder
 
         "Stay where you are":
-            hide screen countdown
+            #hide screen countdown
             jump stay
 
 label stay:
@@ -502,13 +502,13 @@ label rejoinorder:
     """
     $timer_count = 2
     $timer_label = 'donothing'
-    show screen countdown2
+    #show screen countdown2
     menu:
 
         "They're going to take my best friend..."
 
         "Fight against the guards":
-            hide screen countdown
+            #hide screen countdown
 
             l "{i}I try to run towards Fenrir in a gallant attempt to stop the guards, but it’s useless.{/i}"
             l "{i}I take just one step and the remaining guards are on me, tossing me like a doll away from them.{/i}"
@@ -517,7 +517,7 @@ label rejoinorder:
             jump rejoinfight
 
         "Let it happen":
-            hide screen countdown
+            #hide screen countdown
             jump donothing
 
 label donothing:
