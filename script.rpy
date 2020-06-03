@@ -1649,7 +1649,7 @@ label resume3_1:
     "A large hole replaced the former wall."
 
     hide jorgg
-    j "Everyone out!! GO!"
+    j "Everyone out! GO!"
     scene black with dissolve
     """
     Finally out in the streets, the group takes a moment to collect themselves.
@@ -1669,7 +1669,7 @@ label resume3_1:
     show fenrir neutral at left
     show garm neutral at right
     l "Well, I guess we have no other choice."
-    g "I guess so"
+    g "I guess so."
     f "This is crazy!"
 
     jump chapter4
@@ -1700,7 +1700,7 @@ label chapter4:
     # how to declare chapter
     scene black with dissolve
 
-    show text "Chapter 4\Now...RUN!!" with Pause(5)
+    show text "Chapter 4\nNow...RUN!!" with Pause(5)
 
     # actual scene start
     scene prison-outside with dissolve
@@ -2088,7 +2088,7 @@ label icecave:
     l @ happy "No problem, we think we can teach you how to manifest a GG."
 
     $counter = 0
-    l "The power of GG comes from yourself. And that depends on QUALITIES OF A GENTLEMAN."
+    l "The power of GG comes from yourself. And that depends on the qualities of a gentleman."
     l "Here is how to be a gentleman."
 
     menu:
@@ -2139,10 +2139,10 @@ label icecave:
 
     if counter == 4:
         $ gg_power+=20
-        s "I can feel GG. I think I can do it."
+        s "I can feel the power of a GG within me. I think I can do it."
     else:
         $ gg_power+=5
-        s "I feel nothing about the GG. It is too hard for me."
+        s "I don't feel like I have what it takes to manifest a GG right now..."
 
     l @ happy "We still have time. Keep practicing."
 
@@ -2211,12 +2211,7 @@ label chapter5:
     hide fenrir
 
     ut "Where do you think you're going?"
-    l "{i}It sounds like someone caught up..?{/i}"
-
-    show loki surprised
-    l "Who IS that..?"
-    "Loki has never met this guy, but he can feel there is something unusual about him."
-    hide loki
+    l "{i}It sounds like someone caught up, but who?{/i}"
 
     show tyr neutral
     ut "I am Tyr, the blessed son of Hymir, Destined Hunter of Fenrir, the Immuned One."
@@ -2278,7 +2273,7 @@ label resume5_1:
     "Tyr didn't even move a pixel."
     hide tyr
 
-    show loki surprised at left and singlebounce
+    show loki surprised at singlebounce, left
     l "AHHHHHHHHHHHHHHHHHH!" with vpunch
     "Loki's power was somehow deflected back to himself?!"
     "Loki was knocked back to the ground, by his own GG power."
@@ -2400,7 +2395,7 @@ label resume5_1:
     f "But even so, he is still strong as hell! He once punched through a concrete wall to chase me!"
     f "Please... Just go!"
     l "So I can still punch him in the face, right?"
-    show fenrir mad at left and singlebounce
+    show fenrir mad at singlebounce, left
     f "Wh...what? No! Don't!"
     f "Didn't you listen to what I just said?"
     f "He is unbelieveably strong!"
@@ -2410,7 +2405,7 @@ label resume5_1:
     show loki neutral
     l "If that's the case, then it's all the same."
     l "A true gentleman will never step away when a lady is in need of help."
-    l "Even without my GG power, you are still no comparison with me."
+    l "Even without my GG power, you have no chance against me."
     hide loki
 
     show tyr confused
@@ -2489,13 +2484,13 @@ label normal_end:
     t "He chose his own fate."
     t "Now you must face yours."
     "Tyr took away Fenrir."
-    "NORMAL END"
+    "{b}Bad Ending.{b}"
     return
 
 label good_end:
 
-    "Fenrir's yell put some sanity into Loki's head. He suddenly come back to his senses."
-    "Loki drops the stone and stand up."
+    "Fenrir's yell put made Loki come back to his senses."
+    "{b}Loki drops the stone and stands up.{/b}"
     show loki neutral at left
     l "Thanks Fenrir, lets go!"
     show fenrir happy at right
@@ -2503,9 +2498,9 @@ label good_end:
     hide loki
     hide fenrir
 
-    "The two ran away into the wilderness."
+    "{b}The two run away into the wilderness.{/b}"
     "Will it be 'happily ever after'?"
     "Probably not. Ragnarok still will come someday."
     "But before that day comes, Loki and Fenrir will always stays by each other's side."
-    "GOOD END"
+    "{b}Good Ending.{/b}"
     return
