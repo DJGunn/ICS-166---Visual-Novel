@@ -1700,7 +1700,7 @@ label chapter4:
     # how to declare chapter
     scene black with dissolve
 
-    show text "Chapter 4\nNow...RUN!!" with Pause(5)
+    show text "Chapter 4\nNow... RUN!!" with Pause(5)
 
     # actual scene start
     scene prison-outside with dissolve
