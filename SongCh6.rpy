@@ -20,7 +20,7 @@ transform singlebounce:
 
 # The game starts here.
 
-label start:
+label chapter5:
 
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
@@ -96,9 +96,9 @@ label start:
     menu:
         "Manifest GG power":
             hide loki
-            jump next
+            jump resume5_1
 
-label next:
+label resume5_1:
     show fenrir mad
     f "NO! STOP!"
     "Fenrir reached out to stop Loki, but it's already too late."

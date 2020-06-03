@@ -439,8 +439,29 @@ label resume3_1:
 
     hide jorgg
     j "Everyone out!! GO!"
-
+    scene black with dissolve
+    """
+    Finally out in the streets, the group takes a moment to collect themselves.
+    """
     scene citystreet with dissolve
+    show jor neutral at center
+
+    j """
+    It is time we part ways. Keep moving out of the city. Into the forest, run West and you will find what you are looking for. I know things are uncertain. 
+    But you must do this. Good Luck.
+    """
+
+    hide jor
+    "And just like that, Jormungandr was gone."
+
+    show Loki neutral at center
+    show fenrir neutral at left
+    show garm neutral at right
+    l "Well, I guess we have no other choice."
+    g "I guess so"
+    f "This is crazy!"
+
+    return
 
     
 

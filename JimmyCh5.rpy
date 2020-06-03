@@ -81,7 +81,7 @@ init python:
 
 default gq_menuset = set()
 
-label start:
+label chapter 4:
 
     # python runs at the moment the game starts
     # this means that all items that need to be bought need to be put here
