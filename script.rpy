@@ -1745,7 +1745,7 @@ label chapter4:
 
         "Agree with Garm, go on the path":
 
-            l "I agree with Gram. We can't fight right now."
+            l "I agree with Garm. We can't fight right now."
 
             $ gg_power+=5
 
