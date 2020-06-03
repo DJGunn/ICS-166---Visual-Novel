@@ -690,7 +690,7 @@ label ch2resume1:
     hide loki neutral
     hide garm neutral
     show loki surprised at left
-    show garm neutral at right
+    show garm surprised at right
 
     "{b}Looks at each other{/b}"
 
@@ -1015,12 +1015,12 @@ label ch2resume2:
     hide loki neutral
     hide garm neutral
     show loki surprised at center
-    show garm neutral at right
+    show garm surprised at right
 
     lg "HOLY CRAP IT ACTUALLY WORKED!" with vpunch
 
     hide loki surprised
-    hide garm neutral
+    hide garm surprised
     show loki neutral at center
     show garm neutral at right
 
@@ -1316,7 +1316,7 @@ label chapter3:
     # scenes
     hide fenrir
     show jornaked neutral at singlebounce, left 
-    show garm suprised at right
+    show garm surprised at right
     show loki neutral
 
     # These display lines of dialogue.
@@ -1867,7 +1867,7 @@ label road:
             
             l "Attack the ice layer between us and him, cause cracks and run away."
             
-            show garm neutral at center
+            show garm surprised at center
             g "Oh me? OK! let us do this. GG! Help me!"
             
             l "Show me your power, GG!"
