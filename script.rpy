@@ -579,14 +579,14 @@ label rejoinfight:
 
         "Positive":
 
-            jump positive
+            jump ch2positive
 
         "Negative":
 
-            jump negative
+            jump ch2negative
 
 # this is an example of what a more complex series of events could look like
-label positive:
+label ch2positive:
 
     # Initialize a variable.
     $ gg_power = 5
@@ -663,21 +663,21 @@ label shop1:
             if inventory.buy(choco):
                 $ current_credits = inventory.credits
                 "Your order will be delivered to your location in the next 30 minutes. You have %(current_credits)d credits remaining, thank you for using NeoFood!"
-                jump resume1
+                jump ch2resume1
 
         "Sushi %(sushicost)d":
             if inventory.buy(sushi):
                 $ current_credits = inventory.credits
                 "Your order will be delivered to your location in the next 30 minutes. You have %(current_credits)d credits remaining, thank you for using NeoFood!"
-                jump resume1
+                jump ch2resume1
 
         "French Fries %(friescost)d":
             if inventory.buy(fries):
                 $ current_credits = inventory.credits
                 "Your order will be delivered to your location in the next 30 minutes. You have %(current_credits)d credits remaining, thank you for using NeoFood!"
-                jump resume1
+                jump ch2resume1
 
-label resume1:
+label ch2resume1:
     stop music fadeout 1.0
     l "..."
 
@@ -896,9 +896,9 @@ label garmquestions:
             jump garmquestions
 
         "I think I'm done asking questions.":
-            jump resume2
+            jump ch2resume2
 
-label resume2:
+label ch2resume2:
     show garm neutral at left
     show loki neutral at center
 
@@ -1268,7 +1268,7 @@ label resume3:
     # This ends the game.
     return
 
-label negative:
+label ch2negative:
 
     stop music fadeout 1.0
     scene black
