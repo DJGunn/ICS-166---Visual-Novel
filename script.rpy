@@ -2194,6 +2194,10 @@ label twodayslater:
 
 label chapter5:
 
+    scene black with dissolve
+
+    show text "Chapter 5\nWill Ragnarok Come?" with Pause(5)
+
     scene wild with dissolve
 
     show loki surprised at left
