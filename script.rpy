@@ -1970,7 +1970,7 @@ label path:
 
 label encountered:
 
-    play music "battle1.mp3"
+    play music "battlebgm.wav"
 
     f "What in the, they caught up!"
 
@@ -1985,7 +1985,7 @@ label run:
     scene glacier with dissolve
 
     show loki neutral at center
-    play music "battle1.mp3"
+    play music "battlebgm.wav"
     l "Oh no! The guards are here, we need to run now!"
 
     show loki neutral at left with move
@@ -2159,7 +2159,7 @@ label twodayslater:
     scene wild with dissolve
 
     show baldur angry at center, multibounce
-    play music "battle1.mp3"
+    play music "battlebgm.wav"
     b "Surt! You useless waste! You lied to me!"
     b "I will to kill you with those who escaped!"
 
@@ -2190,6 +2190,8 @@ label twodayslater:
 
     "{b}Surt kills Baldur.{/b}"
 
+    stop music fadeout 1.0
+
     jump chapter5
 
 label chapter5:
@@ -2202,6 +2204,7 @@ label chapter5:
 
     show loki surprised at left
     show fenrir neutral at right
+    play music "ominousbgm.wav" fadeout 1.0 fadein 1.0
 
     l "Good one Surt!"
 
@@ -2228,6 +2231,8 @@ label chapter5:
     s "I wish you the best of luck."
     "{b}Surt runs away, as if they were being chased by a bear.{/b}"
     hide surt
+
+    play music "battlebgm.wav" fadeout 1.0 fadein 1.0
 
     show fenrir sad at left
     f """
@@ -2453,8 +2458,10 @@ label end:
     "He grabbed a stone beside him, and raised it right above Tyr's head."
     hide tyr
 
+    stop music fadeout 1.0
+
     show fenrir sad at left
-    f "Loki! No! Don't!"
+    f "Loki! No! Don't!" with vpunch
     show loki mad at right
     l "If I don't kill him now, he'll always come back to get you!"
 
@@ -2495,6 +2502,7 @@ label good_end:
 
     "Fenrir's yell put made Loki come back to his senses."
     "{b}Loki drops the stone and stands up.{/b}"
+    play music "normalbgm.wav" fadeout 1.0 fadein 0.0
     show loki neutral at left
     l "Thanks Fenrir, lets go!"
     show fenrir happy at right
@@ -2503,8 +2511,8 @@ label good_end:
     hide fenrir
 
     "{b}The two run away into the wilderness.{/b}"
-    "Will it be 'happily ever after'?"
-    "Probably not. Ragnarok still will come someday."
-    "But before that day comes, Loki and Fenrir will always stays by each other's side."
+    "Is this a happily ever after?"
+    "Perhaps for now, but Ragnarok will still come someday."
+    "Until then, Loki, Fenrir, and Garm will always stay by each other's side."
     "{b}Good Ending.{/b}"
     return
