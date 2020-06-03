@@ -690,7 +690,7 @@ label ch2resume1:
     hide loki neutral
     hide garm neutral
     show loki surprised at left
-    show garm surprised at right
+    show garm neutral at right
 
     "{b}Looks at each other{/b}"
 
@@ -1015,12 +1015,12 @@ label ch2resume2:
     hide loki neutral
     hide garm neutral
     show loki surprised at center
-    show garm surprised at right
+    show garm neutral at right
 
     lg "HOLY CRAP IT ACTUALLY WORKED!" with vpunch
 
     hide loki surprised
-    hide garm surprised
+    hide garm neutral
     show loki neutral at center
     show garm neutral at right
 
@@ -1668,7 +1668,7 @@ label resume3_1:
     hide jor
     "And just like that, Jormungandr was gone."
 
-    show Loki neutral at center
+    show loki neutral at center
     show fenrir neutral at left
     show garm neutral at right
     l "Well, I guess we have no other choice."
@@ -1739,7 +1739,7 @@ label chapter4:
       {i}What do u think, Garm?{/i}
       """
     
-    show garm surprised at center, singlebounce 
+    show garm neutral at center, singlebounce 
     g "I thought you have the whole plan!"
     
     f @ mad "OKOK! Any suggestion? we need to keep moving!"
@@ -1867,7 +1867,7 @@ label road:
             
             l "Attack the ice layer between us and him, cause cracks and run away."
             
-            show garm surprised at center
+            show garm neutral at center
             g "Oh me? OK! let us do this. GG! Help me!"
             
             l "Show me your power, GG!"
