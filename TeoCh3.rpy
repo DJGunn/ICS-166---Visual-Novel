@@ -82,7 +82,7 @@ init python:
 
 default gq_menuset = set()
 
-label start:
+label chapter3:
 
     # how to declare chapter
     scene black with dissolve
@@ -153,6 +153,7 @@ label start:
     jn "{b}You won't be alone!{/b}"
 
     play music "normalbgm.wav"
+    hide jornaked
     show jor happy at left
     show jorggf neutral at multibounce, center
     show loki surprised at right
@@ -171,14 +172,14 @@ label start:
 
         "Fight":
 
-            jump positive1
+            jump positive3_1
 
         "Run and Hide":
 
-            jump negative1
+            jump negative3_1
 
 # this is an example of what a more complex series of events could look like
-label positive1:
+label positive3_1:
 
     # Initialize a variable.
     $ gg_power = 20
@@ -289,7 +290,7 @@ label cta:
 
     hide loki
     hide jor
-    show ge center
+    show grandentrance at center
     "Loki draws in a deep breath. Focuses on Grand Entrance and Grand Entrance alone."
 
     "Listening to his gentlemanly heart, Loki calls out to Grand Entrance."
@@ -314,22 +315,20 @@ label cta:
 
     j "I don't know, it may only bring out GG's that have the power that is needed for a specific situation."
 
-    hide grandentrance
-    show jorgg neutral at left
-    jump resume1
+    jump resume3_1
 
 label milady:
 
     hide loki
     hide jor
-    show grandentrance center
 
-    show grandentrance neutral at right with move
+    show grandentrance at right
     show garm neutral at left
     "Loki draws in a deep breath. Focuses on Grand Entrance and Grand Entrance alone."
 
     "Listening to his gentlemanly heart, Loki calls out to Grand Entrance."
 
+    show grandentrance at center with move
     "Grand Entrance approaches garm. Bows deeply, gently grabs her hand and gives it a soft kiss."
 
     "Garm faints only to be caught by Grand Entrance. Grand Entrance lays her down softly on the cot so Garm can catch her breath."
@@ -360,9 +359,8 @@ label lr:
     $ lr_flag = True
     hide loki
     hide jor
-    show ge center
+    show grandentrance at center
 
-    show ge neutral at center
     "Loki draws in a deep breath. Focuses on Grand Entrance and Grand Entrance alone."
 
     "Listening to his gentlemanly heart, Loki calls out to Grand Entrance."
@@ -372,13 +370,13 @@ label lr:
     "Loki felt a sudden sense of dread. Grand Entrance was about to do something bad."
 
     "Grand entrance reaches his arms out suddenly"
-    show ge neutral at singlebounce, center with hpunch
+    show grandentrance at singlebounce, center with hpunch
 
     "The entire building began to shake, The approaching guards began to scream!"
 
     $ gg_power -=10
 
-    hide ge
+    hide grandentrance
     show jor worried at center
     j "Loki! Stop it!! You're killing them"
 
@@ -392,7 +390,7 @@ label lr:
     show fenrir neutral at center
 
     f "They are still alive, but they are unconscious. We need to get out of here. Is there anything else you can do Loki?"
-
+    hide fenrir
     menu:
 
         "What should Grand Entrance do!?"
@@ -401,13 +399,13 @@ label lr:
 
             jump cta
 
-label resume1:
+label resume3_1:
     play music "ominousbgm.wav"
 
     show jor neutral at center
 
     if lr_flag == True:
-        j "What Loki just did probably set off a million alarms, we are out of time."
+        j "What Loki just did probably set off hundreds alarms, we are out of time."
 
         j "This is a long shot, but I sense more power from Gentle Giant than ever before."
 
@@ -420,19 +418,31 @@ label resume1:
 
     j "Every, get ready to run. This is our only shot!"
 
+    "Everyone was holding their breath as Jormungandr closed his eyes and focused on Gentle Giant. Urging him forward."
+    hide grandentrance
+    hide jorggf
+    show jorgg neutral at right
+    show jorgg neutral at left with move
+
+    stop music fadeout 1.0
+    """ 
+    A silence fell over the room.
+
+    Gentle Giant approached the wall.
+
+    Energy began forming around Gentle Giant's fist. 
     """
-    Everyong was holding their breath as Jormungandr closed his eyes and focused on Gentle Giant. Urging him forward.
-    """
 
-    show jorgg 
-    l "..."
+    "Gentle Giant slammed his hand into the wall, clasting it into pieces" with hpunch
 
-    g "..."
-    hide loki neutral
-    hide garm neutral
-    show loki surprised at left
-    show garm surprised at right
+    "A large hole replaced the former wall."
 
+    hide jorgg
+    j "Everyone out!! GO!"
+
+    scene citystreet with dissolve
+
+    
 
 label negative3_1:
 
