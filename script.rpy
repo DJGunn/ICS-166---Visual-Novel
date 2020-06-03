@@ -1773,20 +1773,20 @@ label road:
 
     show fenrir happy at right
 
-    f "As I know, there is only one obstacle on this road, that is baldur."
+    f "As I know, there is only one obstacle on this road, that is Baldur."
 
-    f @ neutral "He has been responsible for keeping here for 3 years, and has never made mistakes."
+    f @ neutral "He's the one responsible for keeping here for 3 years, and has never made mistakes."
 
     show garm sad at left
-    g "Why did we choose this...!"
+    g "Why did we choose this..?!"
 
     f @ happy "Haha.... Because I believe in you and Loki!"
 
-    f @ neutral "If we can't win this fight, that means we need to stay at prison. That is just a choice of fate."
+    f @ neutral "If we can't win this fight, then that means we stay in prison. It's just fate at that point."
 
-    l @ happy "No worry. We got this!"
+    l @ happy "Don't worry, we got this!"
 
-    g "You guys are crazy!!"
+    g "You guys are crazy!" with vpunch
 
     hide loki neutral
     hide garm sad
@@ -1797,15 +1797,15 @@ label road:
     play music "boxcat.mp3"
 
     b "I know you're there Fenrir!"
-    b "Don't try to hide! Don't waste my time!"
+    b "Don't try to hide! It's a waste of time for both of us!"
 
     show baldur at left with move
     show fenrir neutral at right
 
-    f "Okay, okay! Here we are!"
+    f @ mad "Okay, we're here, do what you will..!"
 
     b "I am the most faithful servant of LOL, Guardian outside the prison -- Baldur."
-    b @ smile "Speak out your names! I never kill nonames!"
+    b @ smile "Speak out your names! I never kill anyone unless I know their name!"
 
     hide fenrir neutral
     show loki neutral at right
@@ -1813,14 +1813,15 @@ label road:
     l "My name is Loki. I am sure I won't get killed here and I don't want to fight with you."
     l @ happy "What about you just let us go?"
 
-    b "Are you insulting me? Go to hell!! I pormise to the LOL, you will die today"
+    b "Are you insulting me?"
+    b @ angry "Go to hell! I swear to the LOLs that you will die here today!"
 
-    l "It is not a good time to fight, let us finish this ASAP and get to a safe place."
+    l "{i}It's not a good time to fight, let's finish this ASAP and get to a safe place.{/i}"
     # fight
 
     menu:
 
-        "How you want to fight?"
+        l "How to fight though?"
 
         "Fight with Fenrir":
 
@@ -1828,16 +1829,16 @@ label road:
 
             $ gg_power+=10
 
-            l "Attack the ice layer between us and him, cause cracks and run away."
+            l "Attack the ice layer between us and him, cause cracks and run away!"
 
             show fenrir happy at center
             f "No problem. Come out, my GG! I will let you see my power."
 
             l "Show me your power, GG!"
 
-            "Ice layer is broken. A huge crack between Baldur and the group of Loki."
+            "The ice layer is broken. A huge crack is created between Baldur and the group of Loki."
 
-            b @ angry "You insidious cunning villain. I will catch you and You will regret for this!"
+            b @ angry "You insidious cunning villain..! I will catch you and you will regret for this!"
 
             l @ happy "Bye-bye!!"
 
@@ -1856,9 +1857,10 @@ label road:
 
             l "Show me your power, GG!"
 
-            "Ice layer is broken. A huge crack between Baldur and the group of Loki."
+            "The ice layer is broken. A huge crack is created between Baldur and the group of Loki."
 
-            b @ angry "You insidious cunning villain. I will catch you and You will regret for this!"
+            b @ angry "You insidious cunning villain..!"
+            b @ angry "I will catch you and You will regret for this!"
 
             l @ happy "Bye-bye!!"
 
@@ -1884,7 +1886,8 @@ label road:
 
             "Ice layer is broken. A huge crack between Baldur and the group of Loki."
 
-            b @ angry "You insidious cunning villain. I will catch you and You will regret for this!"
+            b @ angry "You insidious cunning villain..!"
+            b @ angry "I will catch you and You will regret for this!"
 
             l @ happy "Bye-bye!!"
 
@@ -1897,9 +1900,9 @@ label road:
 
         "Fight by Fenrir and Garm":
 
-            l "No time to waste. Let us do it together."
+            l "Fenrir, Garm, let's do this!"
 
-            l "Attack the ice layer between us and him, cause cracks and run away."
+            l "Attack the ice layer between us and him, cause cracks and run away!"
 
             $ gg_power+=20
 
@@ -1915,7 +1918,8 @@ label road:
 
             "Ice layer is broken. A huge crack between Baldur and the group of Loki."
 
-            b @ angry "You insidious cunning villain. I will catch you and You will regret for this!"
+            b @ angry "You insidious cunning villain..!"
+            b @ angry "I will catch you and You will regret for this!"
 
             l @ happy "Bye-bye!!"
 
@@ -1929,36 +1933,40 @@ label path:
     play music "boxcat.mp3"
     show loki neutral at center
 
-    l "Let's go. The guards are coming. I can hear that."
+    l "Let's go, I can hear the guards coming!"
 
     show loki neutral at right with move
     show fenrir neutral at left
-    f @ happy "I am sure this path can buy us time."
+    f @ happy "I'm sure this path can buy us time."
     f "I noticed that you can't control your GG very well, did you practice using it?"
 
-    l "What do you mean about that?"
+    l "What do you mean?"
 
-    f @ neutral "I mean your GG actually is a very poworful one, but you only show 50 percent of that!"
+    f @ neutral "I mean your GG actually is a very powerful one, but you only show 50 percent of its true power!"
 
-    l "I did try my best. How come...?"
+    l @ mad "I thought I tried my best..."
+
+    l "What am I doing wrong?"
 
     f "Let me teach you how to control your GG. I didn't waste time in these past years."
-    f "The power of the GG comes from yourself. And that depending on the QUALITIES OF A GENTLEMAN."
-    f @ happy "Remember to be a gentleman all the time."
-    f "And you can exert its great power when you need to."
-    f "Just keep practicing from now on."
+    f "The power of the GG comes from yourself. And that depends on the your gentlemanly qualities."
+    f @ happy "Remember to be a gentlemanly at all times!"
+    f "If you do that, you can exert its great power when you need to."
+    f @ happy "Well, if you keep practicing from now on, that is!"
 
-    l "OK. I see."
+    l "Alright gotcha! Thanks Fenrir!"
+
+    f @ happy "You're welcome!"
 
     hide loki neutral
     hide fenrir neutral
-    "After a while"
+    "{b}Some time later...{/b}"
 
     show garm happy at center
-    g "Oh, we finally came out!"
+    g "Finally we're out!"
 
     show fenrir happy at left
-    f "Keep going. We are not safe yet."
+    f "Keep going. I don't think we're safe yet."
 
     jump run
 
@@ -1970,6 +1978,8 @@ label encountered:
 
     "You lose! Loki and his friend got caught!"
 
+    "{b}Bad Ending.{/b}"
+
     return
 
 label run:
@@ -1978,31 +1988,31 @@ label run:
 
     show loki neutral at center
     play music "battle1.mp3"
-    l "Oh, no. The guards are there. We need to run now!"
+    l "Oh no! The guards are here, we need to run now!"
 
     show loki neutral at left with move
     show baldur angry at right
 
-    b "Stop running! I swear to the great LOL, I gonna kill you all!"
+    b "Stop running! I swear to the great LOLs that I  am gonna kill you all!"
     l @ happy "No way!!"
 
     hide baldur angry
     show loki neutral at center with move
 
-    l "They are annoying! Need to do something to get rid of them."
+    l "{i}They're annoying! We need to do something to get rid of them!{/i}"
 
     show garm sad at left
 
-    g "Oh, no! There is a guy there! We are surrounded!"
-    l @ mad "We walked through him at the fastest speed and escaped here as soon as possible."
+    g "No way, there is a guy there! We're surrounded!"
+    l @ mad "Lets run by him at the fastest speed and get out of here ASAP!"
 
     hide garm sad
-    l "Don't block us!!!!"
+    l @ mad "Don't block us!"
 
     show loki neutral at left with move
     show surt suprised at right
 
-    s "Stop! I am not theirs. Get into the ice cave and I will help you."
+    s "Stop! I'm not with them! Get into the ice cave and I'll help you!"
 
     menu:
 
@@ -2011,16 +2021,16 @@ label run:
         "Yes, he looks nice!":
 
             l "It looks we can believe this guy. There are lots of exits in the ice cave. We can try."
-            $ gg_power-=10
+            $ gg_power+=10
 
         "No, he is suspicious.":
 
-            l "I can not believe you!"
+            l "I can't believe you!"
 
-            s "There is no other way. Just hide. I will due with them."
+            s "There is no other way. Just hide. I will deal with them."
 
-            l "Don't let me down. You can not survive if that happens."
-            $ gg_power+=10
+            l "Don't let me down. You can't survive if can't."
+            $ gg_power-=10
 
 
         "Loki and his group get into the ice cave."
@@ -2029,23 +2039,23 @@ label run:
     show surt neutral at left with move
     show baldur angry at right
 
-    b "Surt. An exile! Tell me where are they if you see that 3 strangers."
+    b "Surt, an exile! Tell me, did you happen to see 3 strangers pass by just now?"
 
     s "If you are talking about one boy and two girls, they are going that way."
 
-    b "All right. Step back. You useless waste."
+    b "All right, step back you useless waste!"
 
     hide baldur angry
 
-    "Baldur went to another side"
+    "Baldur went opposite to where Loki's squad was."
 
     play music "netherplace.mp3"
 
     show loki neutral at right
 
-    l "Thanks man. You are a nice guy."
+    l "Thanks man. You're a good guy."
 
-    s @ smite "It is not safe yet. Let me lead you to my place."
+    s @ smite "It's not safe yet. Let me lead you to my place."
 
     jump icecave
 
@@ -2058,73 +2068,73 @@ label icecave:
 
     s "Here is my place. You are safe now."
 
-    l "Thanks again. Why you help us, my friend."
+    l "Thanks again. Why did you help us, by the way?"
 
-    s "My name is Surt. I help you because I hate LOLs."
-    s "Me and my sister Samira used to be the servant of Baldur"
+    s "My name is Surt. I helped you because I hate LOLs."
+    s "Me and my sister Samira used to be servants of Baldur."
     s @ angry "One day I was gardening in the garden and Samira was serving a guest of Baldur."
-    s @ angry "But my sister made a mistake, she poured the tea on the guests."
-    s @ angry "After Baldur knows it, he killed my sister. And burned me because I plead for her."
-    s "Finally I was exiled here. The Icelandic wilderness."
-    s "I have no power to avenge. But I will do whatever they are no willing to see."
-    s "That is my story. A useless waste's story."
+    s @ angry "But my sister made a mistake by pouring the tea on the guests."
+    s @ angry "After Baldur heard of it, he killed my sister. Then he burned me because I pleaded for her."
+    s "Finally I was exiled here, the Icelandic wilderness."
+    s "I don't have the power to avenge her, but I will do whatever I can to detriment the LOLs out of their sight."
+    s "That's my story. A useless waste's story."
 
-    l "Surt, my friend. Believe me. You are not a useless person."
-    l @ mad "In these years, LOLs are very cruel to the people."
-    l @ mad "There are so many people who are dissatisfied with them outside, we decided to rebel against them."
-    l @ happy "Join us. The only way to save yourself is on yourself."
+    l "Surt, I don't think you're a useless person. I mean it."
+    l @ mad "LOLs are very cruel to the people."
+    l @ mad "There are so many people who are dissatisfied with them outside and we decided to rebel against them."
+    l @ happy "We'd love it if you could join us. Only you can save yourself."
 
     s "Can I? Are you willing to accept me who has nothing?"
-    s "But I have no power to contend with LOL, I will only drag you down."
+    s "I have no power to contend with LOL... I will only drag you down."
 
-    l @ happy "No problem. We can teach you how to manifest a GG."
+    l @ happy "No problem, we think we can teach you how to manifest a GG."
 
     $counter = 0
-    l "The power of GG comes from yourself. And that depending on QUALITIES OF A GENTLEMAN."
+    l "The power of GG comes from yourself. And that depends on QUALITIES OF A GENTLEMAN."
     l "Here is how to be a gentleman."
 
     menu:
 
-        "A gentleman chooses to be positive. What you will do if your friend make a mistake?"
+        l "A gentleman chooses to be positive. What you will do if your friend make a mistake?"
 
         "Ignore it.":
-            s "The answer sounds rare."
+            s "That answer sounds a little off what one would usually think...."
         "Encourage your friend to learn something from this mistake.":
             $counter+=1
         "Laugh at him.":
-            s "The answer sounds rare."
+            s "That answer sounds a little off what one would usually think...."
 
     menu:
 
-        "A gentleman maintains a teachable posture and actively seeks new challenges. What you will do if you see something you never know?"
+        l "A gentleman maintains a teachable posture and actively seeks new challenges. What you will do if you see something you never know?"
 
         "Escape from it.":
-            s "The answer sounds rare."
-        "Learn till you know it.":
+            s "That answer sounds a little off what one would usually think...."
+        "Learn until you know it.":
             $counter+=1
         "Pretend not to see it.":
-            s "The answer sounds rare."
+            s "That answer sounds a little off what one would usually think...."
     menu:
 
-        "A gentleman is well-spoken and a focused listener. He demonstrates conversational competence and leaves others feeling inspired, engaged, and understood."
-        "What you will do if someone want to talk to you?"
+        l "A gentleman is well-spoken and a focused listener. He demonstrates conversational competence and leaves others feeling inspired, engaged, and understood."
+        l "What you will do if someone want to talk to you?"
 
         "Escape from the guy.":
-            s "The answer sounds rare."
+            s "That answer sounds a little off what one would usually think...."
         "Tell someone else to talk to him.":
-            s "The answer sounds rare."
+            s "That answer sounds a little off what one would usually think...."
         "Listen carefully and show respect.":
             $counter+=1
 
     menu:
 
-        "A gentleman does the right thing even when no one is watching."
-        "What you will do if you walk on a street no one is there?"
+        l "A gentleman does the right thing even when no one is watching."
+        l "What you will do if you walk on a street no one is there?"
 
         "Do whatever you want.":
-            s "The answer sounds rare."
+            s "That answer sounds a little off what one would usually think...."
         "Just be yourself.":
-            s "The answer sounds rare."
+            s "That answer sounds a little off what one would usually think...."
         "Only do the right thing even no one knows.":
             $counter+=1
 
@@ -2133,7 +2143,7 @@ label icecave:
         $ gg_power+=20
         s "I can feel GG. I think I can do it."
     else:
-        $ gg_power+=20
+        $ gg_power+=5
         s "I feel nothing about the GG. It is too hard for me."
 
     l @ happy "We still have time. Keep practicing."
@@ -2158,14 +2168,14 @@ label twodayslater:
     show baldur angry at left with move
     show loki happy at right
 
-    l "Look at this no brain. Stupid and blames others."
-    l "I'm here. Kill me if you can!"
+    l "Look at this dummy, stupid and blames others!"
+    l "Kill me if you can!"
 
     show baldur angry at center with move
     show guard neutral at left
 
     b "Go kill these escapers. I will kill Surt first!"
-    l @ mad "Run! Surt!"
+    l @ mad "Surt! Run!"
 
     hide guard
     hide loki happy
@@ -2173,14 +2183,14 @@ label twodayslater:
     show baldur angry at left with move
     show surt suprised at right
 
-    b "Now it is only us! You gonna die today, Surt!"
-    s @ angry "I will not run anymore! It is time to revenge! My GG! It is show time!"
+    b "Now it's only us! You're gonna die today, Surt!"
+    s @ angry "I won't run anymore! The time of my revenge is now! Lets go GG, show time!"
 
     scene surtfight with dissolve
 
-    s "This is payback for what you did to my sister!!"
+    s "This is payback for what you did to my sister!"
 
-    "Surt killed Baldur."
+    "{b}Surt kills Baldur.{/b}"
 
     # This ends the game.
     jump chapter5
