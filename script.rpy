@@ -2116,8 +2116,8 @@ label icecave:
             s "That answer sounds a little off what one would usually think...."
     menu:
 
-        l "A gentleman is well-spoken and a focused listener. He demonstrates conversational competence and leaves others feeling inspired, engaged, and understood."
-        l "What you will do if someone want to talk to you?"
+        #l "A gentleman is well-spoken and a focused listener. He demonstrates conversational competence and leaves others feeling inspired, engaged, and understood."
+        l "What you will do if someone wants to talk to you?"
 
         "Escape from the guy.":
             s "That answer sounds a little off what one would usually think...."
@@ -2128,7 +2128,7 @@ label icecave:
 
     menu:
 
-        l "A gentleman does the right thing even when no one is watching."
+        #l "A gentleman does the right thing even when no one is watching."
         l "What you will do if you walk on a street no one is there?"
 
         "Do whatever you want.":
