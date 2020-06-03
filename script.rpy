@@ -2192,27 +2192,16 @@ label twodayslater:
 
     "{b}Surt kills Baldur.{/b}"
 
-    # This ends the game.
     jump chapter5
 
 label chapter5:
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
-
     scene wild with dissolve
-
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
 
     show loki surprised at left
     show fenrir neutral at right
 
-    # These display lines of dialogue.
-
-    l "Nice shot Surt!"
+    l "Good one Surt!"
 
     f "We should keep moving now. More guards must be following us."
 
@@ -2224,10 +2213,10 @@ label chapter5:
     hide fenrir
 
     ut "Where do you think you're going?"
-    "Suddenly there is a voice. It sounds like someone caught up."
+    l "{i}It sounds like someone caught up..?{/i}"
 
     show loki surprised
-    l "Who's that..."
+    l "Who IS that..?"
     "Loki has never met this guy, but he can feel there is something unusual about him."
     hide loki
 
@@ -2240,27 +2229,28 @@ label chapter5:
     show surt neutral
     s "I'm sorry guys. I can't help you on this one, not with Tyr on the other side."
     s "I wish you the best of luck."
-    "Surt runs away, as if they were being chased by a bear."
+    "{b}Surt runs away, as if they were being chased by a bear.{/b}"
     hide surt
 
     show fenrir sad at left
     f """
-    No no no no no no...
+    No...
 
-    Run Loki!
+    This can't be happening!
+    """
 
-    You can't beat him! Run now!"""
+    f @ mad "Run Loki! You can't beat him! Run now!"
 
     f "I'll surrender only if you promise not to hurt Loki."
-    "Fenrir is terrified."
-    "She knows him, and believes running away is the only way out of this."
+
+    l "{i}Fenrir looks terrified... But that time way back then she managed to hurt Tyr...{/i}"
+
+    l "{i}That means there's still hope!{/i}"
 
     show loki surprised at right
     l "Don't be silly, I will never leave you behind!"
     l "I have manifested my GG power and I'll fight to my last breath to protect you!"
-    "Loki looks into Fenrir's eyes."
-    "After years of separation, how could he leave her here with this stranger?"
-    "Even if Tyr's strong, Loki believed in his GG power."
+
     f "No you don't get it! Tyr is..."
 
     hide loki
@@ -2282,28 +2272,28 @@ label chapter5:
 label resume5_1:
     show fenrir mad
     f "NO! STOP!"
-    "Fenrir reached out to stop Loki, but it's already too late."
+    "Fenrir reached out to stop Loki, but it was already too late."
     hide fenrir
 
     show tyr neutral
     t "Boring."
-    "Tyr didn't even move a bit."
+    "Tyr didn't even move a pixel."
     hide tyr
 
     show loki surprised at left and singlebounce
-    l "AHHHHHHHHHHHHHHHHHH!"
+    l "AHHHHHHHHHHHHHHHHHH!" with vpunch
     "Loki's power was somehow deflected back to himself?!"
     "Loki was knocked back to the ground, by his own GG power."
 
     show fenrir sad at right
     f "Loki! Are you alright! You can't use that against him!"
-    "Fenrir runs to Loki, so worried that tear has filled her eyes."
+    "Fenrir runs to Loki, so worried that tears have filled her eyes."
 
     show loki mad
     l "That power...It's different from others..."
-    "Loki could somehow feel that. He now knows Tyr might be his greatest enemy so far."
-    l "How did you do that? Who are you! Answer me!"
-    "Loki crawls up, stare right into Tyr's face."
+    "{i}Was Tyr just caught off guard way back when..?!{/i}"
+    l "How did you do that? Answer me!"
+    "{b}Loki sits up and glares at Tyr.{/b}"
 
     hide loki
     hide fenrir
@@ -2319,61 +2309,60 @@ label resume5_1:
 
     show loki surprised at left
     show fenrir sad at right
-    l "Jötunn? What...what's that??"
+    l "Jötunn? What... what's that?"
     f "It's the old name of..."
-    f "The Giant"
+    f "The Giant."
     hide loki
     hide fenrir
 
     show tyr laugh
-    t "Aren't you a little smarter than that moron."
+    t "Well aren't you a little smarter than that moron?!"
     show tyr neutral
     t "Yes, I am the last giant walking on Earth."
     t "My contract with the elder gods protects me from your laughable GG power."
     t "Whoever use GG power in front of me will only experience that power deflected back to himself."
-    t "Without your GG power, you are merely as mortal as human."
+    t "Without your GG power, you are just some guy."
     hide tyr
 
     show fenrir sad
-    f "Forget it Loki! Don't try again."
+    f "Forget it Loki! Don't try to hurt him again."
     f "It's my fate..."
     hide fenrir
 
     show loki surprised
-    l "How...how could it be..."
+    l "Why..?"
     show loki mad
     l "I thought I finally have the power to protect you!"
-    l "And this guy just jump out of nowhere and told me I am nothing??"
+    l "And this guy just pops out of nowhere and tells me I am nothing?"
     hide loki
 
     show tyr confused
     t "This Déjà vu! Where have I seen this..."
     show tyr laugh
     t "Sisyphus!"
-    t "Oh my god. You are Sisyphus in person!"
-    t "You are the ultimate manifestation of absurd."
+    t "Oh my GOD! You are Sisyphus in person!"
+    t "You are the ultimate manifestation of absurd!"
     show tyr happy
     t "Have you read The Myth of Sisyphus by Albert Camus?"
     t "Sisyphus is cursed to spend all his life to push a rock to the top of the mountain."
-    t "Only have it rolled back to the bottom every single time."
-    t "Camus said that Sisyphus's fate is no less absurd...but only tragic when he's conscious about his fate."
+    t "Only to have it rolled back to the bottom every single time."
+    t "Camus said that Sisyphus's fate is no less absurd, but only tragic when he's conscious about his fate."
     show tyr laugh
-    t "Isn't that you hahaha!"
+    t "Isn't that you?! Hahaha!"
     t "Spent your life to grow your GG power, only to find it's useless now."
-    t "Now that you know it's useless, you are just tragic."
+    t "Now that you know it's useless, you are just some tragic nobody!"
     show tyr neutral
     t "You thought you could do everything with your GG power."
-    t "You thought there will be some Deus Ex Machina to help you out."
+    t "You thought there would be some Deus Ex Machina to help you out."
     t "You thought you are the protagonist of a manga."
     show tyr disgust
     t "Give up that childish fantasy of yours!"
     t "Do you have any idea what you have done?"
-    t "Give her to me now."
+    t "Give her to me. NOW."
     hide tyr
 
     show loki mad
-    l "Tell me why! We haven't even met you before!"
-    l "Why do you have to stop us!"
+    l "Tell me why! Why do you have to stop us?!"
     hide loki
 
     show tyr confused
@@ -2385,7 +2374,7 @@ label resume5_1:
     l "I don't care! I just want to save Fenrir! She does not deserve being kept in that prison!"
     l "I just want some answers! Why do you all want her locked up when she has done nothing wrong!"
     show fenrir sad at right
-    f "Stop Loki...You don't understand..."
+    f "Stop Loki... You don't understand..."
     hide loki
     hide fenrir
 
@@ -2397,7 +2386,7 @@ label resume5_1:
     t "All because of her!"
     show tyr neutral
     t "Now tell me again she's done nothing wrong."
-    t "She's a threaten to the world simply by living."
+    t "She's a threat to the world simply by living."
     t "It is my fate to stop her, and I fully intend to do so."
     t "The only way you take her away today is by stepping over my body."
     hide tyr
@@ -2405,14 +2394,14 @@ label resume5_1:
     show fenrir sad at left
     f "He's right Loki..."
     f "I have tried to break out from that prison more times than I care to remember..."
-    f "But Tyr always track me down and bring me back."
+    f "But Tyr always tracks me down and brings me back."
     f "He's a giant...no one can beat him without GG power..."
     show loki neutral at right
     l "What's his GG power?"
     f "He doesn't have GG power. That contract does not allow him to have one."
     f "But even so, he is still strong as hell! He once punched through a concrete wall to chase me!"
-    f "Please...Just go!"
-    l "So I can still punch him in the face right?"
+    f "Please... Just go!"
+    l "So I can still punch him in the face, right?"
     show fenrir mad at left and singlebounce
     f "Wh...what? No! Don't!"
     f "Didn't you listen to what I just said?"
@@ -2427,7 +2416,7 @@ label resume5_1:
     hide loki
 
     show tyr confused
-    t "Sigh...I really thought you could be more reasonable."
+    t "Sigh... I really thought you could be more reasonable."
     show tyr happy
     t "Well, if this is what you desire, then I guess you are ready to break some bones."
     show tyr neutral
@@ -2437,7 +2426,7 @@ label resume5_1:
     t "But Fenrir stay with me anyway so don't struggle too hard."
     hide tyr
 
-    "Now Loki will fight with his fist."
+    "A fist fight begins between Loki and Tyr."
     "If Tyr shows disgust on his face, then click to throw a punch at him when he's losing balance!"
     "Don't click when Tyr shows joy, you can't win over his sheer strength!"
     "Comment: I tried to make a reaction-based fight, but I couldn't write it out in code."
@@ -2462,15 +2451,15 @@ python:
 label end:
 
     show tyr disgust
-    "Somehow Loki winned this fight."
-    "Now Tyr has passed out on the ground, but Loki still has not chilled down his rage."
+    "Somehow Loki won the fight."
+    "Now Tyr is passed out on the ground, but Loki still maintained his rage."
     "He grabbed a stone beside him, and raised it right above Tyr's head."
     hide tyr
 
     show fenrir sad at left
     f "Loki! No! Don't!"
     show loki mad at right
-    l "If I don't kill him now, he'll always come back to you!"
+    l "If I don't kill him now, he'll always come back to get you!"
 
     hide loki
     hide fenrir
@@ -2498,7 +2487,7 @@ label normal_end:
     "Tyr throw a punch right into Loki's face. "
     "Loki is already exhausted from the previous fight. The punch is so forceful that Loki blacked out instantly."
     show fenrir sad at right
-    f "NO!!!LOKI!!!"
+    f "NO!!! LOKI!!!" with hpunch
     t "He chose his own fate."
     t "Now you must face yours."
     "Tyr took away Fenrir."
@@ -2507,12 +2496,12 @@ label normal_end:
 
 label good_end:
 
-    "Fenrir's yell put some sanity into Loki's head. He suddenly come back to his sense."
+    "Fenrir's yell put some sanity into Loki's head. He suddenly come back to his senses."
     "Loki drops the stone and stand up."
     show loki neutral at left
-    l "Come! We must run now!"
+    l "Thanks Fenrir, lets go!"
     show fenrir happy at right
-    f "Thank you Loki!"
+    f "Thank you, Loki!"
     hide loki
     hide fenrir
 
