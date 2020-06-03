@@ -116,6 +116,7 @@ label start:
     # how to declare chapter
 label chapter1:
 
+    $ gg_power = 5
     scene black with dissolve
 
     show text "Chapter 1\nChildhood Friends" with Pause(5)
@@ -591,9 +592,6 @@ label rejoinfight:
 
 # this is an example of what a more complex series of events could look like
 label ch2positive:
-
-    # Initialize a variable.
-    $ gg_power = 5
 
     scene oldlokiroom
     with dissolve
