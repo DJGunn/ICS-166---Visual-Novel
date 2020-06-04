@@ -1057,9 +1057,9 @@ label ch2resume2:
         "Grand Entrance, use fly?":
             $ gg_power -=5
             stop music fadeout 1.0
-            g @ mad "Didn't I just tell you that were were supposed to be enthusiastic? Dang it Loki..."
+            g @ sad "Didn't I just tell you that were were supposed to be enthusiastic? Dang it Loki..."
 
-            g @ mad "Also if you didn't already notice, your GG is already flying..."
+            g @ sad "Also if you didn't already notice, your GG is already flying..."
 
             l "Oh, you're right..."
 
@@ -1402,7 +1402,6 @@ label chapter3:
 # this is an example of what a more complex series of events could look like
 label positive3_1:
 
-    # Initialize a variable.
     $ gg_power += 20
 
     show loki mad at right
@@ -1882,7 +1881,7 @@ label road:
 
             jump run
 
-        "Fight by Loki himself":
+        "Fight by yourself":
 
             l "I can do it by myself."
 
@@ -1892,15 +1891,15 @@ label road:
             l "Show me your power, GG! Attack the ice layer between us and him."
 
             show fenrir happy at center
-            f "Smart! Loki wanna create a crack"
-            f @ sad "But it seems not work! Loki's power is not enough! Let us help him Garm."
+            f "Smart! Loki wants to create a crack!"
+            f @ sad "But it seems not to work! Loki's power isn't enough! Let's help him Garm."
             play sound "summon.mp3"
             f "Come out, my GG!"
 
             hide fenrir happy
             show garm sad at center
             play sound "summon.mp3"
-            g "Oh, you silly boy Loki!! GG! Help me!"
+            g "Oh, you silly boy Loki! GG! Help me!"
             hide garm sad
 
             "Ice layer is broken. A huge crack between Baldur and the group of Loki."
@@ -1913,7 +1912,7 @@ label road:
             show garm sad at center
             g "Stop taunting them. You almost got us killed!"
 
-            l @ happy "Hahaha, it happens. A true gentleman will forgive me."
+            l @ happy "Hahaha, it happens. Forgive me!"
 
             jump run
 
@@ -2739,7 +2738,7 @@ label use_gun:
                 "With the Platinum Credit Card containing the combined power of all the LOLs, Loki easily became their leader."
                 "The world was saved, but was instead trapped unchanged forever."
                 "The rich LOLs always won the game, and everyone else lost."
-                "You Win? Ending"
+                "{b}You Win? Ending{/b}"
                 return
 
             "Destroy the world of the LOLs":
@@ -2755,7 +2754,9 @@ label use_gun:
                 l "So we will instead destroy this dystopian world and start anew before you can even say-"
                 l """
                 L.
+
                 O.
+
                 L.
                 """
                 play sound "summon.mp3"
