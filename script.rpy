@@ -17,6 +17,7 @@ define ggse = Character(_("GG Store Employee"), color="#1711ee", image="guard")
 define pg = Character(_("Prison Guard"), color="#1711ee", image="guard")
 define jn = Character(_("Jormungandr"), color="#9300FF", image="jornaked")
 define j = Character(_("Jormungandr"), color="#9300FF", image="jor")
+define uj = Character(_("???"), color="#9300FF", image="jor")
 define jgg = Character(_("Gentle Giant"), color="#CF6800", image="jorgg")
 define jggf = Character(_("Gentle Giant"), color="#CF6800", image="jorggf")
 define b = Character(_("Baldur"), color="eeffff", image="baldur")
@@ -100,6 +101,7 @@ default ch1_menuset = set()
 
 label start:
 
+    stop music fadeout 0.5
     # python runs at the moment the game starts
     # this means that all items that need to be bought need to be put here
     python:
@@ -246,7 +248,7 @@ label book:
             l "{i}I feel like I learned about GG's. Reading further might tell me more though.{/i}"
 
             if manifestations_done == False:
-                $gg_power += 1
+                $gg_power += 2
                 $manifestations_done = True
             jump book
 
@@ -263,7 +265,7 @@ label book:
             l "{i}I felt like some parts were missing, but I've learned a bit more about GG's.{/i}"
 
             if rebellions_done == False:
-                $gg_power += 1
+                $gg_power += 2
                 $rebellions_done = True
             jump book
 
@@ -306,7 +308,7 @@ label book:
                     l "{i}She pouts at me and picks the book up.{/i}"
                     show fenrir mad at center
                     f "I'll just read it later myself. You'll regret it when I find out all the secrets of the GG and you don't!"
-                    $gg_power -= 1
+                    $gg_power -= 2
                     jump finishbook
 
         "Books aren't for nerds, but I am done reading this." if manifestations_done == True and rebellions_done == True:
@@ -314,7 +316,7 @@ label book:
             l "{i}Finished with my readings, I close the book and hand it back to Fenrir.{/i}"
             show fenrir happy at center
             f "Thanks for reading it! Isn't it awesome?"
-            $gg_power += 1
+            $gg_power += 3
             jump finishbook
 
 label finishbook:
@@ -335,8 +337,8 @@ label finishbook:
     l "{i}He’s the uptight law-toting sort, but he’s nice enough to actually talk to kids like us.{/i}"
     l """
     {i}Fenrir likes him a lot though. {/i}
-    {i}80 percent of that affection is probably because he dresses like an old school detective.{/i}
-    {i}The leather gloves, the trenchcoat, and all.{/i}
+    {i}80 percent of that affection is probably because of how tough he looks.{/i}
+    {i}She even cut her hair short in admiration for him.{/i}
     """
     l "He can’t give away all their secrets. They don’t want you surpassing them."
 
@@ -418,14 +420,17 @@ label rejoincurry:
 
     scene fenrirhouse with fade
     show garm sad at depress, left
+    show tyr happy at center
     l "{i}Garm is huddled in one corner of the room with Tyr towering over her.{/i}"
-    l "{i}Her eyes are wide and pleading as Tyr stretches one glove-clad palm towards her bare thigh.{/i}"
+    l "{i}Her eyes are wide and pleading as Tyr stretches one hand towards her bare thigh.{/i}"
 
     show fenrir mad at singlebounce, right
     f "You!"
     f "Loki, block the door!"
 
+    show tyr surprised at center
     t "Stay where you are!"
+    hide tyr
 
     $timer_count = 3
     $timer_label = 'stay'
@@ -438,7 +443,7 @@ label rejoincurry:
         "Block the door":
             #hide screen countdown
             l "{i}I quickly stand in front of the door, both to help Fenrir and to avoid her wrath.{/i}"
-            $ gg_power += 2
+            $ gg_power += 5
             jump rejoinorder
 
         "Stay where you are":
@@ -475,7 +480,7 @@ label rejoinorder:
     {b}Cold like the ice of our home... like the steel of the knife...{/b}
     {b}Like the eyes of the ghostly wolf rising from the light!{/b}
     """
-    play sound "howl.wav"
+    play sound "summon.mp3"
     show protectorofthepack at center with hpunch
     "{b}The wolf's large body fills the room as it floats besides Fenrir, both shielding her and following her movements.{/b}"
 
@@ -512,7 +517,7 @@ label rejoinorder:
 
             l "{i}I try to run towards Fenrir in a gallant attempt to stop the guards, but it’s useless.{/i}"
             l "{i}I take just one step and the remaining guards are on me, tossing me like a doll away from them.{/i}"
-            $ gg_power += 3
+            $ gg_power += 5
 
             jump rejoinfight
 
@@ -1001,6 +1006,7 @@ label ch2resume2:
     IT'S TIME TO MAKE YOUR APPEARANCE, GRAAAAAND ENTRAAAAANCE!!!
     """
     stop music fadeout 1.0
+    play sound "summon.mp3"
     show grandentrance at left with hpunch
 
     l "Ah okay."
@@ -1033,6 +1039,7 @@ label ch2resume2:
         "GRAND ENTRANCE, USE DAZZLING GAZE AT GARM!":
             $ gg_power +=10
             stop music fadeout 1.0
+            play sound "summon.mp3"
             show grandentrance at singlebounce, left
             g @ surprised "Wha-"
             hide garm neutral
@@ -1266,7 +1273,6 @@ label resume3:
 
     l "{i}I can only hope things weren't too bad...{/i}"
 
-    "{b}Good Path!{/b}"
     # This ends the game.
     jump chapter3
 
@@ -1289,7 +1295,7 @@ label ch2negative:
     "Loki died of..."
     "WAIT, HOW?!" with vpunch
 
-    "{b}Bad Ending{/b}."
+    "{b}Depression Ending{/b}."
     # This ends the game.
     return
 
@@ -1320,7 +1326,9 @@ label chapter3:
     play music "ominousbgm.wav"
     "{b}A half naked man steps out of the shadows to the surprise of the two visitors{/b}"
 
-    jn "Hello, I am Jormungandr. I have been waiting for this meeting for many years."
+    jn "Hello, I am Jormungandr and I know my name is quite the mouthful."
+
+    jn "I have been waiting for this meeting for many years."
 
     jn "Loki, your current awakening of Grand Entrance is no mere coincidence. "
 
@@ -1343,7 +1351,7 @@ label chapter3:
 
     """
 
-    jn "You will soon learn that you have a power greater than anything the elite LOLs will ever posess.... "
+    jn "You will soon learn that you have a power greater than an elite LOL will ever posess.... "
 
     jn "{b}Plot armor{/b}"
 
@@ -1365,7 +1373,9 @@ label chapter3:
 
     play music "normalbgm.wav"
     hide jornaked
+    hide garm
     show jor happy at left
+    play sound "summon.mp3"
     show jorggf neutral at multibounce, center
     show loki surprised at right
 
@@ -1398,10 +1408,12 @@ label positive3_1:
     show loki mad at right
     l "I will fight. If I truly have this plot armor you speak of, and the fate of everyone in the rebellion lies in the balance. I guess I have no other choice."
 
-    l "I can't just stand by as more and more people are exploited for the beneifit of the LOLs."
+    l "I can't just stand by as more and more people are exploited for the benefit of the LOLs."
 
     show jor happy at left
     j "You made the right choice Loki. Now, there is much you must know before we leave here. I only recently allowed myself to be captured so that I could meet Fenrir here in prison."
+
+    j "I've been captured so many times in my LOL assassination attempts. I know all the ins and outs of this place."
 
     j "I couldn't reach you earlier as we all needed to be together in order for the next part of my plan to work. "
 
@@ -1416,7 +1428,7 @@ label positive3_1:
 
     j "I don't know exactly what they have planned, but it can't be good."
 
-    j "You don't know this, but Fenrir is the one that was onto them originally. If it weren't for her initial work we wouldn't know what we do now."
+    j "You don't know this, but Fenrir is the one that triggered their actions. If it weren't for her initial capture we wouldn't know what we do now."
 
     j "As we speak, the LOLs are gathering their forces to stop any resistance before they can complete their ultimate plan."
 
@@ -1501,6 +1513,7 @@ label cta:
 
     hide loki
     hide jor
+    play sound "summon.mp3"
     show grandentrance at center
     "Loki draws in a deep breath. Focuses on Grand Entrance and Grand Entrance alone."
 
@@ -1513,6 +1526,7 @@ label cta:
 
     hide grandentrance
     show grandentrance at left
+    play sound "summon.mp3"
     show jorggf neutral at singlebounce, right
     with hpunch
 
@@ -1533,6 +1547,7 @@ label milady:
     hide loki
     hide jor
 
+    play sound "summon.mp3"
     show grandentrance at right
     show garm neutral at left
     "Loki draws in a deep breath. Focuses on Grand Entrance and Grand Entrance alone."
@@ -1581,6 +1596,7 @@ label lr:
     "Loki felt a sudden sense of dread. Grand Entrance was about to do something bad."
 
     "Grand entrance reaches his arms out suddenly"
+    play sound "summon.mp3"
     show grandentrance at singlebounce, center with hpunch
 
     "The entire building began to shake, The approaching guards began to scream!"
@@ -1684,14 +1700,14 @@ label negative3_1:
 
     "Loki ran back to his home where he was met by the LOL forces that were looking for him."
 
-    uf """
+    ut """
     Ah, hello Loki. So good of you to come. We've been waiting for you.
     """
 
     "Loki was slammed to the ground, before he could make a move he felt something smash into the back of his head."
     with vpunch
-    uf "A pity, you could have been something great Loki. Now you will be nothing more than a body."
-    "{b}Bad Ending{/b}."
+    ut "A pity, you could have been something great Loki. Now you will be nothing more than a body."
+    "{b}Coward Ending{/b}."
     # This ends the game.
     return
 
@@ -1727,7 +1743,7 @@ label chapter4:
     g "I thought you had the whole plan!"
 
     f @ mad "Any suggestions?! We need to keep moving!"
-    f "We can go straight on this road and destory everything stops us!"
+    f "We can go straight on this road and destroy everything stops us!"
 
     g "What about we go this way? It's a less known path so it's safer."
 
@@ -1763,7 +1779,7 @@ label road:
 
     scene prison-outside
     with dissolve
-    play music "boxcat.mp3"
+    play music "battlebgm.wav"
 
     show loki neutral at center
 
@@ -1792,7 +1808,7 @@ label road:
 
     scene fight1 with dissolve
     show baldur neutral at center, singlebounce
-    play music "boxcat.mp3"
+    play music "battlebgm.wav"
 
     b "I know you're there Fenrir!"
     b "Don't try to hide! It's a waste of time for both of us!"
@@ -1830,6 +1846,7 @@ label road:
             l "Attack the ice layer between us and him, cause cracks and run away!"
 
             show fenrir happy at center
+            play sound "summon.mp3"
             f "No problem. Come out, my GG! I will let you see my power."
 
             l "Show me your power, GG!"
@@ -1851,6 +1868,7 @@ label road:
             l "Attack the ice layer between us and him, cause cracks and run away."
 
             show garm surprised at center
+            play sound "summon.mp3"
             g "Oh me? OK! let us do this. GG! Help me!"
 
             l "Show me your power, GG!"
@@ -1870,15 +1888,18 @@ label road:
 
             $ gg_power-=10
 
+            play sound "summon.mp3"
             l "Show me your power, GG! Attack the ice layer between us and him."
 
             show fenrir happy at center
             f "Smart! Loki wanna create a crack"
             f @ sad "But it seems not work! Loki's power is not enough! Let us help him Garm."
+            play sound "summon.mp3"
             f "Come out, my GG!"
 
             hide fenrir happy
             show garm sad at center
+            play sound "summon.mp3"
             g "Oh, you silly boy Loki!! GG! Help me!"
             hide garm sad
 
@@ -1890,7 +1911,7 @@ label road:
             l @ happy "Bye-bye!!"
 
             show garm sad at center
-            g "Stop talking shit. You almost got us killed!"
+            g "Stop taunting them. You almost got us killed!"
 
             l @ happy "Hahaha, it happens. A true gentleman will forgive me."
 
@@ -1912,6 +1933,7 @@ label road:
             g "I agree with you!"
             hide garm neutral
 
+            play sound "summon.mp3"
             l "Show me your power, GG!"
 
             "Ice layer is broken. A huge crack between Baldur and the group of Loki."
@@ -1928,11 +1950,12 @@ label path:
 
     scene path
     with dissolve
-    play music "boxcat.mp3"
+    play music "battlebgm.wav"
     show loki neutral at center
 
     l "Let's go, I can hear the guards coming!"
 
+    play music "netherplace.mp3"
     show loki neutral at right with move
     show fenrir neutral at left
     f @ happy "I'm sure this path can buy us time."
@@ -1976,7 +1999,7 @@ label encountered:
 
     "You lose! Loki and his friend got caught!"
 
-    "{b}Bad Ending.{/b}"
+    "{b}Indecisive Ending.{/b}"
 
     return
 
@@ -2068,27 +2091,39 @@ label icecave:
 
     l "Thanks again. Why did you help us, by the way?"
 
+    play music "ominousbgm.wav" fadeout 1.0 fadein 1.0
     s "My name is Surt. I helped you because I hate LOLs."
     s "Me and my sister Samira used to be servants of Baldur."
     s @ angry "One day I was gardening in the garden and Samira was serving a guest of Baldur."
     s @ angry "But my sister made a mistake by pouring the tea on the guests."
-    s @ angry "After Baldur heard of it, he killed my sister. Then he burned me because I pleaded for her."
-    s "Finally I was exiled here, the Icelandic wilderness."
+    s @ angry "After Baldur heard of it, he tortured my sister for days. He even sold tickets so the other LOLs could watch..."
+    s @ angry "Everyday I pleaded for her to be freed, but finally he just killed her in front of me."
+    s @ angry "Then he burned me and I was exiled here, the Icelandic wilderness."
+    s "That's what happens when you go against them..."
     s "I don't have the power to avenge her, but I will do whatever I can to detriment the LOLs out of their sight."
-    s "That's my story. A useless waste's story."
+    s "That's my story. A useless waste's story, one who couldn't even save his sister."
 
+    show fenrir mad at center
+    f "That's horrible! They're so heartless!"
     l "Surt, I don't think you're a useless person. I mean it."
+    hide fenrir
+    show garm sad at center
+    g @ sad "It wasn't your fault, Surt."
+    hide garm
     l @ mad "LOLs are very cruel to the people."
-    l @ mad "There are so many people who are dissatisfied with them outside and we decided to rebel against them."
-    l @ happy "We'd love it if you could join us. Only you can save yourself."
+    l @ mad "There are so many people who are dissatisfied or hurt by them, so we decided to fight back."
+    play music "netherplace.mp3" fadeout 1.0 fadein 1.0
+    l @ happy "We'd love it if you could join us. You can bring peace to your sister and stop others from getting hurt too."
+    l @ happy "Only you can save yourself from the despair they left you in."
+    l "It's your choice."
 
     s "Can I? Are you willing to accept me who has nothing?"
     s "I have no power to contend with LOL... I will only drag you down."
 
-    l @ happy "No problem, we think we can teach you how to manifest a GG."
+    l @ happy "No problem. We think we can teach you how to manifest a GG, like the original rebels did."
 
     $counter = 0
-    l "The power of GG comes from yourself. And that depends on the qualities of a gentleman."
+    l "The power of GG comes from your heart. And that depends on the qualities of a gentleman."
     l "Here is how to be a gentleman."
 
     menu:
@@ -2154,7 +2189,10 @@ label icecave:
 
 label twodayslater:
 
-    "Two days later, outside the ice cave"
+    "The group spent a few days together in the wilderness."
+    "They trained their GGs, enjoyed meals of questionable outdoors ingredients, and shared their mutual hatred of the LOLs."
+
+    "Two days later, outside the ice cave."
 
     scene wild with dissolve
 
@@ -2166,13 +2204,13 @@ label twodayslater:
     show baldur angry at left with move
     show loki happy at right
 
-    l "Look at this dummy, stupid and blames others!"
+    l "Look at this idiot! He can't help but go and blame others!"
     l "Kill me if you can!"
 
     show baldur angry at center with move
     show guard neutral at left
 
-    b "Go kill these escapers. I will kill Surt first!"
+    b "Go kill these fugitives. I will kill this pathetic, lying servant first!"
     l @ mad "Surt! Run!"
 
     hide guard
@@ -2181,14 +2219,17 @@ label twodayslater:
     show baldur angry at left with move
     show surt suprised at right
 
-    b "Now it's only us! You're gonna die today, Surt!"
-    s @ angry "I won't run anymore! The time of my revenge is now! Lets go GG, show time!"
+    b "Now it's only us! You will die today!"
+    b "You will die screaming, as your sister did!"
+    show hearth at center with vpunch
+    play sound "summon.mp3"
+    s @ angry "I won't run anymore! The time is now! Lets go Hearth of Home, warm our hearts!" with hpunch
 
     scene surtfight with dissolve
 
     s "This is payback for what you did to my sister!"
 
-    "{b}Surt kills Baldur.{/b}"
+    "{b}With a swing of his axes strengthened by the fire of his GG, Surt cuts down Baldur.{/b}"
 
     stop music fadeout 1.0
 
@@ -2204,10 +2245,11 @@ label chapter5:
 
     show loki surprised at left
     show fenrir neutral at right
+
+    l "Good job summoning your GG, Surt!"
+    f "You couldn't let what they did to your sister stand!"
+
     play music "ominousbgm.wav" fadeout 1.0 fadein 1.0
-
-    l "Good one Surt!"
-
     f "We should keep moving now. More guards must be following us."
 
     show surt neutral
@@ -2218,18 +2260,26 @@ label chapter5:
     hide fenrir
 
     ut "Where do you think you're going?"
+    show garm sad at right
+    show fenrir mad at left
     l "{i}It sounds like someone caught up, but who?{/i}"
+    l "{i}The voice leaves both Garm and Fenrir frozen in place."
+    l "{i}That cold voice..."
 
+    hide garm
+    hide fenrir
     show tyr neutral
-    ut "I am Tyr, the blessed son of Hymir, Destined Hunter of Fenrir, the Immuned One."
-    t "Fenrir, you will run no further."
+    ut "Yes, it is I, Tyr. The blessed son of Hymir, Destined Hunter of Fenrir, the Immuned One."
+    t "I have changed since we last met. I was foolish in even allowing the children of the GG rebels to survive and have paid for it with my hand."
+    t "But no longer. I will uphold the laws of the LOL with even greater vigor now as they have entrusted me with their combined powers."
+    t "I will begin this task with you. Fenrir."
+    t "You will unlawfully run no further."
     "Tyr spoke in a commanding tone, with a determined look in his eyes."
     hide tyr
 
     show surt neutral
-    s "I'm sorry guys. I can't help you on this one, not with Tyr on the other side."
-    s "I wish you the best of luck."
-    "{b}Surt runs away, as if they were being chased by a bear.{/b}"
+    s "I'm sorry, but I don't think I can help. I've only just manifested my GG and I was weakened by our last fight..."
+    s "Still, I wish you the best of luck."
     hide surt
 
     play music "battlebgm.wav" fadeout 1.0 fadein 1.0
@@ -2241,16 +2291,16 @@ label chapter5:
     This can't be happening!
     """
 
-    f @ mad "Run Loki! You can't beat him! Run now!"
+    f @ mad "Run Loki! You can't beat him! Take Garm and run now!"
 
-    f "I'll surrender only if you promise not to hurt Loki."
+    f "Please, I'll surrender only if you promise not to hurt them."
 
     l "{i}Fenrir looks terrified... But that time way back then she managed to hurt Tyr...{/i}"
 
     l "{i}That means there's still hope!{/i}"
 
     show loki surprised at right
-    l "Don't be silly, I will never leave you behind!"
+    l "Don't be ridiculous, I won't leave you behind! Not when I finally got to see you again!"
     l "I have manifested my GG power and I'll fight to my last breath to protect you!"
 
     f "No you don't get it! Tyr is..."
@@ -2279,7 +2329,11 @@ label resume5_1:
 
     show tyr neutral
     t "Boring."
+    play sound "summon.mp3"
+    t "Hand of Justice. Palm of Resistance."
+    show palm at right
     "Tyr didn't even move a pixel."
+    hide palm
     hide tyr
 
     show loki surprised at singlebounce, left
@@ -2313,20 +2367,30 @@ label resume5_1:
     show fenrir sad at right
     l "Jötunn? What... what's that?"
     f "It's the old name of..."
-    f "The Giant."
+    show surt neutral at center
+    s "The Giant."
     hide loki
     hide fenrir
+    s "The giants are an insanely strong people. However, the LOLs killed most of them in the GG rebellions and enslaved the rest."
+    s "Some giants were even forced into marriages with LOLs to strengthen their bloodlines."
+    s "Over time, the giant slaves were poisoned to weaken them in both body and mind so they could never escape..they aren’t even counted as giants anymore..."
+    show loki surprised at left
+    l "How do you know all that?"
+    s "I only know... because I was one of those slaves...not even counted anymore."
 
+    hide surt
+    hide loki
     show tyr laugh
     t "Well aren't you a little smarter than that moron?!"
     show tyr neutral
-    t "Yes, I am the last giant walking on Earth."
-    t "My contract with the elder gods protects me from your laughable GG power."
-    t "Whoever use GG power in front of me will only experience that power deflected back to himself."
-    t "Without your GG power, you are just some guy."
+    t "Yes, I am the last true giant walking on Earth."
+    t "This has given me the strength to carry the weight of the combined wealth and therefore, the power, of all the LOLs combined."
+    t "This protects me from your laughable GG power."
+    t "Whoever uses that GG power in front of me will only experience that power deflected back to himself."
+    t "And without your GG power, you are just some guy."
     hide tyr
 
-    show fenrir sad
+    show fenrir sad at right
     f "Forget it Loki! Don't try to hurt him again."
     f "It's my fate..."
     hide fenrir
@@ -2334,7 +2398,7 @@ label resume5_1:
     show loki surprised
     l "Why..?"
     show loki mad
-    l "I thought I finally have the power to protect you!"
+    l "I thought I finally have the power to protect you! To change things!"
     l "And this guy just pops out of nowhere and tells me I am nothing?"
     hide loki
 
@@ -2346,12 +2410,14 @@ label resume5_1:
     t "You are the ultimate manifestation of absurd!"
     show tyr happy
     t "Have you read The Myth of Sisyphus by Albert Camus?"
+    t "I loaned Fenrir plenty of books back when you were younger after all."
+    show tyr neutral
     t "Sisyphus is cursed to spend all his life to push a rock to the top of the mountain."
     t "Only to have it rolled back to the bottom every single time."
     t "Camus said that Sisyphus's fate is no less absurd, but only tragic when he's conscious about his fate."
     show tyr laugh
     t "Isn't that you?! Hahaha!"
-    t "Spent your life to grow your GG power, only to find it's useless now."
+    t "You've spent all this time to level up your GG power, only to find it's useless now."
     t "Now that you know it's useless, you are just some tragic nobody!"
     show tyr neutral
     t "You thought you could do everything with your GG power."
@@ -2363,13 +2429,13 @@ label resume5_1:
     t "Give her to me. NOW."
     hide tyr
 
-    show loki mad
+    show loki mad at left
     l "Tell me why! Why do you have to stop us?!"
     hide loki
 
     show tyr confused
     t "Are you stupid or something?"
-    t "Are you really a LOL?"
+    t "Your wealth could’ve made you an LOL, if you were only smart enough to accept us."
     hide tyr
 
     show loki mad at left
@@ -2390,31 +2456,20 @@ label resume5_1:
     t "Now tell me again she's done nothing wrong."
     t "She's a threat to the world simply by living."
     t "It is my fate to stop her, and I fully intend to do so."
-    t "The only way you take her away today is by stepping over my body."
+    t "The only way you take her away today is by stepping over my dead body."
     hide tyr
 
-    show fenrir sad at left
+    show fenrir sad at right
     f "He's right Loki..."
     f "I have tried to break out from that prison more times than I care to remember..."
     f "But Tyr always tracks me down and brings me back."
-    f "He's a giant...no one can beat him without GG power..."
-    show loki neutral at right
-    l "What's his GG power?"
-    f "He doesn't have GG power. That contract does not allow him to have one."
-    f "But even so, he is still strong as hell! He once punched through a concrete wall to chase me!"
-    f "Please... Just go!"
-    l "So I can still punch him in the face, right?"
-    show fenrir mad at singlebounce, left
-    f "Wh...what? No! Don't!"
-    f "Didn't you listen to what I just said?"
-    f "He is unbelieveably strong!"
+    f "He's an LOL and a giant with a powerful GG amplified by all the other LOL’s wealth...no one can beat him without GG power..."
     hide fenrir
-    hide loki
 
-    show loki neutral
-    l "If that's the case, then it's all the same."
-    l "A true gentleman will never step away when a lady is in need of help."
-    l "Even without my GG power, you have no chance against me."
+    show loki happy
+    l "That doesn't change my decision."
+    l "A true gentleman will never step away when someone is in need of help."
+    l "Even without my GG power, I fight for my friends!"
     hide loki
 
     show tyr confused
@@ -2422,97 +2477,324 @@ label resume5_1:
     show tyr happy
     t "Well, if this is what you desire, then I guess you are ready to break some bones."
     show tyr neutral
-    t "Just yell for help when you can take it anymore."
-    t "I'm not from Minneapolis so I'll let you go if you surrender."
-    show tyr laugh
-    t "But Fenrir stay with me anyway so don't struggle too hard."
+    t "Why do these protagonists always insist on breaking their bones..."
     hide tyr
 
-    "A fist fight begins between Loki and Tyr."
-    "If Tyr shows disgust on his face, then click to throw a punch at him when he's losing balance!"
-    "Don't click when Tyr shows joy, you can't win over his sheer strength!"
-    "Comment: I tried to make a reaction-based fight, but I couldn't write it out in code."
-    "Comment: Just click it."
-    "Comment: Since you cannot lose the fight now, you can't reach bad end."
-    "Comment: Bad end is Loki is mind-controlled to kill Fenrir then become a puppet."
+    "{b}A battle of fists begins between Loki and Tyr.{/b}"
 
-python:
-    tyrHealth = 5
-    chance = 0
-    while(tyrHealth > 0):
-        chance += 1
-        i = renpy.random.randint(1,5)
-        if i < 3:
-            renpy.show("tyr disgust")
-            renpy.say("Tyr", "Wait!")
-            tyrHealth -= 1
-        else:
-            renpy.show("tyr laugh")
-            renpy.say("Tyr", "Just give up!")
+$rounds = 0
+$punches = 0
+label fistfight:
+    if punches >= 3:
+        jump end
+    if rounds >= 3:
+        jump end
+    $rounds += 1
+    menu:
+        "I've got to hit him..."
+        "On his right side.":
+            l "{i}No! He blocked my hit, but I didn't take the cheap shot on his bad side.{/i}"
+            $gg_power += 1
+        "On his left side.":
+            l "{i}Yes! It's hard to block without a hand!{/i}"
+            $punches += 1
+            $gg_power -= 1
+    menu:
+        "I've got to hit him..."
+        "Straight on!":
+            l "{i}Yes! He was expecting me to be as sneaky as an LOL, but even my fists don't lie!{/i}"
+            $punches += 1
+            $gg_power += 1
+        "With a feint!":
+            l "{i}No! The world of the LOLs is full of trickery. He expected a false move and blocked!{/i}"
+            $gg_power -= 1
+    menu:
+        "I've got to hit him..."
+        "In the face.":
+            l "{i}Yes! That got him good even if it wasn't the nicest move.{/i}"
+            $punches += 1
+            $gg_power -= 1
+        "In the stomach.":
+            l "{i}Yes! That got him and I stayed true to an honorable fist fight.{/i}"
+            $punches += 1
+            $gg_power += 1
+        "In the groin.":
+            l "{i}Yes! That's gotta hurt him, but it wasn't very gentlemanly.{/i}"
+            $punches += 1
+            $gg_power -= 2
+    jump fistfight
 
 label end:
 
+    l "{i}Somehow I was able to get a few good hits on Tyr, but the LOL still stands tall.{/i}"
     show tyr disgust
-    "Somehow Loki won the fight."
-    "Now Tyr is passed out on the ground, but Loki still maintained his rage."
-    "He grabbed a stone beside him, and raised it right above Tyr's head."
+    t "Ugh, that’s enough of that."
+    show tyr happy
+    t "This move will finish you and allow me to restore order."
+    play sound "summon.mp3"
+    t "Fist of punishment."
+    show fist at right
+    "Tyr manifests the massive hand of his GG and rears back, preparing to throw a punch guaranteed to be a one-shot kill."
     hide tyr
-
-    stop music fadeout 1.0
-
-    show fenrir sad at left
-    f "Loki! No! Don't!" with vpunch
-    show loki mad at right
-    l "If I don't kill him now, he'll always come back to get you!"
-
-    hide loki
-    hide fenrir
+    hide fist
+    uj "Quickly, use your plot armor!"
 
     menu:
-        "Smash the stone into Tyr's head":
-            jump normal_end
-        "Put away the stone":
-            jump good_end
 
-label bad_end:
+        "That does seem like a good idea..."
 
-    return
+        "Listen to the voice.":
+            jump use_armor
+        "You can't tell me what to do, random voice!":
+            stop music fadeout 1.0
+            show loki happy at center
+            l "I valiantly shout back to the random voice just as a fist smashes into my entire body."
+            l "There goes my bones..."
+            hide loki
+            scene black with dissolve
+            l "My rebellious streak seems to have been a bit too rebellious this time."
+            "{b}No Bones Ending{/b}"
+            return
 
 
-label normal_end:
+label use_armor:
+    if gg_power >= 50:
+        l "{i}I decide to listen to the voice and remember what Jormungandr told me in the prison.{/i}"
+        l "{i}I concentrate on the strength of my gentlemanly spirit, connecting with Grand Entrance, to create an impenetrable barrier of energy.{/i}"
+        play sound "summon.mp3"
+        l "{i}Just then, Tyr's Hand of Justice attack connects-{/i}"
+        l "{i}...but it's easily deflected with the power of the plot armor.{/i}"
+        show loki happy at center
+        l "Yes! That was too easy!"
+        jump use_gun
 
-    "Loki is in so much rage that he couldn't control himself."
-    "He poured all his strength into that stone, then smashed it down."
-    "But there is no blood."
-    "Tyr woke up right before the stone falled and dogded it."
-    show tyr disgust at left
-    t "I couldn't believe you actually tried to kill me!"
-    t "You got me once, but not again."
-    "Tyr throw a punch right into Loki's face. "
-    "Loki is already exhausted from the previous fight. The punch is so forceful that Loki blacked out instantly."
-    show fenrir sad at right
-    f "NO!!! LOKI!!!" with hpunch
-    t "He chose his own fate."
-    t "Now you must face yours."
-    "Tyr took away Fenrir."
-    "{b}Bad Ending.{b}"
-    return
+    elif gg_power >=30:
+        l "{i}I decide to listen to the voice and remember what Jormungandr told me in the prison.{/i}"
+        l "{i}I concentrate on the strength of my gentlemanly spirit, trying to connect with Grand Entrance.{/i}"
+        l "{i}The wisps of power are hard to grasp, but I manage to pull them together to form an impenetrable barrier of energy.{/i}"
+        play sound "summon.mp3"
+        l "{i}Just then, Tyr's Hand of Justice attack connects-{/i}"
+        l "{i}...but is blocked by the power of the plot armor which ripples from the impact.{/i}"
+        show loki happy at center
+        l "It was tough, but I did it!"
+        jump use_gun
 
-label good_end:
+    else:
+        l "{i}I decide to listen to the voice and remember what Jormungandr told me in the prison.{/i}"
+        l "{i}I try to concentrate on the strength of my gentlemanly spirit, searching for Grand Entrance.{/i}"
+        l "{i}However, the power is just echoes. I try to pull as many together as I can just as Tyr's Hand of Justice attack connects-{/i}"
+        stop music fadeout 1.0
+        l "{i}...but it's not enough.{/i}"
+        show loki surprised at center
+        l "{i}The giant fist of the GG smashes into my body and all goes dark.{/i}"
+        scene black with dissolve
+        "{b}Knuckle Sandwich Ending{/b}"
+        return
 
-    "Fenrir's yell put made Loki come back to his senses."
-    "{b}Loki drops the stone and stands up.{/b}"
-    play music "normalbgm.wav" fadeout 1.0 fadein 0.0
-    show loki neutral at left
-    l "Thanks Fenrir, lets go!"
-    show fenrir happy at right
-    f "Thank you, Loki!"
+label use_gun:
     hide loki
-    hide fenrir
+    show tyr disgust at center
+    t "How could you block that attack?"
+    t "No. I won't waste time waiting for you to act."
+    show tyr neutral
+    t "It's time to use the powers the rest of the LOLs have entrusted me with."
+    l "{i}In a quick hand motion I almost miss, Tyr flashes a shiny rectangular card before stashing it away in his pocket.{/i}"
+    show tyr happy
+    play sound "summon.mp3"
+    t "Hand of Justice. Use Gun."
+    show gun at right
+    l "{i}Tyr’s GG pulls out an appropriately large handgun, quickly aims, and fires... at me!{/i}"
+    l "{i}I hear the sound of splintering as the strength of the shots cracks my plot armor!{/i}"
+    l "How could this be? It’s supposed to make me invincible! I’m instrumental to the plot!"
+    "In Loki’s moment of disbelief, the Hand of Justice reloads and prepares to take another shot-"
+    uj "Loki, get out of the way!"
+    hide gun
+    l "{i}Suddenly, a lithe body pushes me out of the way.{/i}"
+    hide tyr
+    show jor neutral at right
+    show loki surprised at left
+    l "Jorgemandeer?"
+    show jor happy at right
+    j "It's actually Jormungandr, but I’m glad I got here in time."
+    j "I’m sure you’re glad I taught you about your plot armor."
+    show jor neutral at right
+    j "Too bad Tyr’s power levels are so high. From what I can tell, he has to be over level **************************************************************************************************************************************************************************************************************************"
 
-    "{b}The two run away into the wilderness.{/b}"
-    "Is this a happily ever after?"
-    "Perhaps for now, but Ragnarok will still come someday."
-    "Until then, Loki, Fenrir, and Garm will always stay by each other's side."
-    "{b}Good Ending.{/b}"
-    return
+    l "That’s so high it doesn’t even fit in the text box! How could we beat him?"
+    show garm happy at center
+    play music "mellowbgm.wav" fadeout 1.0 fadein 1.0
+    g "With friendship!"
+    hide jor
+    show fenrir mad at right
+    f "With friendship!?"
+    hide fenrir
+    show surt suprised at right
+    s "Uh...friendship?"
+    hide surt
+    show jor neutral at right
+    j "Friendship, huh? That might work."
+    show loki surprised at singlebounce, left
+    show garm surprised at singlebounce, center
+    lg "HUHHHH?!" with vpunch
+    hide loki
+    hide garm
+    show jor happy at right
+    j "I know how it sounds but..."
+    j "Tyr’s power is beyond that of a normal person, even an LOL. He is acting as a vessel for the power of all the LOLs with that key item: The Platinum Credit Card."
+    j "The only way we could ever match that power is with all our gentlemanly spirit combined."
+    hide jor
+    show fenrir happy at singlebounce, center
+    f "Everyone can power up Loki with their GG’s!"
+    hide fenrir
+    show garm happy at singlebounce, center
+    g "I was just joking when I said with friendship, but I believe in you Loki!"
+    hide garm
+    show surt smite at center
+    s "You taught me how to be a gentleman and gave me hope. I’ll try my best to give you strength."
+    hide surt
+    show jor happy at center with move
+    j "I will of course help you defeat the LOLs both to provide satisfaction to my life’s efforts and the plot."
+    hide jor
+    show loki happy at left
+    l "Thank you so much everyone..."
+    "With their words of encouragement, each of Loki’s friends summoned their GG’s to strengthen Loki and Grand Entrance."
+    "All the while, Tyr conveniently waited for the group’s touching moment."
+    show loki mad at left
+    play music "battlebgm.wav" fadeout 0.5 fadein 0.5
+    l "I’m ready for you now, Tyr!"
+    play sound "summon.mp3"
+    show grandentrance at center with hpunch
+    l "GRAND ENTRANCE, TIME FOR OUR GENTLEMAN’S AGREEMENT!" with vpunch
+
+    if gg_power >= 99:
+        hide loki
+        hide tyr
+        hide grandentrance
+        scene white with fade
+        stop music
+        "With those words, a shockwave of light and sparkles extended from our hearts filling the wilderness with our combined power."
+        "The strength of the shockwave barely leaves us standing, but sends Tyr careening across the landscape before finally landing at the edge of an icy cliff."
+        "His fall upends his pockets all over the snow leaving a handful of golden coins, a packet of hot sauce, and most importantly- the Platinum Credit Card."
+        show fenrir happy at right
+        f "Wow, he drops coins on death!"
+        hide fenrir
+        show surt neutral at right
+        s "He’s not dead yet."
+        hide surt
+        scene snow cliff with fade
+        play music "ominousbgm.wav" fadeout 0.5 fadein 0.5
+        l "{i}I stride toward the cliffside where Tyr is sprawled across the ground.{/i}"
+        l "{i}I pluck the Platinum Credit Card up along the way as the rest of the group stands in wait.{/i}"
+        show loki mad at left
+        l "You’ve lost. You can’t have Fenrir and you can’t have us."
+        show tyr surprised at center
+        t "Do you not understand? If we let her go, the world as we know it will end! Ragnarok will come!"
+        show tyr happy at center
+        t "You could join us!"
+        t "You have the wealth! You have a powerful GG! You could become the true gentleman you were meant to be as the leader of the LOLs!"
+        show tyr surprised at center
+        t "We just have to get rid of Fenrir once and for all."
+        t "Join the LOLs to save this world!"
+        hide tyr
+        menu:
+
+            "I should follow my heart..."
+
+            "Save the world of the LOLs":
+                show loki mad at center
+                l "You’re right... We can’t let the world be destroyed."
+                l "I’ve gained so much..."
+                l "I have so much money now. I have my GG. I have my new friends here."
+                l "I can have a good life. I won't let that go."
+                show loki happy at center
+                l "I will save this world where I can have the life I deserve! A world where I am rich, powerful, and handsome!"
+                show loki neutral at center
+                l "Even if that means that my old friend must die."
+                l "Follow me, Tyr. You will be my new right hand."
+                show garm surprised at right
+                g "Loki, what are you-"
+                show loki happy at center
+                l "Step aside, Garm. We can be happy again like before, with our nice home and no worries."
+                l "Before Fenrir came back."
+                hide garm
+                show surt angry at right
+                show jor determined at left
+                j "Loki, we can't let you do that."
+                hide surt
+                hide jor
+                show loki mad at center
+                l "I have to do this. I can't let this world die!"
+                l "...and preserving the world as it is is worth more than your lives."
+                show garm sad at right
+                g "I'm sorry, Loki. I will protect my sister as she did for me, even against you."
+                l "Fine then!"
+                l "{i}I flash the Platinum Credit Card, using its power to strengthen me beyond the reaches of any of my former friends' imaginations.{/i}"
+                play sound "summon.mp3"
+                show grandentrance at left with hpunch
+                l "GRAND ENTRANCE! Introduce these commoners to death!" with vpunch
+                hide loki
+                hide garm
+                scene black with dissolve
+                "After crushing his former friends, Loki returned to his world of luxury."
+                "With the Platinum Credit Card containing the combined power of all the LOLs, Loki easily became their leader."
+                "The world was saved, but was instead trapped unchanged forever."
+                "The rich LOLs always won the game, and everyone else lost."
+                "You Win? Ending"
+                return
+
+            "Destroy the world of the LOLs":
+                play music "boxcat.mp3" fadeout 1.0 fadein 1.0
+                show loki mad at center
+                l "This world is full of hate, pain, and corruption fueled by the greed of the LOLs."
+                l "You would let someone else suffer as long as you can reap the benefits."
+                l "You’ve twisted the lives of the people here. You’ve twisted the pure strength of the GGs."
+                show loki happy at center
+                l "Their power is meant to reflect the heart of a gentleman. A heart fueled by kindness, chivalry, and hope, not money."
+                show loki mad at center
+                l "A world that doesn’t value those things is no world I want to be in!"
+                l "So we will instead destroy this dystopian world and start anew before you can even say-"
+                l """
+                L.
+                O.
+                L.
+                """
+                play sound "summon.mp3"
+                show grandentrance at right with hpunch
+                l "GRAND ENTRANCE! Show him what it means to be a true gentleman!" with vpunch
+                hide loki
+                hide grandentrance
+                scene black with dissolve
+                "After defeating Tyr and destroying his key item, the Platinum Credit Card, the strength of the LOLs faded away."
+                "Their lavish palaces fell apart, the cold wildnerness of Iceland returned..."
+                "...but alongside this destruction, the LOLs slaves and servants were freed, the common people no longer needed to fear hunger from LOL greed or death from LOL wrath."
+                "The old world of the LOLs had been destroyed in Ragnarök, but it made way for a new one."
+                "Knowing the ways that corruption and greed could affect a person, Loki and his friends worked to spread what became known as the GG Code."
+                "Concepts of kindness, trust, honesty were embedded in this code. Concepts that were what made a person a true gentleman."
+                "With the spread of the code, more and more people manifested GGs ensuring that they could all help both themselves and each other."
+                "To this day, those who know the code and take it to heart, show it with a simple phrase when parting."
+                "GG."
+                "{b}Golden Heart of a Gentleman Ending{/b}"
+                return
+
+    else:
+        stop music
+        l "{i}With those words, a flurry of sparkles and beams of light extend from our hearts-{/i}"
+        hide tyr
+        hide loki
+        scene white with fade
+        l "{i}...but it's not enough.{/i}"
+        scene wild with dissolve
+        l "{i}Tyr still stands before us, with just a few strands of hair left out of place.{/i}"
+        show tyr neutral at center
+        t "You never should have thought to challenge the LOLs."
+        show tyr happy at center
+        l "{i}He flashes the Platinum Credit Card in triumph.{/i}"
+        play sound "summon.mp3"
+        t "Hand of Justice. Fistful of Cash." with vpunch
+        hide tyr
+        hide loki
+        scene black with dissolve
+        l "{i}Hundreds of hands clenched around wads of cash began raining from the sky.{/i}"
+        l "{i}It’s the last thing we see.{/i}"
+        "{b}Crushed By Cash End{/b}"
+        return
